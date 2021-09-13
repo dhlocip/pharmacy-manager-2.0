@@ -26,7 +26,7 @@ public class UserModifier {
         
         ResultSet result = preStatement.getResultSet();
         while(result.next()){
-            return new Users(result.getString("userId"), result.getString("userName"), 
+            return new Users(result.getInt("userId"), result.getString("userName"), 
                         result.getString("password"), result.getString("phone"), result.getString("fullName"),
                         result.getString("gender"), result.getString("dateOfBirth"), result.getString("address"), result.getString("position"));
         }

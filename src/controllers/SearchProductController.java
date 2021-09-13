@@ -5,13 +5,40 @@
  */
 package controllers;
 
+import data.AllInfoProduct;
+import datamodifier.AllInfoProductModifier;
+import datamodifier.BillModifier;
+import datamodifier.CartModifier;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -20,22 +47,42 @@ import javafx.scene.input.KeyEvent;
  */
 public class SearchProductController implements Initializable {
 
+    String item;
+    int userId;
+    int billId;
+    int prodId;
+
     @FXML
-    private TableView<?> searchTableView;
+    private TableView<AllInfoProduct> searchTableView;
     @FXML
-    private TableColumn<?, ?> productTypeId;
+    private TableColumn<AllInfoProduct, Integer> productTypeId;
     @FXML
-    private TableColumn<?, ?> productId;
+    private TableColumn<AllInfoProduct, Integer> productId;
     @FXML
-    private TableColumn<?, ?> productName;
+    private TableColumn<AllInfoProduct, String> productName;
     @FXML
-    private TableColumn<?, ?> unit;
+    private TableColumn<AllInfoProduct, String> unit;
     @FXML
-    private TableColumn<?, ?> quatity;
+    private TableColumn<AllInfoProduct, Integer> quatity;
     @FXML
-    private TableColumn<?, ?> mfgDate;
+    private TableColumn<AllInfoProduct, String> mfgDate;
     @FXML
-    private TableColumn<?, ?> expDate;
+    private TableColumn<AllInfoProduct, String> expDate;
+    @FXML
+    private TextField searchTextField;
+    @FXML
+    private TableColumn<AllInfoProduct, Double> price;
+    @FXML
+    private Spinner<Integer> setQuantity;
+    int currentValueQuantity;
+    @FXML
+    private Label prodIdLabel;
+    @FXML
+    private Label prodNameLabel;
+    @FXML
+    private Label gotocart;
+    @FXML
+    private Label viewTotalNumber;
 
     /**
      * Initializes the controller class.
@@ -43,10 +90,138 @@ public class SearchProductController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+        try {
+            getProductDefault();
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchProductController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+//        get value spinner
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100);
+        valueFactory.setValue(1);
+        setQuantity.setEditable(true);
+        setQuantity.setValueFactory(valueFactory);
+
+        currentValueQuantity = setQuantity.getValue();
+
+        setQuantity.valueProperty().addListener((o) -> {
+            currentValueQuantity = setQuantity.getValue();
+        });
+
+    }
+
+    public void setUserId(int id) {
+        userId = id;
+    }
+
+    public void getProduct() throws SQLException {
+
+        AllInfoProductModifier searchProductModifier = new AllInfoProductModifier();
+        ObservableList oLists = FXCollections.observableArrayList();
+        oLists = searchProductModifier.findProduct(item);
+
+        productTypeId.setCellValueFactory(new PropertyValueFactory<>("productTypeId"));
+        productId.setCellValueFactory(new PropertyValueFactory<>("productId"));
+        productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        unit.setCellValueFactory(new PropertyValueFactory<>("unit"));
+        quatity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        mfgDate.setCellValueFactory(new PropertyValueFactory<>("mfgDate"));
+        expDate.setCellValueFactory(new PropertyValueFactory<>("expDate"));
+
+        searchTableView.setItems(oLists);
+    }
+
+    public void getProductDefault() throws SQLException {
+
+        AllInfoProductModifier searchProductModifier = new AllInfoProductModifier();
+        ObservableList oLists = FXCollections.observableArrayList();
+        oLists = searchProductModifier.viewProduct();
+
+        productTypeId.setCellValueFactory(new PropertyValueFactory<>("productTypeId"));
+        productId.setCellValueFactory(new PropertyValueFactory<>("productId"));
+        productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        unit.setCellValueFactory(new PropertyValueFactory<>("unit"));
+        quatity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        mfgDate.setCellValueFactory(new PropertyValueFactory<>("mfgDate"));
+        expDate.setCellValueFactory(new PropertyValueFactory<>("expDate"));
+
+        searchTableView.setItems(oLists);
+    }
 
     @FXML
-    private void searchReleasedTextField(KeyEvent event) {
+    private void searchReleasedTextField(KeyEvent event) throws SQLException {
+        item = searchTextField.getText();
+        getProduct();
     }
-    
+
+//    delete product
+//    searchTableView.setOnMouseClicked(new EventHandler() {
+//            @Override
+//            public void handle(Event t) {
+//                AllInfoProduct item = searchTableView.getSelectionModel().getSelectedItem();
+//                System.out.println(item.getProductId());
+//                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//                alert.setTitle("Delete");
+//                alert.setHeaderText("Are you sure?");
+//                alert.setContentText("Row selected will deleted.");
+//                
+//                Optional <ButtonType> result = alert.showAndWait();
+//                if(result.isPresent() && result.get() == ButtonType.OK){
+//                    searchTableView.getItems().remove(item);
+//                }
+//            }
+//        });
+    @FXML
+    private void searchTableClicked(MouseEvent event) {
+        AllInfoProduct item = searchTableView.getSelectionModel().getSelectedItem();
+        if (item != null) {
+            prodId = item.getProductId();
+            prodIdLabel.setText(prodId + "");
+            prodNameLabel.setText(item.getProductName());
+        } else {
+            System.out.println("enter search please!");
+        }
+
+    }
+
+    @FXML
+    private void addToCartAction(ActionEvent event) throws SQLException, IOException {
+        AllInfoProduct item = searchTableView.getSelectionModel().getSelectedItem();
+        if (item != null) {
+            billId = new BillModifier().getBillId();
+            BillModifier billModifier = new BillModifier();
+            if (billModifier.addToBillDetail(billId, prodId, currentValueQuantity)) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Notification");
+                alert.setHeaderText("Success");
+                alert.setContentText("Add to cart successfully.");
+                alert.showAndWait();
+                getProductDefault();
+
+                int totalNumCart = new CartModifier().getNumberProduct(billId);
+
+                viewTotalNumber.setText(totalNumCart + "");
+            }
+        } else {
+            System.out.println("click dum");
+        }
+
+    }
+
+    @FXML
+    private void newOrderAction(ActionEvent event) throws SQLException {
+        if (new BillModifier().addToBill(userId)) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Notification");
+            alert.setHeaderText("Success");
+            alert.setContentText("New order successfully.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void gotocartClicked(MouseEvent event) {
+    }
 }

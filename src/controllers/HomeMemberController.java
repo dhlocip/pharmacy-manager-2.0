@@ -5,8 +5,10 @@
  */
 package controllers;
 
+import datamodifier.BillModifier;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,12 +30,13 @@ import javafx.stage.Stage;
  */
 public class HomeMemberController implements Initializable {
 
+    int userId;
+    int billId;
+    
     @FXML
     private BorderPane homeBox;
     @FXML
     private Label gotocart;
-    @FXML
-    private Label viewCart;
     @FXML
     private HBox dashboardLabel;
     @FXML
@@ -54,6 +57,8 @@ public class HomeMemberController implements Initializable {
     private Label fullnameLabel;
     @FXML
     private Label positionLabel;
+    @FXML
+    private Label viewTotalNumber;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -62,9 +67,18 @@ public class HomeMemberController implements Initializable {
         hideSupSettings(false);
     }
     
-    public void setInfoUser(String fullname, String position){
+    public void setTotalNumCart(String num){
+        viewTotalNumber.setText(num);
+    }
+    
+    public void getBillId() throws SQLException{
+        billId = new BillModifier().getBillId();
+    }
+    
+    public void setInfoUser(String fullname, String position, int id){
         fullnameLabel.setText(fullname);
         positionLabel.setText(position);
+        userId = id;
     }
 
     public void setCenterHomeBox(String view) throws IOException {
@@ -128,7 +142,47 @@ public class HomeMemberController implements Initializable {
 
     @FXML
     private void searchClicked(MouseEvent event) throws IOException {
-        setCenterHomeBox("SearchProduct");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/SearchProduct.fxml"));
+        Parent root = loader.load();
+        
+        SearchProductController controller = loader.getController();
+        controller.setUserId(userId);
+        
+        homeBox.setCenter(root);
+    }
+
+    @FXML
+    private void viewClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("ViewProduct");
+    }
+
+    @FXML
+    private void gotocartClicked(MouseEvent event) throws IOException {
+        System.out.println(billId);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewCart.fxml"));
+        Parent root = loader.load();
+        
+        Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("View cart");
+        stage.show();
+    }
+
+    @FXML
+    private void exportProductClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void updateProfileClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void exportProfileClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void statisticClicked(MouseEvent event) {
     }
     
 }

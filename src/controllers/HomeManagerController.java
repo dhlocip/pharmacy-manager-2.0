@@ -28,6 +28,8 @@ import main.Main;
 
 public class HomeManagerController implements Initializable {
 
+    int userId;
+    
     @FXML
     private BorderPane homeBox;
     @FXML
@@ -62,9 +64,10 @@ public class HomeManagerController implements Initializable {
         hideSupSettings(false);
     }
     
-    public void setInfoUser(String fullname, String position){
+    public void setInfoUser(String fullname, String position, int id){
         fullnameLabel.setText(fullname);
         positionLabel.setText(position);
+        userId = id;
     }
 
     public void setCenterHomeBox(String view) throws IOException {
@@ -92,6 +95,7 @@ public class HomeManagerController implements Initializable {
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(false);
+        System.out.println(userId);
     }
 
     @FXML

@@ -30,7 +30,23 @@ public class AllInfoProductModifier {
         while (result.next()) {
             listProducts.add(new AllInfoProduct(result.getInt("productTypeId"), result.getInt("productId"),
                     result.getString("productName"), result.getString("unit"), result.getInt("quantity"),
-                    result.getString("mfgDate"), result.getString("expDate")));
+                    result.getDouble("price"), result.getString("mfgDate"), result.getString("expDate")));
+        }
+        return listProducts;
+    }
+    
+    public ObservableList<AllInfoProduct> viewProduct() throws SQLException {
+        ObservableList<AllInfoProduct> listProducts = FXCollections.observableArrayList();
+        String sql = "select * from allInforProduct";
+
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+        preStatement.execute();
+
+        ResultSet result = preStatement.getResultSet();
+        while (result.next()) {
+            listProducts.add(new AllInfoProduct(result.getInt("productTypeId"), result.getInt("productId"),
+                    result.getString("productName"), result.getString("unit"), result.getInt("quantity"),
+                    result.getDouble("price"), result.getString("mfgDate"), result.getString("expDate")));
         }
         return listProducts;
     }

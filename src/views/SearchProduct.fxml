@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -9,6 +11,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SearchProductController">
    <top>
@@ -19,7 +23,7 @@
                   <Insets bottom="15.0" top="15.0" />
                </HBox.margin>
                <children>
-                  <TextField id="searchMedicine" onKeyReleased="#searchReleasedTextField" prefHeight="35.0" prefWidth="409.0" promptText="Enter medicine name" style="-fx-background-color: gray;" />
+                  <TextField id="searchMedicine" fx:id="searchTextField" onKeyReleased="#searchReleasedTextField" prefHeight="35.0" prefWidth="409.0" promptText="Enter medicine name" style="-fx-background-color: gray;" />
                   <Label prefHeight="35.0" prefWidth="35.0">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
@@ -34,17 +38,40 @@
                   </Label>
                </children>
             </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <HBox.margin>
+                  <Insets bottom="15.0" left="10.0" top="15.0" />
+               </HBox.margin>
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/mail-replied-symbolic.symbolic.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="gotocart" onMouseClicked="#gotocartClicked" prefHeight="25.0" prefWidth="84.0" style="-fx-cursor: hand;" text="Go to cart">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="viewTotalNumber" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: red; -fx-alignment: center; -fx-font-weight: bold; -fx-background-radius: 100;" text="0" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </HBox>
    </top>
    <center>
-      <TableView fx:id="searchTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="searchTableView" onMouseClicked="#searchTableClicked" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="productTypeId" prefWidth="89.0" text="Product Type ID" />
           <TableColumn fx:id="productId" prefWidth="61.0" text="Product ID" />
             <TableColumn fx:id="productName" prefWidth="61.0" text="Product Name" />
             <TableColumn fx:id="unit" prefWidth="61.0" text="Unit" />
             <TableColumn fx:id="quatity" prefWidth="61.0" text="Quantity" />
+            <TableColumn fx:id="price" prefWidth="61.0" text="Price" />
             <TableColumn fx:id="mfgDate" prefWidth="61.0" text="MFG Date" />
             <TableColumn fx:id="expDate" prefWidth="61.0" text="EXP Date" />
         </columns>
@@ -53,4 +80,65 @@
          </columnResizePolicy>
       </TableView>
    </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="115.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="86.0" prefWidth="328.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="328.0">
+                     <children>
+                        <Label prefHeight="35.0" style="-fx-font-weight: bold;" text="Product ID:">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="prodIdLabel" prefHeight="35.0" text="ID">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="328.0">
+                     <children>
+                        <Label prefHeight="35.0" style="-fx-font-weight: bold;" text="Product Name:">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="prodNameLabel" prefHeight="35.0" text="Name">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="328.0">
+                     <children>
+                        <Label prefHeight="35.0" style="-fx-font-weight: bold;" text="Quantity:">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Spinner fx:id="setQuantity" editable="true" prefHeight="30.0" prefWidth="86.0">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Spinner>
+                     </children>
+                  </HBox>
+               </children></VBox>
+            <Button mnemonicParsing="false" onAction="#addToCartAction" prefHeight="35.0" style="-fx-background-color: gray; -fx-text-fill: white;" text="Add to cart">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#newOrderAction" prefHeight="35.0" style="-fx-background-color: gray; -fx-text-fill: white;" text="New Order">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>

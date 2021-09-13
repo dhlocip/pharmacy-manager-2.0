@@ -10,7 +10,7 @@ package data;
  * @author sa
  */
 public class Users {
-    private String userId; 
+    private int userId; 
     private String userName;
     private String password;
     private String phone;
@@ -23,7 +23,7 @@ public class Users {
     public Users() {
     }
 
-    public Users(String userId, String userName, String password, String phone, String fullName, String gender, String dateOfBirth, String address, String position) {
+    public Users(int userId, String userName, String password, String phone, String fullName, String gender, String dateOfBirth, String address, String position) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -35,11 +35,11 @@ public class Users {
         this.position = position;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

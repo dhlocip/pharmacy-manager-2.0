@@ -19,7 +19,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/HomeMember.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
         Scene scene = new Scene(root);
 //        scene.getStylesheets().add("/css/home.css");
 //        stage.setResizable(false);

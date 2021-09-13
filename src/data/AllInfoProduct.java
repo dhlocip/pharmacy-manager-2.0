@@ -15,21 +15,32 @@ public class AllInfoProduct {
     private String productName;
     private String unit;
     private int quantity;
+    private double price;
     private String mfgDate;
     private String expDate;
 
     public AllInfoProduct() {
     }
 
-    public AllInfoProduct(int productTypeId, int productId, String productName, String unit, int quantity, String mfgDate, String expDate) {
+    public AllInfoProduct(int productTypeId, int productId, String productName, String unit, int quantity, double price, String mfgDate, String expDate) {
         this.productTypeId = productTypeId;
         this.productId = productId;
         this.productName = productName;
         this.unit = unit;
         this.quantity = quantity;
+        this.price = price;
         this.mfgDate = mfgDate;
         this.expDate = expDate;
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
 
     public int getProductTypeId() {
         return productTypeId;

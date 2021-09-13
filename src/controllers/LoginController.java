@@ -48,7 +48,8 @@ public class LoginController implements Initializable {
     private TextField usernameTextField;
     @FXML
     private PasswordField passwordTextField;
-
+    
+    int userId;
     String username;
     String password;
     String fullName;
@@ -79,7 +80,7 @@ public class LoginController implements Initializable {
 
             // pass info of user to view home
             HomeManagerController controller = loader.getController();
-            controller.setInfoUser(fullName, position);
+            controller.setInfoUser(fullName, position, userId);
 
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -96,7 +97,7 @@ public class LoginController implements Initializable {
 
             // pass info of user to view home
             HomeMemberController controller = loader.getController();
-            controller.setInfoUser(fullName, position);
+            controller.setInfoUser(fullName, position, userId);
 
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -125,7 +126,9 @@ public class LoginController implements Initializable {
             user = userModifier.getUser(username, password);
             fullName = user.getFullName();
             position = user.getPosition();
-
+            userId = user.getUserId();
+//            userId = String.valueOf(user.getUserId());
+            
             // next to view home
             nextToHome(event, position);
         } else {
