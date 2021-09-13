@@ -1,0 +1,16 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.root {
+    -fx-background-color: #00ccff;
+}
+
+.labelMain:hover {
+    -fx-background-color: #66ff00;
+}
+
+#btnclick:selected {
+    -fx-background-color: orange;
+    -fx-text-fill: white;
+}

@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="homeBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0" stylesheets="/css/home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeManagerController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="37.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="35.0" prefWidth="51.0" text="Pcity">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="0.0" prefWidth="0.0" text="Label">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/mail-unread-symbolic.symbolic1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+            </Label>
+            <Label prefHeight="27.0" prefWidth="176.0" text="pharmacy@gmail.com">
+               <HBox.margin>
+                  <Insets left="3.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label prefHeight="27.0" prefWidth="128.0" HBox.hgrow="ALWAYS" />
+            <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="6.0" prefWidth="6.0" text="Label">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/call-incoming-symbolic.symbolic.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label prefHeight="27.0" prefWidth="175.0" text="Hotline: 0948 00 0949">
+               <HBox.margin>
+                  <Insets left="3.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label prefHeight="27.0" prefWidth="135.0" HBox.hgrow="ALWAYS" />
+            <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="6.0" prefWidth="6.0" text="Label">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/mail-replied-symbolic.symbolic.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label fx:id="gotocart" prefHeight="27.0" prefWidth="84.0" style="-fx-cursor: hand;" text="Go to cart">
+               <HBox.margin>
+                  <Insets left="3.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="viewCart" prefHeight="27.0" prefWidth="27.0" style="-fx-background-color: red; -fx-alignment: center; -fx-font-weight: bold; -fx-background-radius: 100; -fx-cursor: hand;" text="2" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children></HBox>
+   </top>
+   <left>
+      <VBox prefHeight="642.0" prefWidth="183.0" style="-fx-border-color: gray;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="dashboardLabel" alignment="CENTER_LEFT" onMouseClicked="#dashboardClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-background-color: green; -fx-cursor: hand;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/go-home-symbolic.symbolic.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="27.0" text="Dashboard">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="medicineLabel" alignment="CENTER_LEFT" onMouseClicked="#medicineClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand; -fx-background-color: green;" styleClass="labelMain" stylesheets="@../css/home.css">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/applications-science-symbolic.symbolic.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="27.0" text="Medicine">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox fx:id="supMedicine" prefWidth="141.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/edit-find-symbolic.symbolic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="27.0" text="Find">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/view-list-bullet-symbolic.symbolic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="27.0" text="View">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/applications-science-symbolic.symbolic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="27.0" text="Create">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/document-edit-symbolic.symbolic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="27.0" text="Update">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/user-trash-symbolic.symbolic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="27.0" text="Delete">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox fx:id="myprofileLabel" alignment="CENTER_LEFT" onMouseClicked="#myprofileClicked" prefHeight="40.0" prefWidth="141.0" style="-fx-background-color: green; -fx-cursor: hand;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/avatar-default-symbolic.symbolic.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="27.0" text="My Profile">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox fx:id="supMyProfile" prefWidth="141.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/document-edit-symbolic.symbolic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="27.0" text="Update">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/document-save-symbolic.symbolic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="27.0" text="Export">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/accessories-calculator-symbolic.symbolic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="27.0" text="Statistic">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox fx:id="settingLabel" alignment="CENTER_LEFT" onMouseClicked="#settingClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-background-color: green; -fx-cursor: hand;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/system-run-symbolic.symbolic.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="27.0" text="Settings">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="supSettings" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/view-list-ordered-symbolic.symbolic.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ComboBox prefHeight="24.0" prefWidth="126.0" promptText="Language" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+            </HBox>
+            <HBox fx:id="logoutLabel" alignment="CENTER_LEFT" onMouseClicked="#logoutClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-background-color: green; -fx-cursor: hand;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/system-log-out-symbolic.symbolic.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="27.0" text="Log Out">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox>
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/network-wireless-hotspot-symbolic.symbolic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="fullnameLabel" prefHeight="27.0" text="Dinh Huu Loc">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/dialog-password-symbolic.symbolic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="positionLabel" prefHeight="27.0" text="Manager">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="27.0" text="version 21.02">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>
