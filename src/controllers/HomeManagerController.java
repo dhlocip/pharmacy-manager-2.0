@@ -29,7 +29,7 @@ import main.Main;
 public class HomeManagerController implements Initializable {
 
     static int userId;
-    
+
     @FXML
     private BorderPane homeBox;
     @FXML
@@ -59,86 +59,93 @@ public class HomeManagerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+//        hide supLabel medicine, my profile, setting when the first load 
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(false);
+
     }
-    
-    public void setUserId(int id){
-        userId = id;
-    }
-    
-    public void setInfoUser(String fullname, String position, int id){
+
+//    set info user from UI_Login
+    public void setInfoUser(String fullname, String position, int id) {
         fullnameLabel.setText(fullname);
         positionLabel.setText(position);
         userId = id;
+
     }
 
+//    set center of layout
     public void setCenterHomeBox(String view) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/" + view + ".fxml"));
         homeBox.setCenter(root);
+
     }
 
     private void hideSupMedicine(boolean value) {
         supMedicine.setVisible(value);
         supMedicine.managedProperty().bind(supMedicine.visibleProperty());
+
     }
 
     private void hideSupMyProfile(boolean value) {
         supMyProfile.setVisible(value);
         supMyProfile.managedProperty().bind(supMyProfile.visibleProperty());
+
     }
 
     private void hideSupSettings(boolean value) {
         supSettings.setVisible(value);
         supSettings.managedProperty().bind(supSettings.visibleProperty());
+
     }
 
     @FXML
-    private void dashboardClicked(MouseEvent event) throws IOException {
+    private void dashboardClicked(MouseEvent event) {
+//        event clicked to label dashboard
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(false);
-        System.out.println(userId);
-        setCenterHomeBox("AddProduct");
-//        setCenterHomeBox("ImportProduct");
+
     }
 
     @FXML
     private void medicineClicked(MouseEvent event) {
+//        event clicked to label medicine
         hideSupMedicine(true);
         hideSupMyProfile(false);
         hideSupSettings(false);
+
     }
 
     @FXML
-    private void myprofileClicked(MouseEvent event) throws IOException {
+    private void myprofileClicked(MouseEvent event) {
+//        event clicked to label my profile
         hideSupMedicine(false);
         hideSupMyProfile(true);
         hideSupSettings(false);
+
     }
 
     @FXML
     private void settingClicked(MouseEvent event) {
+//        event clicked to label setting
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(true);
+
     }
 
     @FXML
     private void logoutClicked(MouseEvent event) throws IOException {
+//        event clicked to label log out
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Login.fxml"));
         Parent root = loader.load();
-        
-//        LoginController control = loader.getController();
-//        control.setUserId(0);
-        
         Scene scene = new Scene(root);
-        Stage stage;
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle("Sign in");
         stage.show();
+
     }
 
 }

@@ -53,6 +53,7 @@ public class SearchProductController implements Initializable {
     int billId;
     int prodId;
     int totalNumCart;
+    
     @FXML
     private TableView<AllInfoProduct> searchTableView;
     @FXML
@@ -94,58 +95,41 @@ public class SearchProductController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         try {
+//          the first load all product 
             getProductDefault();
         } catch (SQLException ex) {
             Logger.getLogger(SearchProductController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-//        get value spinner
+//        get value spinner of quantity product
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100);
         valueFactory.setValue(1);
         setQuantity.setEditable(true);
         setQuantity.setValueFactory(valueFactory);
-
         currentValueQuantity = setQuantity.getValue();
-
         setQuantity.valueProperty().addListener((o) -> {
             currentValueQuantity = setQuantity.getValue();
         });
 
-//        try {
-//            getTotalNumCart();
-//            getBillId();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(SearchProductController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
         try {
+//            the first load userId, billId, total number inside cart
             userId = HomeMemberController.userId;
             billId = new BillModifier().getBillId(userId);
             totalNumCart = new CartModifier().getNumberProduct(billId);
         } catch (SQLException ex) {
             Logger.getLogger(SearchProductController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         viewTotalNumber.setText(totalNumCart + "");
+        
     }
 
-//    public void setTotalNumLabel(int )
-//    public void getTotalNumCart() throws SQLException {
-//        totalNumCart = new CartModifier().getNumberProduct(billId);
-//    }
-//
-//    public void getBillId() throws SQLException {
-//        billId = new BillModifier().getBillId(userId);
-//    }
-    public void setUserId(int id) {
-        userId = id;
-    }
-
+//    get all product (when enter item name) with current quantity 
     public void getProduct() throws SQLException {
-
         AllInfoProductModifier searchProductModifier = new AllInfoProductModifier();
         ObservableList oLists = FXCollections.observableArrayList();
         oLists = searchProductModifier.findProduct(item);
-
+        
         productTypeId.setCellValueFactory(new PropertyValueFactory<>("productTypeId"));
         productId.setCellValueFactory(new PropertyValueFactory<>("productId"));
         productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
@@ -154,10 +138,12 @@ public class SearchProductController implements Initializable {
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         mfgDate.setCellValueFactory(new PropertyValueFactory<>("mfgDate"));
         expDate.setCellValueFactory(new PropertyValueFactory<>("expDate"));
-
+        
         searchTableView.setItems(oLists);
+        
     }
 
+//    get all product with current quantity
     public void getProductDefault() throws SQLException {
 
         AllInfoProductModifier searchProductModifier = new AllInfoProductModifier();
@@ -178,27 +164,11 @@ public class SearchProductController implements Initializable {
 
     @FXML
     private void searchReleasedTextField(KeyEvent event) throws SQLException {
+//        get value item enter into
         item = searchTextField.getText();
         getProduct();
     }
 
-//    delete product
-//    searchTableView.setOnMouseClicked(new EventHandler() {
-//            @Override
-//            public void handle(Event t) {
-//                AllInfoProduct item = searchTableView.getSelectionModel().getSelectedItem();
-//                System.out.println(item.getProductId());
-//                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-//                alert.setTitle("Delete");
-//                alert.setHeaderText("Are you sure?");
-//                alert.setContentText("Row selected will deleted.");
-//                
-//                Optional <ButtonType> result = alert.showAndWait();
-//                if(result.isPresent() && result.get() == ButtonType.OK){
-//                    searchTableView.getItems().remove(item);
-//                }
-//            }
-//        });
     @FXML
     private void searchTableClicked(MouseEvent event) {
         AllInfoProduct item = searchTableView.getSelectionModel().getSelectedItem();
@@ -208,6 +178,7 @@ public class SearchProductController implements Initializable {
             prodNameLabel.setText(item.getProductName());
         } else {
             System.out.println("enter search please!");
+//            more notification error
         }
 
     }
@@ -216,15 +187,13 @@ public class SearchProductController implements Initializable {
     private void addToCartAction(ActionEvent event) throws SQLException, IOException {
         AllInfoProduct item = searchTableView.getSelectionModel().getSelectedItem();
         if (item != null) {
-//            billId = new BillModifier().getBillId(userId);
-
-//            reload quantity in cart
-//            userId = HomeMemberController.userId;
+//            need to reload billId
             billId = new BillModifier().getBillId(userId);
             
             BillModifier billModifier = new BillModifier();
             if (billModifier.addToBillDetail(billId, prodId, currentValueQuantity)) {
 
+//                from billId -> total inside cart
                 totalNumCart = new CartModifier().getNumberProduct(billId);
                 viewTotalNumber.setText(totalNumCart + "");
 
@@ -244,29 +213,15 @@ public class SearchProductController implements Initializable {
 
     @FXML
     private void newOrderAction(ActionEvent event) throws SQLException {
-        if (new BillModifier().addToBill(userId)) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Notification");
-            alert.setHeaderText("Success");
-            alert.setContentText("New order successfully.");
-            alert.showAndWait();
-            viewTotalNumber.setText(0 + "");
-
-        }
     }
 
     @FXML
     private void gotocartClicked(MouseEvent event) throws IOException {
-
+//        set center layout is ui_viewCart
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewCart.fxml"));
         Parent root = loader.load();
         homeBox.setCenter(root);
         homeBox.setBottom(null);
         homeBox.setTop(null);
-//        Scene scene = new Scene(root);
-//        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-//        stage.setScene(scene);
-//        stage.setTitle("View cart");
-//        stage.show();
     }
 }

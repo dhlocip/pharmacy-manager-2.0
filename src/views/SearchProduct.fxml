@@ -133,11 +133,6 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#newOrderAction" prefHeight="35.0" style="-fx-background-color: gray; -fx-text-fill: white;" text="New Order">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </Button>
          </children>
       </HBox>
    </bottom>

@@ -32,7 +32,7 @@ public class HomeMemberController implements Initializable {
 
     static int userId;
     int billId;
-    
+
     @FXML
     private BorderPane homeBox;
     @FXML
@@ -55,47 +55,45 @@ public class HomeMemberController implements Initializable {
     private Label fullnameLabel;
     @FXML
     private Label positionLabel;
-    private Label viewTotalNumber;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+//        hide supLabel medicine, my profile, setting when the first load 
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(false);
+        
     }
-    
-    public void setTotalNumCart(String num){
-        viewTotalNumber.setText(num);
-    }
-    
-    public void getBillId() throws SQLException{
-        billId = new BillModifier().getBillId(userId);
-    }
-    
-    public void setInfoUser(String fullname, String position, int id){
+
+    public void setInfoUser(String fullname, String position, int id) {
         fullnameLabel.setText(fullname);
         positionLabel.setText(position);
         userId = id;
+        
     }
 
     public void setCenterHomeBox(String view) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/" + view + ".fxml"));
         homeBox.setCenter(root);
+        
     }
 
     private void hideSupMedicine(boolean value) {
         supMedicine.setVisible(value);
         supMedicine.managedProperty().bind(supMedicine.visibleProperty());
+        
     }
 
     private void hideSupMyProfile(boolean value) {
         supMyProfile.setVisible(value);
         supMyProfile.managedProperty().bind(supMyProfile.visibleProperty());
+        
     }
 
     private void hideSupSettings(boolean value) {
         supSettings.setVisible(value);
         supSettings.managedProperty().bind(supSettings.visibleProperty());
+        
     }
 
     @FXML
@@ -103,7 +101,7 @@ public class HomeMemberController implements Initializable {
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(false);
-        System.out.println(userId);
+        
     }
 
     @FXML
@@ -111,6 +109,7 @@ public class HomeMemberController implements Initializable {
         hideSupMedicine(true);
         hideSupMyProfile(false);
         hideSupSettings(false);
+        
     }
 
     @FXML
@@ -118,6 +117,7 @@ public class HomeMemberController implements Initializable {
         hideSupMedicine(false);
         hideSupMyProfile(true);
         hideSupSettings(false);
+        
     }
 
     @FXML
@@ -125,56 +125,39 @@ public class HomeMemberController implements Initializable {
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(true);
+        
     }
 
     @FXML
     private void logoutClicked(MouseEvent event) throws IOException {
+//        event when clicked to log out lable 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Login.fxml"));
         Parent root = loader.load();
-        
-//        LoginController control = loader.getController();
-//        control.setUserId(0);
-        
         Scene scene = new Scene(root);
-        Stage stage;
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle("Sign in");
         stage.show();
+        
     }
 
     @FXML
     private void searchClicked(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/SearchProduct.fxml"));
-        Parent root = loader.load();
-        
-        SearchProductController controller = loader.getController();
-        controller.setUserId(userId);
-        
-        homeBox.setCenter(root);
+//        event clicked to search label for load layout searchProduct
+        setCenterHomeBox("SearchProduct");
     }
 
     @FXML
     private void viewClicked(MouseEvent event) throws IOException {
+//        event clicked to view label for show product
         setCenterHomeBox("ViewProduct");
+        
     }
-
-//    private void gotocartClicked(MouseEvent event) throws IOException {
-//        setCenterHomeBox("ViewCart");
-////        System.out.println(billId);
-////        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewCart.fxml"));
-////        Parent root = loader.load();
-////        
-////        Scene scene = new Scene(root);
-////        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-////        stage.setScene(scene);
-////        stage.setTitle("View cart");
-////        stage.show();
-//    }
 
     @FXML
     private void exportProductClicked(MouseEvent event) throws IOException {
-        setCenterHomeBox("AddViewProduct");
+//        event clicked to export label for export file xlsx
+//        setCenterHomeBox("AddViewProduct");
     }
 
     @FXML
@@ -188,5 +171,5 @@ public class HomeMemberController implements Initializable {
     @FXML
     private void statisticClicked(MouseEvent event) {
     }
-    
+
 }

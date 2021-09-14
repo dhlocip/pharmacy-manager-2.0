@@ -11,6 +11,7 @@ import datamodifier.CartModifier;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +19,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -32,6 +36,8 @@ import javafx.scene.input.MouseEvent;
  */
 public class ViewCartController implements Initializable {
 
+    int userId;
+    
     @FXML
     private TableView<Cart> cartTableView;
     @FXML
@@ -60,7 +66,7 @@ public class ViewCartController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         try {
-            getCart();
+            getProductAllInCart();
         } catch (SQLException ex) {
             Logger.getLogger(ViewCartController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -71,8 +77,10 @@ public class ViewCartController implements Initializable {
             Logger.getLogger(ViewCartController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        userId = HomeMemberController.userId;
     }
 
+//    get total 
     public void getTotalLabel() throws SQLException {
         int billId = new BillModifier().getBillId(HomeMemberController.userId);
         List<Cart> list = new CartModifier().viewProduct(billId);
@@ -83,7 +91,8 @@ public class ViewCartController implements Initializable {
         totalLabel.setText(total + "");
     }
 
-    public void getCart() throws SQLException {
+//    get all product inside cart
+    public void getProductAllInCart() throws SQLException {
         CartModifier cartModifier = new CartModifier();
         ObservableList oLists = FXCollections.observableArrayList();
         int billId = new BillModifier().getBillId(HomeMemberController.userId);
@@ -107,8 +116,23 @@ public class ViewCartController implements Initializable {
         cartTableView.setItems(oLists);
     }
 
+
     @FXML
-    private void cartTableViewClicked(MouseEvent event) {
+    private void checkOutClicked(MouseEvent event) throws SQLException {
+//        event clicked to checkout label
+        if(new BillModifier().addToBill(userId)){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Notification");
+            alert.setHeaderText("Success");
+            alert.setContentText("Successful payment");
+            alert.showAndWait();
+            
+//            reload quantity product inside cart
+            getProductAllInCart();
+            
+//            reset value of total = 0
+            totalLabel.setText("" + 0);
+        }
     }
 
 }

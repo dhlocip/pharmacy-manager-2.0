@@ -40,7 +40,7 @@
                         <Insets bottom="5.0" left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="checkOutLabel" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="190.0" style="-fx-background-color: gray; -fx-text-fill: white;" text="Checkout">
+                  <Button fx:id="checkOutLabel" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#checkOutClicked" prefHeight="30.0" prefWidth="190.0" style="-fx-background-color: gray; -fx-text-fill: white;" text="Checkout">
                      <VBox.margin>
                         <Insets left="10.0" />
                      </VBox.margin>
@@ -64,7 +64,7 @@
             </VBox>
          </top>
          <center>
-            <TableView fx:id="cartTableView" onMouseClicked="#cartTableViewClicked" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="cartTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="productId" prefWidth="75.0" text="Product ID" />
                 <TableColumn fx:id="productName" prefWidth="75.0" text="Product Name" />

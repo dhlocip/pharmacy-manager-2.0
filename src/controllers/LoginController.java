@@ -93,6 +93,7 @@ public class LoginController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("Home");
             stage.show();
+            
         } else {
             view = "HomeMember";
 
@@ -110,15 +111,18 @@ public class LoginController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("Home");
             stage.show();
+            
         }
 
     }
 
+//    regex user 
     private boolean isUserRight() {
         username = usernameTextField.getText();
         return username.matches("^[a-zA-Z]{1}[\\w]*[.]?[\\w]+") && username.length() >= 6;
     }
 
+//    regex password 
     private boolean isPasswordRight() {
         password = String.valueOf(passwordTextField.getText());
         return password.matches("^[a-zA-Z]{1}[\\w!@#$%^&*_.]{7,30}");
@@ -132,9 +136,6 @@ public class LoginController implements Initializable {
             fullName = user.getFullName();
             position = user.getPosition();
             userId = user.getUserId();
-//            userId = String.valueOf(user.getUserId());
-            
-            // next to view home
             nextToHome(event, position);
         } else {
             errorBox.setVisible(true);
