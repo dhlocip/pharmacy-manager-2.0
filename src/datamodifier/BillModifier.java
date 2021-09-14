@@ -22,7 +22,7 @@ public class BillModifier {
         preStatement.execute();
         return true;
     }
-    
+
     public boolean addToBillDetail(int billId, int productId, int quantity) throws SQLException {
         String sql = "insert into billDetail(billId, productId, saleQuantity) "
                 + "values(?,?,?)";
@@ -33,8 +33,8 @@ public class BillModifier {
         preStatement.execute();
         return true;
     }
-    
-    public int getNumberProduct(int id) throws SQLException{
+
+    public int getNumberProduct(int id) throws SQLException {
         String sql = "select count(*) as number "
                 + "from billDetail where billId =?";
 
@@ -43,18 +43,19 @@ public class BillModifier {
         preStatement.execute();
 
         ResultSet result = preStatement.getResultSet();
-        
-        while(result.next()){
+
+        while (result.next()) {
             return result.getInt("number");
         }
         return 0;
     }
 
-    public int getBillId() throws SQLException {
-        String sql = "select max(billId) as billId from bills";
-        Statement statement = connect().createStatement();
-        statement.execute(sql);
-        ResultSet result = statement.getResultSet();
+    public int getBillId(int id) throws SQLException {
+        String sql = "select max(billId) as billId from bills where userId =?";
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+        preStatement.setInt(1, id);
+        preStatement.execute();
+        ResultSet result = preStatement.getResultSet();
         while (result.next()) {
             return result.getInt("billId");
         }
@@ -63,7 +64,7 @@ public class BillModifier {
 
     public static void main(String[] args) throws SQLException {
         BillModifier bill = new BillModifier();
-        if(bill.addToBillDetail(50055, 30000, 2)){
+        if (bill.addToBillDetail(50055, 30000, 2)) {
             System.out.println("ok");
         }
     }

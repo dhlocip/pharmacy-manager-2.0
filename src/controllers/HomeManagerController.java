@@ -28,7 +28,7 @@ import main.Main;
 
 public class HomeManagerController implements Initializable {
 
-    int userId;
+    static int userId;
     
     @FXML
     private BorderPane homeBox;
@@ -64,6 +64,10 @@ public class HomeManagerController implements Initializable {
         hideSupSettings(false);
     }
     
+    public void setUserId(int id){
+        userId = id;
+    }
+    
     public void setInfoUser(String fullname, String position, int id){
         fullnameLabel.setText(fullname);
         positionLabel.setText(position);
@@ -96,6 +100,8 @@ public class HomeManagerController implements Initializable {
         hideSupMyProfile(false);
         hideSupSettings(false);
         System.out.println(userId);
+        setCenterHomeBox("AddProduct");
+//        setCenterHomeBox("ImportProduct");
     }
 
     @FXML
@@ -106,7 +112,7 @@ public class HomeManagerController implements Initializable {
     }
 
     @FXML
-    private void myprofileClicked(MouseEvent event) {
+    private void myprofileClicked(MouseEvent event) throws IOException {
         hideSupMedicine(false);
         hideSupMyProfile(true);
         hideSupSettings(false);
@@ -121,7 +127,12 @@ public class HomeManagerController implements Initializable {
 
     @FXML
     private void logoutClicked(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Login.fxml"));
+        Parent root = loader.load();
+        
+//        LoginController control = loader.getController();
+//        control.setUserId(0);
+        
         Scene scene = new Scene(root);
         Stage stage;
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

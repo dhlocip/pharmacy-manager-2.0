@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import static controllers.HomeManagerController.userId;
 import data.Users;
 import datamodifier.UserModifier;
 import java.io.IOException;
@@ -66,6 +67,10 @@ public class LoginController implements Initializable {
         signInButton.setDisable(true);
         errorBox.setVisible(false);
         errorBox.managedProperty().bind(errorBox.visibleProperty());
+    }
+    
+    public void setUserId(int id){
+        userId = id;
     }
 
     //next to page home

@@ -30,13 +30,11 @@ import javafx.stage.Stage;
  */
 public class HomeMemberController implements Initializable {
 
-    int userId;
+    static int userId;
     int billId;
     
     @FXML
     private BorderPane homeBox;
-    @FXML
-    private Label gotocart;
     @FXML
     private HBox dashboardLabel;
     @FXML
@@ -57,7 +55,6 @@ public class HomeMemberController implements Initializable {
     private Label fullnameLabel;
     @FXML
     private Label positionLabel;
-    @FXML
     private Label viewTotalNumber;
 
     @Override
@@ -72,7 +69,7 @@ public class HomeMemberController implements Initializable {
     }
     
     public void getBillId() throws SQLException{
-        billId = new BillModifier().getBillId();
+        billId = new BillModifier().getBillId(userId);
     }
     
     public void setInfoUser(String fullname, String position, int id){
@@ -106,6 +103,7 @@ public class HomeMemberController implements Initializable {
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(false);
+        System.out.println(userId);
     }
 
     @FXML
@@ -131,7 +129,12 @@ public class HomeMemberController implements Initializable {
 
     @FXML
     private void logoutClicked(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Login.fxml"));
+        Parent root = loader.load();
+        
+//        LoginController control = loader.getController();
+//        control.setUserId(0);
+        
         Scene scene = new Scene(root);
         Stage stage;
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -156,21 +159,22 @@ public class HomeMemberController implements Initializable {
         setCenterHomeBox("ViewProduct");
     }
 
-    @FXML
-    private void gotocartClicked(MouseEvent event) throws IOException {
-        System.out.println(billId);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewCart.fxml"));
-        Parent root = loader.load();
-        
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("View cart");
-        stage.show();
-    }
+//    private void gotocartClicked(MouseEvent event) throws IOException {
+//        setCenterHomeBox("ViewCart");
+////        System.out.println(billId);
+////        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewCart.fxml"));
+////        Parent root = loader.load();
+////        
+////        Scene scene = new Scene(root);
+////        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+////        stage.setScene(scene);
+////        stage.setTitle("View cart");
+////        stage.show();
+//    }
 
     @FXML
-    private void exportProductClicked(MouseEvent event) {
+    private void exportProductClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("AddViewProduct");
     }
 
     @FXML

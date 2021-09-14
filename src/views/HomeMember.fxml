@@ -12,7 +12,7 @@
 
 <BorderPane fx:id="homeBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0" stylesheets="/css/home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeMemberController">
    <top>
-      <HBox alignment="CENTER" prefHeight="37.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="40.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
             <Label prefHeight="35.0" prefWidth="51.0" text="Pcity">
                <font>
@@ -61,7 +61,7 @@
          </children></HBox>
    </top>
    <left>
-      <VBox prefHeight="642.0" prefWidth="183.0" style="-fx-border-color: gray;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="642.0" prefWidth="210.0" style="-fx-border-color: gray;" BorderPane.alignment="CENTER">
          <children>
             <HBox fx:id="dashboardLabel" alignment="CENTER_LEFT" onMouseClicked="#dashboardClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-background-color: green; -fx-cursor: hand;">
                <children>

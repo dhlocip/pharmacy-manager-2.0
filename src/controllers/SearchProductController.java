@@ -38,6 +38,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -51,7 +52,7 @@ public class SearchProductController implements Initializable {
     int userId;
     int billId;
     int prodId;
-
+    int totalNumCart;
     @FXML
     private TableView<AllInfoProduct> searchTableView;
     @FXML
@@ -83,6 +84,8 @@ public class SearchProductController implements Initializable {
     private Label gotocart;
     @FXML
     private Label viewTotalNumber;
+    @FXML
+    private BorderPane homeBox;
 
     /**
      * Initializes the controller class.
@@ -108,8 +111,31 @@ public class SearchProductController implements Initializable {
             currentValueQuantity = setQuantity.getValue();
         });
 
+//        try {
+//            getTotalNumCart();
+//            getBillId();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(SearchProductController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        try {
+            userId = HomeMemberController.userId;
+            billId = new BillModifier().getBillId(userId);
+            totalNumCart = new CartModifier().getNumberProduct(billId);
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchProductController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        viewTotalNumber.setText(totalNumCart + "");
     }
 
+//    public void setTotalNumLabel(int )
+//    public void getTotalNumCart() throws SQLException {
+//        totalNumCart = new CartModifier().getNumberProduct(billId);
+//    }
+//
+//    public void getBillId() throws SQLException {
+//        billId = new BillModifier().getBillId(userId);
+//    }
     public void setUserId(int id) {
         userId = id;
     }
@@ -190,9 +216,18 @@ public class SearchProductController implements Initializable {
     private void addToCartAction(ActionEvent event) throws SQLException, IOException {
         AllInfoProduct item = searchTableView.getSelectionModel().getSelectedItem();
         if (item != null) {
-            billId = new BillModifier().getBillId();
+//            billId = new BillModifier().getBillId(userId);
+
+//            reload quantity in cart
+//            userId = HomeMemberController.userId;
+            billId = new BillModifier().getBillId(userId);
+            
             BillModifier billModifier = new BillModifier();
             if (billModifier.addToBillDetail(billId, prodId, currentValueQuantity)) {
+
+                totalNumCart = new CartModifier().getNumberProduct(billId);
+                viewTotalNumber.setText(totalNumCart + "");
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Notification");
                 alert.setHeaderText("Success");
@@ -200,9 +235,6 @@ public class SearchProductController implements Initializable {
                 alert.showAndWait();
                 getProductDefault();
 
-                int totalNumCart = new CartModifier().getNumberProduct(billId);
-
-                viewTotalNumber.setText(totalNumCart + "");
             }
         } else {
             System.out.println("click dum");
@@ -218,10 +250,23 @@ public class SearchProductController implements Initializable {
             alert.setHeaderText("Success");
             alert.setContentText("New order successfully.");
             alert.showAndWait();
+            viewTotalNumber.setText(0 + "");
+
         }
     }
 
     @FXML
-    private void gotocartClicked(MouseEvent event) {
+    private void gotocartClicked(MouseEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ViewCart.fxml"));
+        Parent root = loader.load();
+        homeBox.setCenter(root);
+        homeBox.setBottom(null);
+        homeBox.setTop(null);
+//        Scene scene = new Scene(root);
+//        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+//        stage.setScene(scene);
+//        stage.setTitle("View cart");
+//        stage.show();
     }
 }

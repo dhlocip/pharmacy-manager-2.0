@@ -10,6 +10,7 @@ import datamodifier.BillModifier;
 import datamodifier.CartModifier;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,12 +64,29 @@ public class ViewCartController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ViewCartController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        try {
+            getTotalLabel();
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewCartController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void getTotalLabel() throws SQLException {
+        int billId = new BillModifier().getBillId(HomeMemberController.userId);
+        List<Cart> list = new CartModifier().viewProduct(billId);
+        int total = 0;
+        for (Cart cart : list) {
+            total += cart.getAmount();
+        }
+        totalLabel.setText(total + "");
     }
 
     public void getCart() throws SQLException {
         CartModifier cartModifier = new CartModifier();
         ObservableList oLists = FXCollections.observableArrayList();
-        int billId = new BillModifier().getBillId();
+        int billId = new BillModifier().getBillId(HomeMemberController.userId);
         int numberProduct = cartModifier.getNumberProduct(billId);
 
         if (numberProduct == 1) {

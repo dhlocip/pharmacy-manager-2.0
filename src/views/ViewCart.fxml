@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewCartController">
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewCartController">
    <top>
       <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="68.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
@@ -28,7 +28,7 @@
    <center>
       <BorderPane prefHeight="500.0" prefWidth="819.0" BorderPane.alignment="CENTER">
          <right>
-            <VBox maxWidth="-Infinity" prefHeight="447.0" prefWidth="209.0" BorderPane.alignment="CENTER">
+            <VBox maxWidth="-Infinity" prefHeight="447.0" prefWidth="210.0" BorderPane.alignment="CENTER">
                <children>
                   <Label prefHeight="30.0" text="Total:">
                      <VBox.margin>
@@ -50,7 +50,7 @@
             </VBox>
          </right>
          <top>
-            <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="36.0" prefWidth="900.0" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="numberProductLabel" prefHeight="30.0" text="2 products in Cart">
                      <VBox.margin>
