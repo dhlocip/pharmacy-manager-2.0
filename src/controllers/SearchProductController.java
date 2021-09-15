@@ -114,7 +114,7 @@ public class SearchProductController implements Initializable {
         try {
 //            the first load userId, billId, total number inside cart
             userId = HomeMemberController.userId;
-            billId = new BillModifier().getBillId(userId);
+            billId = new BillModifier().getMaxBillId(userId);
             totalNumCart = new CartModifier().getNumberProduct(billId);
         } catch (SQLException ex) {
             Logger.getLogger(SearchProductController.class.getName()).log(Level.SEVERE, null, ex);
@@ -188,10 +188,10 @@ public class SearchProductController implements Initializable {
         AllInfoProduct item = searchTableView.getSelectionModel().getSelectedItem();
         if (item != null) {
 //            need to reload billId
-            billId = new BillModifier().getBillId(userId);
+            billId = new BillModifier().getMaxBillId(userId);
             
             BillModifier billModifier = new BillModifier();
-            if (billModifier.addToBillDetail(billId, prodId, currentValueQuantity)) {
+            if (billModifier.addBillDetail(billId, prodId, currentValueQuantity)) {
 
 //                from billId -> total inside cart
                 totalNumCart = new CartModifier().getNumberProduct(billId);

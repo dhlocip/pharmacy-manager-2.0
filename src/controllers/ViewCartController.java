@@ -37,7 +37,8 @@ import javafx.scene.input.MouseEvent;
 public class ViewCartController implements Initializable {
 
     int userId;
-    
+    int total;
+
     @FXML
     private TableView<Cart> cartTableView;
     @FXML
@@ -70,7 +71,7 @@ public class ViewCartController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ViewCartController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         try {
             getTotalLabel();
         } catch (SQLException ex) {
@@ -82,20 +83,21 @@ public class ViewCartController implements Initializable {
 
 //    get total 
     public void getTotalLabel() throws SQLException {
-        int billId = new BillModifier().getBillId(HomeMemberController.userId);
+        int billId = new BillModifier().getMaxBillId(HomeMemberController.userId);
         List<Cart> list = new CartModifier().viewProduct(billId);
-        int total = 0;
+        int sum = 0;
         for (Cart cart : list) {
-            total += cart.getAmount();
+            sum += cart.getAmount();
         }
-        totalLabel.setText(total + "");
+        totalLabel.setText(sum + "");
+        total = sum;
     }
 
 //    get all product inside cart
     public void getProductAllInCart() throws SQLException {
         CartModifier cartModifier = new CartModifier();
         ObservableList oLists = FXCollections.observableArrayList();
-        int billId = new BillModifier().getBillId(HomeMemberController.userId);
+        int billId = new BillModifier().getMaxBillId(HomeMemberController.userId);
         int numberProduct = cartModifier.getNumberProduct(billId);
 
         if (numberProduct == 1) {
@@ -116,22 +118,31 @@ public class ViewCartController implements Initializable {
         cartTableView.setItems(oLists);
     }
 
-
     @FXML
     private void checkOutClicked(MouseEvent event) throws SQLException {
 //        event clicked to checkout label
-        if(new BillModifier().addToBill(userId)){
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Notification");
-            alert.setHeaderText("Success");
-            alert.setContentText("Successful payment");
-            alert.showAndWait();
-            
+        if (total != 0) {
+            if (new BillModifier().addBill(userId)) {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Notification");
+                alert.setHeaderText("Success");
+                alert.setContentText("Successful payment");
+                alert.showAndWait();
+
 //            reload quantity product inside cart
-            getProductAllInCart();
-            
+                getProductAllInCart();
+
 //            reset value of total = 0
-            totalLabel.setText("" + 0);
+                totalLabel.setText("" + 0);
+            }
+        }else {
+            Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Notification");
+                alert.setHeaderText("Error");
+                alert.setContentText("Cart is empty");
+                alert.showAndWait();
+//                Optional<ButtonType> result = alert.showAndWait();
+//                if(result.isPresent() )
         }
     }
 

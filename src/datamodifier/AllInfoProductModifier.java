@@ -6,7 +6,6 @@
 package datamodifier;
 
 import connection.UseDataBase;
-import static connection.UseDataBase.connect;
 import data.AllInfoProduct;
 import java.sql.*;
 import java.util.*;
@@ -16,7 +15,7 @@ import javafx.collections.*;
  *
  * @author sa
  */
-public class AllInfoProductModifier {
+public class AllInfoProductModifier extends UseDataBase {
 
     public ObservableList<AllInfoProduct> findProduct(String productName) throws SQLException {
         ObservableList<AllInfoProduct> listProducts = FXCollections.observableArrayList();

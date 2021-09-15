@@ -5,7 +5,7 @@
  */
 package datamodifier;
 
-import static connection.UseDataBase.connect;
+import connection.UseDataBase;
 import data.Users;
 import java.sql.*;
 
@@ -13,7 +13,7 @@ import java.sql.*;
  *
  * @author sa
  */
-public class UserModifier {
+public class UserModifier extends UseDataBase {
     
     public Users getUser(String userName, String pass) throws SQLException{
         String sql = "select * from users "

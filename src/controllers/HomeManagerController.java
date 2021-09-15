@@ -33,10 +33,6 @@ public class HomeManagerController implements Initializable {
     @FXML
     private BorderPane homeBox;
     @FXML
-    private Label viewCart;
-    @FXML
-    private Label gotocart;
-    @FXML
     private HBox dashboardLabel;
     @FXML
     private HBox medicineLabel;
@@ -146,6 +142,11 @@ public class HomeManagerController implements Initializable {
         stage.setTitle("Sign in");
         stage.show();
 
+    }
+
+    @FXML
+    private void importCliecked(MouseEvent event) throws IOException {
+        setCenterHomeBox("ImportProduct");
     }
 
 }

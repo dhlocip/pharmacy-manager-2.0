@@ -19,6 +19,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <Label prefHeight="27.0" prefWidth="135.0" HBox.hgrow="ALWAYS" />
             <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="0.0" prefWidth="0.0" text="Label">
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -57,29 +58,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label prefHeight="27.0" prefWidth="135.0" HBox.hgrow="ALWAYS" />
-            <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="6.0" prefWidth="6.0" text="Label">
-               <graphic>
-                  <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/mail-replied-symbolic.symbolic.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Label>
-            <Label fx:id="gotocart" prefHeight="27.0" prefWidth="84.0" style="-fx-cursor: hand;" text="Go to cart">
-               <HBox.margin>
-                  <Insets left="3.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="viewCart" prefHeight="27.0" prefWidth="27.0" style="-fx-background-color: red; -fx-alignment: center; -fx-font-weight: bold; -fx-background-radius: 100; -fx-cursor: hand;" text="2" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
+            <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="6.0" prefWidth="6.0" text="Label" />
          </children></HBox>
    </top>
    <left>
@@ -165,7 +144,7 @@
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/view-list-bullet-symbolic.symbolic.png" />
+                                    <Image url="@../img/document-new-symbolic.symbolic.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -173,7 +152,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="View">
+                        <Label prefHeight="27.0" text="Add">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -183,13 +162,13 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" onMouseClicked="#importCliecked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/applications-science-symbolic.symbolic.png" />
+                                    <Image url="@../img/document-new-symbolic.symbolic.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -197,7 +176,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="Create">
+                        <Label prefHeight="27.0" text="Import">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>

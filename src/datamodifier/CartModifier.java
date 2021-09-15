@@ -5,7 +5,7 @@
  */
 package datamodifier;
 
-import static connection.UseDataBase.connect;
+import connection.UseDataBase;
 import data.Cart;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,14 +17,14 @@ import javafx.collections.ObservableList;
  *
  * @author sa
  */
-public class CartModifier {
+public class CartModifier extends UseDataBase {
 
-    public ObservableList<Cart> viewProduct(int id) throws SQLException {
+    public ObservableList<Cart> viewProduct(int billId) throws SQLException {
         ObservableList<Cart> listCart = FXCollections.observableArrayList();
         String sql = "select * from goToCart where billId =?";
 
         PreparedStatement preStatement = connect().prepareStatement(sql);
-        preStatement.setInt(1, id);
+        preStatement.setInt(1, billId);
         preStatement.execute();
 
         ResultSet result = preStatement.getResultSet();
@@ -36,12 +36,12 @@ public class CartModifier {
         return listCart;
     }
     
-    public int getNumberProduct(int id) throws SQLException{
+    public int getNumberProduct(int billId) throws SQLException{
         String sql = "select count(*) as number "
                 + "from goToCart where billId =?";
 
         PreparedStatement preStatement = connect().prepareStatement(sql);
-        preStatement.setInt(1, id);
+        preStatement.setInt(1, billId);
         preStatement.execute();
 
         ResultSet result = preStatement.getResultSet();

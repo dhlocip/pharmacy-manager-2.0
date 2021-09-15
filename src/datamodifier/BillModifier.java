@@ -5,16 +5,16 @@
  */
 package datamodifier;
 
-import static connection.UseDataBase.connect;
+import connection.UseDataBase;
 import java.sql.*;
 
 /**
  *
  * @author sa
  */
-public class BillModifier {
+public class BillModifier extends UseDataBase {
 
-    public boolean addToBill(int userId) throws SQLException {
+    public boolean addBill(int userId) throws SQLException {
         String sql = "insert into bills(userId, transactionTime) "
                 + "values(?, getdate())";
         PreparedStatement preStatement = connect().prepareStatement(sql);
@@ -23,7 +23,7 @@ public class BillModifier {
         return true;
     }
 
-    public boolean addToBillDetail(int billId, int productId, int quantity) throws SQLException {
+    public boolean addBillDetail(int billId, int productId, int quantity) throws SQLException {
         String sql = "insert into billDetail(billId, productId, saleQuantity) "
                 + "values(?,?,?)";
         PreparedStatement preStatement = connect().prepareStatement(sql);
@@ -34,38 +34,39 @@ public class BillModifier {
         return true;
     }
 
-    public int getNumberProduct(int id) throws SQLException {
-        String sql = "select count(*) as number "
-                + "from billDetail where billId =?";
+//    public int getNumberProduct(int id) throws SQLException {
+//        String sql = "select count(*) as number "
+//                + "from billDetail where billId =?";
+//
+//        PreparedStatement preStatement = connect().prepareStatement(sql);
+//        preStatement.setInt(1, id);
+//        preStatement.execute();
+//
+//        ResultSet result = preStatement.getResultSet();
+//
+//        while (result.next()) {
+//            return result.getInt("number");
+//        }
+//        return 0;
+//    }
 
+    public int getMaxBillId(int userId) throws SQLException {
+        String sql = "select max(billId) as number "
+                + "from bills where userId =?";
         PreparedStatement preStatement = connect().prepareStatement(sql);
-        preStatement.setInt(1, id);
+        preStatement.setInt(1, userId);
         preStatement.execute();
-
         ResultSet result = preStatement.getResultSet();
-
         while (result.next()) {
             return result.getInt("number");
         }
         return 0;
     }
 
-    public int getBillId(int id) throws SQLException {
-        String sql = "select max(billId) as billId from bills where userId =?";
-        PreparedStatement preStatement = connect().prepareStatement(sql);
-        preStatement.setInt(1, id);
-        preStatement.execute();
-        ResultSet result = preStatement.getResultSet();
-        while (result.next()) {
-            return result.getInt("billId");
-        }
-        return 0;
-    }
-
     public static void main(String[] args) throws SQLException {
-        BillModifier bill = new BillModifier();
-        if (bill.addToBillDetail(50055, 30000, 2)) {
-            System.out.println("ok");
-        }
+//        BillModifier bill = new BillModifier();
+////        if (bill.addToBillDetail(50055, 30000, 2)) {
+//            System.out.println("ok");
+//        }
     }
 }
