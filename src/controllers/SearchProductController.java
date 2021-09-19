@@ -6,7 +6,9 @@
 package controllers;
 
 import data.AllInfoProduct;
+import data.BillDetail;
 import datamodifier.AllInfoProductModifier;
+import datamodifier.BillDetailModifier;
 import datamodifier.BillModifier;
 import datamodifier.CartModifier;
 import java.io.IOException;
@@ -53,7 +55,7 @@ public class SearchProductController implements Initializable {
     int billId;
     int prodId;
     int totalNumCart;
-    
+
     @FXML
     private TableView<AllInfoProduct> searchTableView;
     @FXML
@@ -107,6 +109,7 @@ public class SearchProductController implements Initializable {
         setQuantity.setEditable(true);
         setQuantity.setValueFactory(valueFactory);
         currentValueQuantity = setQuantity.getValue();
+
         setQuantity.valueProperty().addListener((o) -> {
             currentValueQuantity = setQuantity.getValue();
         });
@@ -115,13 +118,18 @@ public class SearchProductController implements Initializable {
 //            the first load userId, billId, total number inside cart
             userId = HomeMemberController.userId;
             billId = new BillModifier().getMaxBillId(userId);
+            if (billId < 1) {
+                new BillModifier().addBill(userId);
+            }
+            billId = new BillModifier().getMaxBillId(userId);
+
             totalNumCart = new CartModifier().getNumberProduct(billId);
         } catch (SQLException ex) {
             Logger.getLogger(SearchProductController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         viewTotalNumber.setText(totalNumCart + "");
-        
+
     }
 
 //    get all product (when enter item name) with current quantity 
@@ -129,7 +137,7 @@ public class SearchProductController implements Initializable {
         AllInfoProductModifier searchProductModifier = new AllInfoProductModifier();
         ObservableList oLists = FXCollections.observableArrayList();
         oLists = searchProductModifier.findProduct(item);
-        
+
         productTypeId.setCellValueFactory(new PropertyValueFactory<>("productTypeId"));
         productId.setCellValueFactory(new PropertyValueFactory<>("productId"));
         productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
@@ -138,9 +146,9 @@ public class SearchProductController implements Initializable {
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         mfgDate.setCellValueFactory(new PropertyValueFactory<>("mfgDate"));
         expDate.setCellValueFactory(new PropertyValueFactory<>("expDate"));
-        
+
         searchTableView.setItems(oLists);
-        
+
     }
 
 //    get all product with current quantity
@@ -177,7 +185,7 @@ public class SearchProductController implements Initializable {
             prodIdLabel.setText(prodId + "");
             prodNameLabel.setText(item.getProductName());
         } else {
-            System.out.println("enter search please!");
+            System.out.println("click vo row dum");
 //            more notification error
         }
 
@@ -189,31 +197,40 @@ public class SearchProductController implements Initializable {
         if (item != null) {
 //            need to reload billId
             billId = new BillModifier().getMaxBillId(userId);
-            
-            BillModifier billModifier = new BillModifier();
-            if (billModifier.addBillDetail(billId, prodId, currentValueQuantity)) {
+            BillDetail billDetail = new BillDetail();
+            billDetail.setBillId(billId);
+            billDetail.setProductId(prodId);
+            billDetail.setSaleQuantity(currentValueQuantity);
+            billDetail.setMfgDate(item.getMfgDate());
+            billDetail.setExpDate(item.getExpDate());
+
+//            System.out.println(billDetail.getMfgDate());
+//            System.out.println(billDetail.getBillId());
+
+            BillDetailModifier billDetailModifier = new BillDetailModifier();
+            if (billDetailModifier.addBillDetail(billDetail)) {
 
 //                from billId -> total inside cart
                 totalNumCart = new CartModifier().getNumberProduct(billId);
                 viewTotalNumber.setText(totalNumCart + "");
+                
+//                reload all product
+                getProductDefault();
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Notification");
                 alert.setHeaderText("Success");
                 alert.setContentText("Add to cart successfully.");
                 alert.showAndWait();
-                getProductDefault();
 
             }
+            
         } else {
-            System.out.println("click dum");
+            System.out.println("click vo table dum");
         }
 
     }
 
-    @FXML
-    private void newOrderAction(ActionEvent event) throws SQLException {
-    }
 
     @FXML
     private void gotocartClicked(MouseEvent event) throws IOException {

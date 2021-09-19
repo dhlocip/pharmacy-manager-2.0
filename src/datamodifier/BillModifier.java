@@ -23,16 +23,7 @@ public class BillModifier extends UseDataBase {
         return true;
     }
 
-    public boolean addBillDetail(int billId, int productId, int quantity) throws SQLException {
-        String sql = "insert into billDetail(billId, productId, saleQuantity) "
-                + "values(?,?,?)";
-        PreparedStatement preStatement = connect().prepareStatement(sql);
-        preStatement.setInt(1, billId);
-        preStatement.setInt(2, productId);
-        preStatement.setInt(3, quantity);
-        preStatement.execute();
-        return true;
-    }
+    
 
 //    public int getNumberProduct(int id) throws SQLException {
 //        String sql = "select count(*) as number "
@@ -63,10 +54,10 @@ public class BillModifier extends UseDataBase {
         return 0;
     }
 
-    public static void main(String[] args) throws SQLException {
-//        BillModifier bill = new BillModifier();
-////        if (bill.addToBillDetail(50055, 30000, 2)) {
-//            System.out.println("ok");
-//        }
-    }
+//    public static void main(String[] args) throws SQLException {
+////        BillModifier bill = new BillModifier();
+//////        if (bill.addToBillDetail(50055, 30000, 2)) {
+////            System.out.println("ok");
+////        }
+//    }
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -17,10 +17,10 @@
    <left>
       <VBox alignment="CENTER" prefHeight="345.0" prefWidth="235.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView prefHeight="142.0" prefWidth="345.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="productTypeTableView" prefHeight="142.0" prefWidth="345.0" VBox.vgrow="ALWAYS">
               <columns>
-                <TableColumn prefWidth="75.0" text="ProductTypeID" />
-                <TableColumn prefWidth="130.0" text="ProductTypeName" />
+                <TableColumn fx:id="productTypeId" prefWidth="75.0" text="ProductTypeID" />
+                <TableColumn fx:id="productTypeName" prefWidth="130.0" text="ProductTypeName" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -33,13 +33,13 @@
       </VBox>
    </left>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="productDetailTableView" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="ProductID" />
-          <TableColumn prefWidth="75.0" text="ProductName" />
-            <TableColumn prefWidth="75.0" text="ProductTypeID" />
-            <TableColumn prefWidth="75.0" text="Unit" />
-            <TableColumn prefWidth="75.0" text="Price" />
+            <TableColumn fx:id="productTypeIdDetail" prefWidth="75.0" text="ProductTypeID" />
+          <TableColumn fx:id="productIdDetail" prefWidth="75.0" text="ProductID" />
+          <TableColumn fx:id="productNameDetail" prefWidth="75.0" text="ProductName" />
+            <TableColumn fx:id="unitDetail" prefWidth="75.0" text="Unit" />
+            <TableColumn fx:id="priceDetail" prefWidth="75.0" text="Price" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -51,7 +51,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="276.0" prefWidth="296.0" style="-fx-background-color: #f6f8fa;" HBox.hgrow="ALWAYS">
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Product Type ID" VBox.vgrow="NEVER">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Product Type Name" VBox.vgrow="NEVER">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -59,25 +59,20 @@
                         <Insets left="20.0" right="20.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#usernameReleased" prefHeight="35.0" prefWidth="369.0" promptText="Use 6 or more characters" VBox.vgrow="NEVER">
+                  <TextField fx:id="productTypeNameTextField" maxWidth="-Infinity" onKeyReleased="#productTypeNameReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Product Type Name" VBox.vgrow="NEVER">
+                  <Label fx:id="errorOfProductTypeName" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="12.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <PasswordField fx:id="passwordTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#passwordReleased" prefHeight="35.0" prefWidth="369.0" promptText="Use 8 or more characters" VBox.vgrow="NEVER">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </PasswordField>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#addProTypeClicked" prefHeight="35.0" prefWidth="369.0" style="-fx-cursor: hand; -fx-background-color: green;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#addProductTypeClicked" prefHeight="35.0" prefWidth="369.0" style="-fx-cursor: hand; -fx-background-color: green;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -101,14 +96,14 @@
                         </Label>
                      </children>
                      <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets left="20.0" right="20.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="276.0" prefWidth="304.0" style="-fx-background-color: #f6f8fa;" HBox.hgrow="ALWAYS">
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="369.0" text="Product Name" VBox.vgrow="NEVER">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Product Type ID" VBox.vgrow="NEVER">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -116,12 +111,12 @@
                         <Insets left="20.0" right="20.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="usernameTextField1" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#usernameReleased" prefHeight="36.0" prefWidth="369.0" promptText="Use 6 or more characters" VBox.vgrow="NEVER">
+                  <ComboBox fx:id="productTypeIdComboBox" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
-                  </TextField>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="369.0" text="Product Type ID" VBox.vgrow="NEVER">
+                  </ComboBox>
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Product Name" VBox.vgrow="NEVER">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -129,11 +124,23 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <PasswordField fx:id="passwordTextField1" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#passwordReleased" prefHeight="36.0" prefWidth="369.0" promptText="Use 8 or more characters" VBox.vgrow="NEVER">
+                  <TextField fx:id="productNameTextField" maxWidth="-Infinity" onKeyReleased="#productNameReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
-                  </PasswordField>
+                  </TextField>
+                  <Label fx:id="errorOfProductName" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="276.0" prefWidth="296.0" style="-fx-background-color: #f6f8fa;" HBox.hgrow="ALWAYS">
+               <children>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Unit" VBox.vgrow="NEVER">
                      <font>
                         <Font size="15.0" />
@@ -142,29 +149,41 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#usernameReleased" prefHeight="35.0" prefWidth="369.0" promptText="Use 6 or more characters" VBox.vgrow="NEVER">
+                  <TextField fx:id="unitTextField" maxWidth="-Infinity" onKeyReleased="#unitReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </TextField>
-               </children>
-            </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="276.0" prefWidth="296.0" style="-fx-background-color: #f6f8fa;" HBox.hgrow="ALWAYS">
-               <children>
+                  <Label fx:id="errorOfUnit" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </Label>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Price" VBox.vgrow="NEVER">
                      <font>
                         <Font size="15.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="20.0" right="20.0" top="10.0" />
+                        <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <PasswordField fx:id="passwordTextField2" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#passwordReleased" prefHeight="35.0" prefWidth="369.0" promptText="Use 8 or more characters" VBox.vgrow="NEVER">
+                  <TextField fx:id="priceTextField" maxWidth="-Infinity" onKeyReleased="#priceReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
                      <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" />
+                        <Insets left="20.0" right="20.0" />
                      </VBox.margin>
-                  </PasswordField>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#addProTypeClicked" prefHeight="35.0" prefWidth="369.0" style="-fx-cursor: hand; -fx-background-color: green;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  </TextField>
+                  <Label fx:id="errorOfPrice" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#addProductDetailClicked" prefHeight="35.0" prefWidth="369.0" style="-fx-cursor: hand; -fx-background-color: green;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -188,7 +207,7 @@
                         </Label>
                      </children>
                      <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets left="20.0" right="20.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
                </children>

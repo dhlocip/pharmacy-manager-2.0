@@ -149,4 +149,9 @@ public class HomeManagerController implements Initializable {
         setCenterHomeBox("ImportProduct");
     }
 
+    @FXML
+    private void createProductClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("AddProduct");
+    }
+
 }

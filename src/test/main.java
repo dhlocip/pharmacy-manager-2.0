@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * @author sa
  */
 public class main {
-    public static void main(String[] args) {
-        System.out.println("B" + 00001);
-    }
+//    public static void main(String[] args) {
+//        System.out.println("B" + 00001);
+//    }
 }

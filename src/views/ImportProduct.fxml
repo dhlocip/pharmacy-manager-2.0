@@ -126,19 +126,6 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="278.0" prefWidth="260.0" style="-fx-background-color: #f6f8fa;" HBox.hgrow="ALWAYS">
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="369.0" text="Import Batch ID" VBox.vgrow="NEVER">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ComboBox fx:id="impBatchIdComboBox" prefHeight="35.0" prefWidth="369.0">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </ComboBox>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="369.0" text="Product ID" VBox.vgrow="NEVER">
                      <font>
                         <Font size="15.0" />
@@ -147,12 +134,12 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <ComboBox fx:id="proIdComboBox" prefHeight="35.0" prefWidth="369.0">
+                  <ComboBox fx:id="proIdComboBox" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </ComboBox>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Import Price" VBox.vgrow="NEVER">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Price" VBox.vgrow="NEVER">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -160,11 +147,40 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="impPriceTextField" onKeyReleased="#priceReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                  <TextField fx:id="impPriceTextField" maxWidth="-Infinity" onKeyReleased="#priceReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </TextField>
+                  <Label fx:id="errorOfPrice" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Quantity" VBox.vgrow="NEVER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="impQuantityTextField" maxWidth="-Infinity" onKeyReleased="#quantityReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label fx:id="errorOfQuantity" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </Label>
                </children>
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" top="10.0" />
@@ -172,19 +188,6 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="276.0" prefWidth="260.0" style="-fx-background-color: #f6f8fa;" HBox.hgrow="ALWAYS">
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Quantity" VBox.vgrow="NEVER">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="quantityTextField" onKeyReleased="#quantityReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </TextField>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="MFG Date">
                      <font>
                         <Font size="15.0" />
@@ -193,11 +196,19 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <DatePicker fx:id="mfgDateTextField" onMouseReleased="#mfgDateClicked" prefHeight="35.0" prefWidth="369.0" promptText="choose mfg date">
+                  <DatePicker fx:id="mfgDateTextField" maxWidth="-Infinity" onAction="#mfgDateClicked" prefHeight="35.0" prefWidth="369.0" promptText="choose mfg date" showWeekNumbers="true">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </DatePicker>
+                  <Label fx:id="errorOfMfgDate" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </Label>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="EXP Date">
                      <font>
                         <Font size="15.0" />
@@ -206,12 +217,20 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <DatePicker fx:id="expDateTextField" onMouseReleased="#expDateClicked" prefHeight="35.0" prefWidth="369.0" promptText="choose exp date">
+                  <DatePicker fx:id="expDateTextField" maxWidth="-Infinity" onAction="#expDateClicked" prefHeight="35.0" prefWidth="369.0" promptText="choose exp date" showWeekNumbers="true">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </DatePicker>
-                  <HBox fx:id="impBatchDetailLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#impDetailBatchClicked" prefHeight="34.0" prefWidth="294.0" style="-fx-cursor: hand; -fx-background-color: orange;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <Label fx:id="errorOfExpDate" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox fx:id="impBatchDetailLabel" alignment="CENTER" maxWidth="-Infinity" onMouseClicked="#impDetailBatchClicked" prefHeight="35.0" prefWidth="369.0" style="-fx-cursor: hand; -fx-background-color: orange;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>

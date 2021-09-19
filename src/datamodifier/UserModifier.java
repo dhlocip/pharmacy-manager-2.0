@@ -50,23 +50,23 @@ public class UserModifier extends UseDataBase {
     }
     
     
-    public static void main(String[] args) throws SQLException {
-//        System.out.println(signIn("dhlocc", "arootroot"));
-        Users user = new UserModifier().getUser("dhloc.se3", "rootroot");
-        System.out.println(user.getUserId());
-        System.out.println(user.getUserName());
-        System.out.println(user.getPassword());
-        System.out.println(user.getPhone());
-        System.out.println(user.getFullName());
-        System.out.println(user.getGender());
-        System.out.println(user.getDateOfBirth());
-        System.out.println(user.getAddress());
-        System.out.println(user.getPosition());
-        if(user.getPosition().equalsIgnoreCase("member")){
-            System.out.println("match");
-        }else{
-            System.out.println("not match");
-        }
-        
-    }
+//    public static void main(String[] args) throws SQLException {
+////        System.out.println(signIn("dhlocc", "arootroot"));
+////        Users user = new UserModifier().getUser("dhloc.se3", "rootroot");
+////        System.out.println(user.getUserId());
+////        System.out.println(user.getUserName());
+////        System.out.println(user.getPassword());
+////        System.out.println(user.getPhone());
+////        System.out.println(user.getFullName());
+////        System.out.println(user.getGender());
+////        System.out.println(user.getDateOfBirth());
+////        System.out.println(user.getAddress());
+////        System.out.println(user.getPosition());
+////        if(user.getPosition().equalsIgnoreCase("member")){
+////            System.out.println("match");
+////        }else{
+////            System.out.println("not match");
+////        }
+//        
+//    }
 }
