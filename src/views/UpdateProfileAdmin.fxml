@@ -4,8 +4,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateUsersController">
+<BorderPane prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateProfileAdminController">
    <top>
       <HBox alignment="CENTER" prefHeight="69.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -43,25 +41,6 @@
       </HBox>
    </top>
    <center>
-      <TableView fx:id="tableViewUsers" onMouseClicked="#tableUsersClicked" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="userIdCol" prefWidth="75.0" text="UserId" />
-          <TableColumn fx:id="userNameCol" prefWidth="75.0" text="UserName" />
-            <TableColumn fx:id="passwordCol" prefWidth="75.0" text="Password" />
-            <TableColumn fx:id="phoneCol" prefWidth="75.0" text="Phone" />
-            <TableColumn fx:id="fullNameCol" prefWidth="75.0" text="FullName" />
-            <TableColumn fx:id="genderCol" prefWidth="75.0" text="Gender" />
-            <TableColumn fx:id="dateOfBirthCol" prefWidth="75.0" text="DateOfBirth" />
-            <TableColumn fx:id="addressCol" prefWidth="75.0" text="Address" />
-            <TableColumn fx:id="positionCol" prefWidth="75.0" text="Position" />
-            <TableColumn fx:id="emailCol" prefWidth="75.0" text="Email" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-   </center>
-   <left>
       <VBox prefWidth="250.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="TOP_CENTER" prefWidth="369.0" style="-fx-background-color: #f6f8fa;" VBox.vgrow="ALWAYS">
@@ -154,22 +133,12 @@
                      <font>
                         <Font size="15.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
                   </Label>
-                  <TextField fx:id="emailTextField" maxWidth="-Infinity" onKeyReleased="#unitReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </TextField>
+                  <TextField fx:id="emailTextField" maxWidth="-Infinity" onKeyReleased="#unitReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1" />
                   <Label fx:id="errorOfUnit11" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
                         <Font size="12.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
                   </Label>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Date Of Birth">
                      <font>
@@ -245,5 +214,5 @@
             <VBox alignment="TOP_CENTER" prefWidth="369.0" style="-fx-background-color: #f6f8fa;" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
-   </left>
+   </center>
 </BorderPane>

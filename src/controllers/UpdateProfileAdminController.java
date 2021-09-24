@@ -10,6 +10,7 @@ import datamodifier.UserModifier;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,32 +35,12 @@ import javafx.scene.input.MouseEvent;
  *
  * @author sa
  */
-public class UpdateUsersController implements Initializable {
+public class UpdateProfileAdminController implements Initializable {
 
     String lGender, lPosition;
 
     @FXML
     private TextField searchTextField;
-    @FXML
-    private TableView<Users> tableViewUsers;
-    @FXML
-    private TableColumn<Users, Integer> userIdCol;
-    @FXML
-    private TableColumn<Users, String> userNameCol;
-    @FXML
-    private TableColumn<Users, String> phoneCol;
-    @FXML
-    private TableColumn<Users, String> fullNameCol;
-    @FXML
-    private TableColumn<Users, String> genderCol;
-    @FXML
-    private TableColumn<Users, String> dateOfBirthCol;
-    @FXML
-    private TableColumn<Users, String> addressCol;
-    @FXML
-    private TableColumn<Users, String> positionCol;
-    @FXML
-    private TableColumn<Users, String> passwordCol;
     @FXML
     private Label errorOfUnit;
     @FXML
@@ -88,8 +69,6 @@ public class UpdateUsersController implements Initializable {
     private TextField emailTextField;
     @FXML
     private Label errorOfUnit11;
-    @FXML
-    private TableColumn<Users, String> emailCol;
 
     /**
      * Initializes the controller class.
@@ -99,12 +78,30 @@ public class UpdateUsersController implements Initializable {
         try {
             // TODO
 
-            getUsersInfo();
+            setUserInfo();
             setGender();
             setPosition();
+            
+            
         } catch (SQLException ex) {
-            Logger.getLogger(UpdateUsersController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateProfileAdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
+    }
+    
+    private void setUserInfo() throws SQLException{
+        Users user = new UserModifier().getUser(new HomeManagerController().userId);
+        
+        fullnameTextField.setText(user.getFullName());
+        genderComboBox.setValue(user.getGender());
+        phoneTextField.setText(user.getPhone());
+        addressTextField.setText(user.getAddress());
+        
+        String formatDate = user.getDateOfBirth().formatted(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        LocalDate myDate = LocalDate.parse(formatDate);
+        dateOfBirthDatePicker.setValue(myDate);
+        
+        PositionComboBox.setValue(user.getPosition());
     }
 
     private void setPosition() {
@@ -112,7 +109,7 @@ public class UpdateUsersController implements Initializable {
         oList.add("Manager");
         oList.add("Member");
         PositionComboBox.setItems(oList);
-        PositionComboBox.setValue(oList.get(1));
+//        PositionComboBox.setValue(oList.get(1));
 
         lPosition = PositionComboBox.getValue();
     }
@@ -122,48 +119,15 @@ public class UpdateUsersController implements Initializable {
         oList.add("Male");
         oList.add("Female");
         genderComboBox.setItems(oList);
-        genderComboBox.setValue(oList.get(0));
+//        genderComboBox.setValue(oList.get(0));
 
         lGender = genderComboBox.getValue();
-    }
-
-    private void getUsersInfo() throws SQLException {
-        ObservableList<Users> oList = new UserModifier().getInfo();
-
-        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
-        userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
-        passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
-        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        fullNameCol.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-        genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
-        dateOfBirthCol.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
-        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
-        positionCol.setCellValueFactory(new PropertyValueFactory<>("position"));
-        emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
-
-        tableViewUsers.setItems(oList);
     }
 
     @FXML
     private void searchReleased(KeyEvent event) {
     }
 
-    @FXML
-    private void tableUsersClicked(MouseEvent event) {
-        Users item = tableViewUsers.getSelectionModel().getSelectedItem();
-        if (item != null) {
-            fullnameTextField.setText(item.getFullName());
-            genderComboBox.setValue(item.getGender());
-            phoneTextField.setText(item.getPhone());
-            addressTextField.setText(item.getAddress());
-
-            LocalDate local = LocalDate.parse(item.getDateOfBirth());
-            dateOfBirthDatePicker.setValue(local);
-
-            PositionComboBox.setValue(item.getPosition());
-            emailTextField.setText(item.getEmail());
-        }
-    }
 
     @FXML
     private void unitReleased(KeyEvent event) {
@@ -187,8 +151,6 @@ public class UpdateUsersController implements Initializable {
 
     @FXML
     private void updateUserClicked(MouseEvent event) throws SQLException {
-        Users item = tableViewUsers.getSelectionModel().getSelectedItem();
-        if (item != null) {
             Users user = new Users();
             user.setPhone(phoneTextField.getText());
             user.setFullName(fullnameTextField.getText());
@@ -197,7 +159,7 @@ public class UpdateUsersController implements Initializable {
             user.setAddress(addressTextField.getText());
             user.setPosition(lPosition);
             user.setEmail(emailTextField.getText());
-            user.setUserId(item.getUserId());
+            user.setUserId(new HomeManagerController().userId);
 
             if (new UserModifier().updateUser(user)) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -205,15 +167,8 @@ public class UpdateUsersController implements Initializable {
                 alert.setHeaderText("Success");
                 alert.setContentText("User is update successfully.");
                 alert.showAndWait();
-                getUsersInfo();
+                setUserInfo();
             }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Notification");
-            alert.setHeaderText("Error");
-            alert.setContentText("Please click on the line.");
-            alert.showAndWait();
-        }
     }
 
 }

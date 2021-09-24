@@ -55,6 +55,7 @@
             <TableColumn fx:id="dateOfBirthCol" prefWidth="75.0" text="DateOfBirth" />
             <TableColumn fx:id="addressCol" prefWidth="75.0" text="Address" />
             <TableColumn fx:id="positionCol" prefWidth="75.0" text="Position" />
+            <TableColumn fx:id="emailCol" prefWidth="75.0" text="Email" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -185,6 +186,27 @@
                      </VBox.margin>
                   </TextField>
                   <Label fx:id="errorOfUnit1" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Email">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="emailTextField" maxWidth="-Infinity" onKeyReleased="#unitReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label fx:id="errorOfUnit11" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
                         <Font size="12.0" />
                      </font>

@@ -93,6 +93,12 @@ public class CreateUsersController implements Initializable {
     private PasswordField passwordTextField;
     @FXML
     private Label errorOfPassword;
+    @FXML
+    private TextField emailTextField;
+    @FXML
+    private Label errorOfUnit11;
+    @FXML
+    private TableColumn<Users, String> emailCol;
 
     /**
      * Initializes the controller class.
@@ -145,6 +151,7 @@ public class CreateUsersController implements Initializable {
         dateOfBirthCol.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         positionCol.setCellValueFactory(new PropertyValueFactory<>("position"));
+        emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         tableViewUsers.setItems(oList);
     }
@@ -182,6 +189,7 @@ public class CreateUsersController implements Initializable {
         user.setDateOfBirth(String.valueOf(dateOfBirthDatePicker.getValue()));
         user.setAddress(addressTextField.getText());
         user.setPosition(lPosition);
+        user.setEmail(emailTextField.getText());
 
         if (new UserModifier().insertInto(user)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

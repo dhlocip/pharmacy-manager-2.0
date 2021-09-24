@@ -217,11 +217,13 @@ public class HomeManagerController implements Initializable {
     }
 
     @FXML
-    private void updateProfileAdminClicked(MouseEvent event) {
+    private void updateProfileAdminClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("UpdateProfileAdmin");
     }
 
     @FXML
-    private void changePasswordProfileAdminClicked(MouseEvent event) {
+    private void changePasswordProfileAdminClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("ChangePasswordAdmin");
     }
 
 }

@@ -29,7 +29,7 @@ public class UserModifier extends UseDataBase {
     
     public boolean insertInto(Users user) throws SQLException{
         String sql = "insert into users "
-                + "values(?,?,?,?,?,?,?,?)";
+                + "values(?,?,?,?,?,?,?,?,?)";
         PreparedStatement preStatement = connect().prepareStatement(sql);
         preStatement.setString(1, user.getUserName());
         preStatement.setString(2, user.getPassword());
@@ -39,13 +39,15 @@ public class UserModifier extends UseDataBase {
         preStatement.setString(6, user.getDateOfBirth());
         preStatement.setString(7, user.getAddress());
         preStatement.setString(8, user.getPosition());
+        preStatement.setString(9, user.getEmail());
         preStatement.execute();
         return true;
     }
     
     public boolean updateUser(Users users) throws SQLException{
         String sql = "update users "
-                + "set phone = ?, fullName = ?, gender = ?, dateOfBirth = convert(varchar(10),?, 126), address = ?, position = ? "
+                + "set phone = ?, fullName = ?, gender = ?, dateOfBirth = ?, address = ?, position = ?, email = ? "
+//                + "set phone = ?, fullName = ?, gender = ?, dateOfBirth = convert(varchar(10),?, 126), address = ?, position = ? "
                 + "where userId =?";
         PreparedStatement preStatement = connect().prepareStatement(sql);
         preStatement.setString(1, users.getPhone());
@@ -54,7 +56,19 @@ public class UserModifier extends UseDataBase {
         preStatement.setString(4, users.getDateOfBirth());
         preStatement.setString(5, users.getAddress());
         preStatement.setString(6, users.getPosition());
-        preStatement.setInt(7, users.getUserId());
+        preStatement.setString(7, users.getEmail());
+        preStatement.setInt(8, users.getUserId());
+        preStatement.executeUpdate();
+        return true;
+    }
+    
+    public boolean updatePassword(int userId, String password) throws SQLException{
+        String sql = "update users "
+                + "set password = ? "
+                + "where userId =?";
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+        preStatement.setString(1, password);
+        preStatement.setInt(2, userId);
         preStatement.executeUpdate();
         return true;
     }
@@ -70,7 +84,8 @@ public class UserModifier extends UseDataBase {
         while(result.next()){
             oList.add(new Users(result.getInt("userId"), result.getString("userName"), 
                         result.getString("password"), result.getString("phone"), result.getString("fullName"),
-                        result.getString("gender"), result.getString("dateOfBirth"), result.getString("address"), result.getString("position")));
+                        result.getString("gender"), result.getString("dateOfBirth"), result.getString("address"), 
+                        result.getString("position"), result.getString("email")));
         }
         return oList;
     }
@@ -88,7 +103,26 @@ public class UserModifier extends UseDataBase {
         while(result.next()){
             return new Users(result.getInt("userId"), result.getString("userName"), 
                         result.getString("password"), result.getString("phone"), result.getString("fullName"),
-                        result.getString("gender"), result.getString("dateOfBirth"), result.getString("address"), result.getString("position"));
+                        result.getString("gender"), result.getString("dateOfBirth"), result.getString("address"), 
+                        result.getString("position"), result.getString("email"));
+        }
+        return null;
+    }
+    
+    public Users getUser(int userId) throws SQLException{
+        String sql = "select * from users "
+                + "where userId = ?";
+        
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+        preStatement.setInt(1, userId);
+        preStatement.execute();
+        
+        ResultSet result = preStatement.getResultSet();
+        while(result.next()){
+            return new Users(result.getInt("userId"), result.getString("userName"), 
+                        result.getString("password"), result.getString("phone"), result.getString("fullName"),
+                        result.getString("gender"), result.getString("dateOfBirth"), result.getString("address"), 
+                        result.getString("position"), result.getString("email"));
         }
         return null;
     }

@@ -58,6 +58,8 @@ public class DeleteUserController implements Initializable {
     private TableColumn<Users, String> positionCol;
     @FXML
     private TableColumn<Users, String> passwordCol;
+    @FXML
+    private TableColumn<Users, String> emailCol;
 
     /**
      * Initializes the controller class.
@@ -85,6 +87,7 @@ public class DeleteUserController implements Initializable {
         dateOfBirthCol.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         positionCol.setCellValueFactory(new PropertyValueFactory<>("position"));
+        emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
         
         tableViewUsers.setItems(oList);
     }

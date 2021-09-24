@@ -19,6 +19,8 @@ public class Users {
     private String dateOfBirth;
     private String address;
     private String position;
+    private String email;
+    
 
     public Users() {
     }
@@ -33,7 +35,7 @@ public class Users {
         this.position = position;
     }
 
-    public Users(int userId, String userName, String password, String phone, String fullName, String gender, String dateOfBirth, String address, String position) {
+    public Users(int userId, String userName, String password, String phone, String fullName, String gender, String dateOfBirth, String address, String position, String email) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -43,6 +45,7 @@ public class Users {
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.position = position;
+        this.email = email;
     }
 
     public int getUserId() {
@@ -115,6 +118,14 @@ public class Users {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     
