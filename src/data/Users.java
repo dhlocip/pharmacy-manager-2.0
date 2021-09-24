@@ -23,6 +23,16 @@ public class Users {
     public Users() {
     }
 
+    public Users(int userId, String phone, String fullName, String gender, String dateOfBirth, String address, String position) {
+        this.userId = userId;
+        this.phone = phone;
+        this.fullName = fullName;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.position = position;
+    }
+
     public Users(int userId, String userName, String password, String phone, String fullName, String gender, String dateOfBirth, String address, String position) {
         this.userId = userId;
         this.userName = userName;

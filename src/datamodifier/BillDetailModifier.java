@@ -28,4 +28,14 @@ public class BillDetailModifier extends UseDataBase {
         preStatement.execute();
         return true;
     }
+    
+    //    delete billDetail by productId
+    public boolean deleteByProductId(int productId) throws SQLException{
+        String sql = "delete from billDetail "
+                + "where productId = ?";
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+        preStatement.setInt(1, productId);
+        preStatement.execute();
+        return true;
+    }
 }

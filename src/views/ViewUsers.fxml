@@ -10,24 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewProductController">
-   <center>
-      <TableView fx:id="searchTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="productTypeId" prefWidth="89.0" text="Product Type ID" />
-          <TableColumn fx:id="productId" prefWidth="61.0" text="Product ID" />
-            <TableColumn fx:id="productName" prefWidth="61.0" text="Product Name" />
-            <TableColumn fx:id="unit" prefWidth="61.0" text="Unit" />
-            <TableColumn fx:id="quatity" prefWidth="61.0" text="Quantity" />
-            <TableColumn fx:id="price" prefWidth="61.0" text="Price" />
-            <TableColumn fx:id="mfgDate" prefWidth="61.0" text="MFG Date" />
-            <TableColumn fx:id="expDate" prefWidth="61.0" text="EXP Date" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-   </center>
+<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewUsersController">
    <top>
       <HBox alignment="CENTER" prefHeight="69.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -55,4 +38,22 @@
          </children>
       </HBox>
    </top>
+   <center>
+      <TableView fx:id="tableViewUsers" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="userIdCol" prefWidth="75.0" text="UserId" />
+          <TableColumn fx:id="userNameCol" prefWidth="75.0" text="UserName" />
+            <TableColumn fx:id="passwordCol" prefWidth="75.0" text="Password" />
+            <TableColumn fx:id="phoneCol" prefWidth="75.0" text="Phone" />
+            <TableColumn fx:id="fullNameCol" prefWidth="75.0" text="FullName" />
+            <TableColumn fx:id="genderCol" prefWidth="75.0" text="Gender" />
+            <TableColumn fx:id="dateOfBirthCol" prefWidth="75.0" text="DateOfBirth" />
+            <TableColumn fx:id="addressCol" prefWidth="75.0" text="Address" />
+            <TableColumn fx:id="positionCol" prefWidth="75.0" text="Position" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </center>
 </BorderPane>

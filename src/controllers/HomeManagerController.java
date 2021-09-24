@@ -52,6 +52,10 @@ public class HomeManagerController implements Initializable {
     private Label fullnameLabel;
     @FXML
     private Label positionLabel;
+    @FXML
+    private HBox myprofileAdmin;
+    @FXML
+    private VBox supMyProfileAdmin;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,6 +63,7 @@ public class HomeManagerController implements Initializable {
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(false);
+        hideSupMyProfileAdmin(false);
 
     }
 
@@ -95,12 +100,19 @@ public class HomeManagerController implements Initializable {
 
     }
 
+    private void hideSupMyProfileAdmin(boolean value) {
+        supMyProfileAdmin.setVisible(value);
+        supMyProfileAdmin.managedProperty().bind(supMyProfileAdmin.visibleProperty());
+
+    }
+
     @FXML
     private void dashboardClicked(MouseEvent event) {
 //        event clicked to label dashboard
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(false);
+        hideSupMyProfileAdmin(false);
 
     }
 
@@ -110,16 +122,26 @@ public class HomeManagerController implements Initializable {
         hideSupMedicine(true);
         hideSupMyProfile(false);
         hideSupSettings(false);
+        hideSupMyProfileAdmin(false);
 
     }
 
     @FXML
-    private void myprofileClicked(MouseEvent event) {
-//        event clicked to label my profile
+    private void manageProfileClicked(MouseEvent event) {
+//        event clicked to label manage profile
         hideSupMedicine(false);
         hideSupMyProfile(true);
         hideSupSettings(false);
+        hideSupMyProfileAdmin(false);
 
+    }
+
+    @FXML
+    private void myprofileAdminClicked(MouseEvent event) {
+        hideSupMedicine(false);
+        hideSupMyProfile(false);
+        hideSupSettings(false);
+        hideSupMyProfileAdmin(true);
     }
 
     @FXML
@@ -128,6 +150,7 @@ public class HomeManagerController implements Initializable {
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(true);
+        hideSupMyProfileAdmin(false);
 
     }
 
@@ -152,6 +175,53 @@ public class HomeManagerController implements Initializable {
     @FXML
     private void createProductClicked(MouseEvent event) throws IOException {
         setCenterHomeBox("AddProduct");
+    }
+
+    @FXML
+    private void updateClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("UpdateProduct");
+    }
+
+    @FXML
+    private void viewClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("ViewProduct");
+    }
+
+    @FXML
+    private void deleteClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("DeleteProduct");
+    }
+
+    @FXML
+    private void viewProfileClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("ViewUsers");
+    }
+
+    @FXML
+    private void createProfileClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("CreateUsers");
+    }
+
+    @FXML
+    private void updateProfileClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("UpdateUsers");
+    }
+
+    @FXML
+    private void deleteProfileClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("DeleteUser");
+    }
+
+    @FXML
+    private void statisticClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void updateProfileAdminClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void changePasswordProfileAdminClicked(MouseEvent event) {
     }
 
 }

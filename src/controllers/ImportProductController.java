@@ -159,6 +159,9 @@ public class ImportProductController implements Initializable {
 
 //    get total product inside an importId
     private void getTotalProductInImportDetail() throws SQLException {
+//        reload importID
+        impId = new ImportBatchModifier().getMaxImpBatchId(userId);
+//        count product in importBatchDetail
         total = new ImportBatchDetailModifier().getNumberProduct(impId);
     }
 
@@ -239,8 +242,8 @@ public class ImportProductController implements Initializable {
 
     @FXML
     private void impNewBatchClicked(MouseEvent event) throws SQLException {
-        total = new ImportBatchDetailModifier().getNumberProduct(impId);
-
+//        total = new ImportBatchDetailModifier().getNumberProduct(impId);
+//        getTotalProductInImportDetail();
         if (total > 0) {
             if (new ImportBatchModifier().addImpNewBatch(userId)) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -252,15 +255,16 @@ public class ImportProductController implements Initializable {
 //            reload import new batch 
                 getImpBatchInfo(userId);
 
-//            reload list importId combobox
-//                getValueImpIdListComboBox();
+//        reload table importBatchDetail info
+                getImpBatchDetailInfo(userId);
+
 //                  get total product inside an importBatchId
                 getTotalProductInImportDetail();
-                if (total == 0) {
-                    impBatchDetailLabel.setDisable(true);
-                } else {
-                    impBatchDetailLabel.setDisable(false);
-                }
+//                if (total == 0) {
+//                    impBatchDetailLabel.setDisable(true);
+//                } else {
+//                    impBatchDetailLabel.setDisable(false);
+//                }
 
             }
         } else {
@@ -298,8 +302,11 @@ public class ImportProductController implements Initializable {
             alert.setContentText("Products are added to the table below.");
 
 //        reload table importBatchDetail info
-        getImpBatchDetailInfo(userId);
+            getImpBatchDetailInfo(userId);
             
+//                  get total product inside an importBatchId
+            getTotalProductInImportDetail();
+
         } else {
             if (isPriceRight()) {
                 hideErrorPrice(false);

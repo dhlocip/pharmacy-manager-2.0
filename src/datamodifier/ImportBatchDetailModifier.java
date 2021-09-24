@@ -67,5 +67,15 @@ public class ImportBatchDetailModifier extends UseDataBase {
         }
         return oList;
     }
+    
+//    delete importBatchDetail by productId
+    public boolean deleteByProductId(int productId) throws SQLException{
+        String sql = "delete from ImportBatchDetail "
+                + "where productId = ?";
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+        preStatement.setInt(1, productId);
+        preStatement.execute();
+        return true;
+    }
 
 }

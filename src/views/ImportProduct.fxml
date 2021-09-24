@@ -266,7 +266,7 @@
       </HBox>
    </top>
    <bottom>
-      <HBox prefHeight="77.0" prefWidth="900.0" style="-fx-border-color: gray;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="77.0" prefWidth="900.0" style="-fx-border-color: grey;" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER_LEFT" prefHeight="71.0">
                <children>
@@ -294,7 +294,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label prefHeight="35.0" text="Need to import new batch before  import batch detail">
+                  <Label prefHeight="35.0" text="Need to import new batch before  import batch detail.">
                      <font>
                         <Font size="15.0" />
                      </font>

@@ -19,11 +19,24 @@ public class AllInfoProductModifier extends UseDataBase {
 
     public ObservableList<AllInfoProduct> findProduct(String productName) throws SQLException {
         ObservableList<AllInfoProduct> listProducts = FXCollections.observableArrayList();
-        String sql = "select * from allInforProduct "
-                + "where productName like '%" + productName + "%'";
 
-        PreparedStatement preStatement = connect().prepareStatement(sql);
-        preStatement.execute();
+        int productId = 0;
+        String sql;
+        PreparedStatement preStatement;
+
+        try {
+            productId = Integer.parseInt(productName);
+            sql = "select * from allInforProduct "
+                    + "where productId = ?";
+            preStatement = connect().prepareStatement(sql);
+            preStatement.setInt(1, productId);
+            preStatement.execute();
+        } catch (NumberFormatException ex) {
+            sql = "select * from allInforProduct "
+                    + "where productName like '%" + productName + "%'";
+            preStatement = connect().prepareStatement(sql);
+            preStatement.execute();
+        }
 
         ResultSet result = preStatement.getResultSet();
         while (result.next()) {
@@ -33,7 +46,7 @@ public class AllInfoProductModifier extends UseDataBase {
         }
         return listProducts;
     }
-    
+
     public ObservableList<AllInfoProduct> viewProduct() throws SQLException {
         ObservableList<AllInfoProduct> listProducts = FXCollections.observableArrayList();
         String sql = "select * from allInforProduct";
