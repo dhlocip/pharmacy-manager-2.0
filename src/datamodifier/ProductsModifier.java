@@ -61,7 +61,7 @@ public class ProductsModifier extends UseDataBase {
         return oList;
     }
 
-    public boolean updateProduct(Products product) throws SQLException {
+    public boolean updateProducts(Products product) throws SQLException {
         String sql = "update products "
                 + "set productName =?, productTypeId = ?, unit = ?, price = ? "
                 + "where productId = ?";
@@ -72,6 +72,21 @@ public class ProductsModifier extends UseDataBase {
         preStatement.setString(3, product.getUnit());
         preStatement.setDouble(4, product.getPrice());
         preStatement.setInt(5, product.getProductId());
+
+        preStatement.executeUpdate();
+        return true;
+    }
+    
+    public boolean insertIntoProducts(Products product) throws SQLException {
+        String sql = "insert into products "
+                + "values(?,?,?,?)";
+        
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+
+        preStatement.setString(1, product.getProductName());
+        preStatement.setInt(2, product.getProductTypeId());
+        preStatement.setString(3, product.getUnit());
+        preStatement.setDouble(4, product.getPrice());
 
         preStatement.executeUpdate();
         return true;

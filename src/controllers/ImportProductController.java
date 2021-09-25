@@ -109,6 +109,8 @@ public class ImportProductController implements Initializable {
     private TextField impQuantityTextField;
     @FXML
     private Label errorOfExpDate;
+    @FXML
+    private Label errorOfProductId;
 
     /**
      * Initializes the controller class.
@@ -150,6 +152,7 @@ public class ImportProductController implements Initializable {
         }
 //        impBatchDetailLabel.setDisable(true);
 
+        hideErrorProductId(false);
         hideErrorPrice(false);
         hideErrorQuantity(false);
         hideErrorMfgDate(false);
@@ -220,6 +223,11 @@ public class ImportProductController implements Initializable {
         productTV.setItems(oList);
     }
 
+    private void hideErrorProductId(boolean value) {
+        errorOfProductId.setVisible(value);
+        errorOfProductId.managedProperty().bind(errorOfProductId.visibleProperty());
+    }
+    
     private void hideErrorPrice(boolean value) {
         errorOfPrice.setVisible(value);
         errorOfPrice.managedProperty().bind(errorOfPrice.visibleProperty());

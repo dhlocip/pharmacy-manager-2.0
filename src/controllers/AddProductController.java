@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -35,7 +36,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class AddProductController implements Initializable {
 
-    int proTypeId;
+    Integer proTypeId;
     String proTypeName;
     String proName;
     String proUnit;
@@ -93,7 +94,6 @@ public class AddProductController implements Initializable {
 //            set value for product type id comboBox
             setValueProTypeIdComboBox();
 
-
         } catch (SQLException ex) {
             Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -135,104 +135,160 @@ public class AddProductController implements Initializable {
 
         productDetailTableView.setItems(oList);
     }
-    
-    private void hideErrorOfProTypeName(boolean value){
+
+    private void hideErrorOfProTypeName(boolean value) {
         errorOfProductTypeName.setVisible(value);
         errorOfProductTypeName.managedProperty().bind(errorOfProductTypeName.visibleProperty());
     }
-    
-    private void hideErrorOfProName(boolean value){
+
+    private void hideErrorOfProName(boolean value) {
         errorOfProductName.setVisible(value);
         errorOfProductName.managedProperty().bind(errorOfProductName.visibleProperty());
     }
-    
-    private void hideErrorOfUnit(boolean value){
+
+    private void hideErrorOfUnit(boolean value) {
         errorOfUnit.setVisible(value);
         errorOfUnit.managedProperty().bind(errorOfUnit.visibleProperty());
     }
 
-    private void hideErrorOfPrice(boolean value){
+    private void hideErrorOfPrice(boolean value) {
         errorOfPrice.setVisible(value);
         errorOfPrice.managedProperty().bind(errorOfPrice.visibleProperty());
     }
-    
+
     @FXML
     private void addProductTypeClicked(MouseEvent event) throws SQLException {
-//        if(new ProductTypeModifier().addProductTypeNew(proName)){
-//            
-//        }
+        boolean check = new ProductTypeModifier().matchProductType(productTypeNameTextField.getText());
+        if (isProTypeNameRight() && !check) {
+            if (new ProductTypeModifier().addProductTypeNew(proTypeName)) {
+                getInfoTableProductType();
+                setValueProTypeIdComboBox();
 
-        System.out.println(proTypeName);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Notification");
+                alert.setHeaderText("Success");
+                alert.setContentText("Add product type is successfully.");
+            }
+        } else {
+            if (!isProTypeNameRight()) {
+                hideErrorOfProTypeName(true);
+                errorOfProductTypeName.setText("\"" + productTypeNameTextField.getText() + "\" invalid.\n"
+                        + "Product type name only get character value.");
+            }
+        }
+
     }
 
     @FXML
-    private void addProductDetailClicked(MouseEvent event) {
+    private void addProductDetailClicked(MouseEvent event) throws SQLException {
+        if (isProNameRight() && isUnitRight() && isPriceRight()) {
+            Products prod = new Products();
+            prod.setProductTypeId(proTypeId);
+            prod.setProductName(proName);
+            prod.setUnit(proUnit);
+            prod.setPrice(proPrice);
+
+            if (new ProductsModifier().insertIntoProducts(prod)) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Notification");
+                alert.setHeaderText("Success");
+                alert.setContentText("Add product detail is successfully.");
+                alert.showAndWait();
+
+                getInfoTableProducts();
+            }
+
+        } else {
+            if (!isProNameRight()) {
+                hideErrorOfProName(true);
+                errorOfProductName.setText("\"" + productNameTextField.getText() + "\" invalid.\n"
+                        + "Product type name only get character value.");
+            }
+            if (!isUnitRight()) {
+                hideErrorOfUnit(true);
+                errorOfUnit.setText("\"" + unitTextField.getText() + "\" invalid.\n"
+                        + "Product type name only get character value.");
+            }
+            if (!isPriceRight()) {
+                hideErrorOfPrice(true);
+                errorOfPrice.setText("\"" + priceTextField.getText() + "\" invalid.\n"
+                        + "Please enter value greater than 0.");
+            }
+        }
+
     }
 
-    private boolean isPriceRight(){
+    private boolean isPriceRight() {
         String tmp = String.valueOf(priceTextField.getText());
-        if((!tmp.isEmpty() && tmp.matches("^[1-9]{1}[\\d]*[.]{1}[\\d]+"))
-                || (!tmp.isEmpty() && tmp.matches("^[1-9]{1}[\\d]*"))){
+        if ((!tmp.isEmpty() && tmp.matches("^[1-9]{1}[\\d]*[.]{1}[\\d]+"))
+                || (!tmp.isEmpty() && tmp.matches("^[1-9]{1}[\\d]*"))) {
             proPrice = Double.parseDouble(tmp);
             return true;
         }
         return false;
     }
-    
+
     @FXML
     private void priceReleased(KeyEvent event) {
-        if(isPriceRight()){
+        if (isPriceRight()) {
             hideErrorOfPrice(false);
-        }else{
+        } else {
             hideErrorOfPrice(true);
             errorOfPrice.setText("\"" + priceTextField.getText() + "\" invalid.\n"
                     + "Please enter value greater than 0.");
         }
     }
 
-    private boolean isProTypeNameRight(){
+    private boolean isProTypeNameRight() {
         String tmp = String.valueOf(productTypeNameTextField.getText());
-        if(!tmp.isEmpty() && tmp.matches("^[a-zA-Z]{1}[a-zA-Z\\s]{3,30}")){
+        if (!tmp.isEmpty() && tmp.matches("^[a-zA-Z]{1}[a-zA-Z\\s]{3,30}")) {
             proTypeName = tmp;
             return true;
         }
         return false;
     }
-    
+
     @FXML
-    private void productTypeNameReleased(KeyEvent event) {
-        if(isProTypeNameRight()){
-            hideErrorOfProTypeName(false);
-        }else{
+    private void productTypeNameReleased(KeyEvent event) throws SQLException {
+        if (isProTypeNameRight()) {
+            boolean check = new ProductTypeModifier().matchProductType(productTypeNameTextField.getText());
+            if (check) {
+                hideErrorOfProTypeName(true);
+                errorOfProductTypeName.setText(productTypeNameTextField.getText() + " already exists.");
+            } else {
+                hideErrorOfProTypeName(false);
+            }
+        } else {
             hideErrorOfProTypeName(true);
             errorOfProductTypeName.setText("\"" + productTypeNameTextField.getText() + "\" invalid.\n"
                     + "Product type name only get character value.");
         }
+
     }
 
-    private boolean isProNameRight(){
+    private boolean isProNameRight() {
         String tmp = String.valueOf(productNameTextField.getText());
-        if(!tmp.isEmpty() && tmp.matches("^[a-zA-Z]{1}[a-zA-Z\\s]{3,30}")){
+        if (!tmp.isEmpty() && tmp.matches("^[a-zA-Z]{1}[a-zA-Z\\s]{3,30}")) {
             proName = tmp;
             return true;
         }
         return false;
     }
-    
+
     @FXML
     private void productNameReleased(KeyEvent event) {
-        if(isProNameRight()){
+        if (isProNameRight()) {
             hideErrorOfProName(false);
-        }else{
+        } else {
             hideErrorOfProName(true);
             errorOfProductName.setText("\"" + productNameTextField.getText() + "\" invalid.\n"
                     + "Product type name only get character value.");
         }
     }
-    
-    private boolean isUnitRight(){
+
+    private boolean isUnitRight() {
         String tmp = String.valueOf(unitTextField.getText());
-        if(!tmp.isEmpty() && tmp.matches("^[a-zA-Z]{1}[a-zA-Z\\s]{3,30}")){
+        if (!tmp.isEmpty() && tmp.matches("^[a-zA-Z]{1}[a-zA-Z\\s]{1,30}")) {
             proUnit = tmp;
             return true;
         }
@@ -241,9 +297,9 @@ public class AddProductController implements Initializable {
 
     @FXML
     private void unitReleased(KeyEvent event) {
-        if(isUnitRight()){
+        if (isUnitRight()) {
             hideErrorOfUnit(false);
-        }else{
+        } else {
             hideErrorOfUnit(true);
             errorOfUnit.setText("\"" + unitTextField.getText() + "\" invalid.\n"
                     + "Product type name only get character value.");

@@ -42,184 +42,18 @@
          </children>
       </HBox>
    </top>
-   <center>
-      <TableView fx:id="tableViewUsers" onMouseClicked="#tableUsersClicked" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="userIdCol" prefWidth="75.0" text="UserId" />
-          <TableColumn fx:id="userNameCol" prefWidth="75.0" text="UserName" />
-            <TableColumn fx:id="passwordCol" prefWidth="75.0" text="Password" />
-            <TableColumn fx:id="phoneCol" prefWidth="75.0" text="Phone" />
-            <TableColumn fx:id="fullNameCol" prefWidth="75.0" text="FullName" />
-            <TableColumn fx:id="genderCol" prefWidth="75.0" text="Gender" />
-            <TableColumn fx:id="dateOfBirthCol" prefWidth="75.0" text="DateOfBirth" />
-            <TableColumn fx:id="addressCol" prefWidth="75.0" text="Address" />
-            <TableColumn fx:id="positionCol" prefWidth="75.0" text="Position" />
-            <TableColumn fx:id="emailCol" prefWidth="75.0" text="Email" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-   </center>
-   <left>
-      <VBox prefWidth="250.0" BorderPane.alignment="CENTER">
+   <bottom>
+      <HBox prefHeight="77.0" prefWidth="200.0" style="-fx-border-color: grey;" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" prefWidth="369.0" style="-fx-background-color: #f6f8fa;" VBox.vgrow="ALWAYS">
+            <VBox alignment="CENTER_LEFT" prefHeight="71.0">
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Full Name" VBox.vgrow="NEVER">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="fullnameTextField" maxWidth="-Infinity" onKeyReleased="#unitReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label fx:id="errorOfUnit" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Gender" VBox.vgrow="NEVER">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ComboBox fx:id="genderComboBox" onAction="#genderAction" prefHeight="35.0" prefWidth="369.0">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </ComboBox>
-                  <Label fx:id="errorOfPrice" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Phone">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="phoneTextField" maxWidth="-Infinity" onKeyReleased="#priceReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label fx:id="errorOfPrice2" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Address">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="addressTextField" maxWidth="-Infinity" onKeyReleased="#unitReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label fx:id="errorOfUnit1" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Email">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="emailTextField" maxWidth="-Infinity" onKeyReleased="#unitReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label fx:id="errorOfUnit11" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Date Of Birth">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <DatePicker fx:id="dateOfBirthDatePicker" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </DatePicker>
-                  <Label fx:id="errorOfPrice1" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Position">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ComboBox fx:id="PositionComboBox" onAction="#positionAction" prefHeight="35.0" prefWidth="369.0">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </ComboBox>
-                  <Label fx:id="errorOfPrice21" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#updateUserClicked" prefHeight="35.0" prefWidth="369.0" style="-fx-cursor: hand; -fx-background-color: green;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="369.0" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/document-edit-symbolic.symbolic.png" />
+                                    <Image url="@../img/emoji-objects-symbolic.symbolic.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -227,7 +61,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="Update User">
+                        <Label prefHeight="27.0" style="-fx-font-weight: bold;" text="Instruction">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -236,14 +70,208 @@
                            </font>
                         </Label>
                      </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-                     </VBox.margin>
                   </HBox>
+                  <Label prefHeight="35.0" text="...">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefWidth="369.0" style="-fx-background-color: #f6f8fa;" VBox.vgrow="ALWAYS" />
          </children>
-      </VBox>
-   </left>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <center>
+      <BorderPane prefHeight="640.0" prefWidth="277.0" BorderPane.alignment="CENTER">
+         <center>
+            <TableView fx:id="tableViewUsers" onMouseClicked="#tableUsersClicked" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="userIdCol" prefWidth="75.0" text="UserId" />
+                <TableColumn fx:id="userNameCol" prefWidth="75.0" text="UserName" />
+                  <TableColumn fx:id="passwordCol" prefWidth="75.0" text="Password" />
+                  <TableColumn fx:id="phoneCol" prefWidth="75.0" text="Phone" />
+                  <TableColumn fx:id="fullNameCol" prefWidth="75.0" text="FullName" />
+                  <TableColumn fx:id="genderCol" prefWidth="75.0" text="Gender" />
+                  <TableColumn fx:id="dateOfBirthCol" prefWidth="75.0" text="DateOfBirth" />
+                  <TableColumn fx:id="addressCol" prefWidth="75.0" text="Address" />
+                  <TableColumn fx:id="positionCol" prefWidth="75.0" text="Position" />
+                  <TableColumn fx:id="emailCol" prefWidth="75.0" text="Email" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </TableView>
+         </center>
+         <top>
+            <HBox alignment="CENTER" prefHeight="197.0" prefWidth="650.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER" prefWidth="369.0">
+                     <children>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Full Name" VBox.vgrow="NEVER">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="fullnameTextField" maxWidth="-Infinity" minHeight="-Infinity" onKeyReleased="#fullNameReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                        <Label fx:id="errorOfFullName" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Gender" VBox.vgrow="NEVER">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="genderComboBox" minHeight="-Infinity" onAction="#genderAction" prefHeight="35.0" prefWidth="369.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </ComboBox>
+                        <Label fx:id="errorOfGender" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Phone">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="phoneTextField" maxWidth="-Infinity" minHeight="-Infinity" onKeyReleased="#phoneReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                        <Label fx:id="errorOfPhone" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="369.0">
+                     <children>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Address">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="addressTextField" maxWidth="-Infinity" onKeyReleased="#addressReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1" />
+                        <Label fx:id="errorOfAddress" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Email">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="emailTextField" maxWidth="-Infinity" onKeyReleased="#emailReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1" />
+                        <Label fx:id="errorOfEmail" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Date Of Birth">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="dateOfBirthDatePicker" maxWidth="-Infinity" onAction="#dateOfBirthAction" prefHeight="35.0" prefWidth="369.0" />
+                        <Label fx:id="errorOfDateOfBirth" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefWidth="369.0">
+                     <children>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Position">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="PositionComboBox" onAction="#positionAction" prefHeight="35.0" prefWidth="369.0" />
+                        <Label fx:id="errorOfPosition" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#updateUserClicked" prefHeight="35.0" prefWidth="369.0" style="-fx-cursor: hand; -fx-background-color: green;" styleClass="labelMain" stylesheets="@../css/home.css">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/document-edit-symbolic.symbolic.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="27.0" text="Update User">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" />
+               </BorderPane.margin>
+            </HBox>
+         </top>
+         <BorderPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </BorderPane.margin>
+      </BorderPane>
+   </center>
 </BorderPane>

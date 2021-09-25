@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="homeBox" prefWidth="900.0" stylesheets="/css/home.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeManagerController">
+<BorderPane fx:id="homeBox" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeManagerController">
    <top>
-      <HBox alignment="CENTER" prefHeight="37.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="900.0" style="-fx-border-color: grey;" BorderPane.alignment="CENTER">
          <children>
             <Label prefHeight="35.0" prefWidth="51.0" text="Pcity">
                <font>

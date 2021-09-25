@@ -40,8 +40,6 @@ public class UpdateProfileAdminController implements Initializable {
     String lGender, lPosition;
 
     @FXML
-    private TextField searchTextField;
-    @FXML
     private Label errorOfUnit;
     @FXML
     private Label errorOfPrice;
@@ -102,6 +100,7 @@ public class UpdateProfileAdminController implements Initializable {
         dateOfBirthDatePicker.setValue(myDate);
         
         PositionComboBox.setValue(user.getPosition());
+        emailTextField.setText(user.getEmail());
     }
 
     private void setPosition() {
@@ -124,9 +123,6 @@ public class UpdateProfileAdminController implements Initializable {
         lGender = genderComboBox.getValue();
     }
 
-    @FXML
-    private void searchReleased(KeyEvent event) {
-    }
 
 
     @FXML

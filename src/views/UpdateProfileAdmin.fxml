@@ -13,37 +13,10 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateProfileAdminController">
-   <top>
-      <HBox alignment="CENTER" prefHeight="69.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="45.0" prefWidth="430.0" style="-fx-background-color: gray; -fx-background-radius: 15;">
-               <children>
-                  <TextField fx:id="searchTextField" onKeyReleased="#searchReleased" prefHeight="35.0" prefWidth="363.0" promptText="Search here" style="-fx-background-color: gray;" stylesheets="@../css/home.css">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <Label prefHeight="35.0" prefWidth="35.0">
-                     <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/edit-find-symbolic.symbolic.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Label>
-               </children>
-               <HBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
-               </HBox.margin>
-            </HBox>
-         </children>
-      </HBox>
-   </top>
    <center>
       <VBox prefWidth="250.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" prefWidth="369.0" style="-fx-background-color: #f6f8fa;" VBox.vgrow="ALWAYS">
+            <VBox alignment="CENTER" prefWidth="369.0" style="-fx-background-color: #f6f8fa;" VBox.vgrow="ALWAYS">
                <children>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Full Name" VBox.vgrow="NEVER">
                      <font>

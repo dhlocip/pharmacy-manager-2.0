@@ -61,18 +61,6 @@ public class UpdateUsersController implements Initializable {
     @FXML
     private TableColumn<Users, String> passwordCol;
     @FXML
-    private Label errorOfUnit;
-    @FXML
-    private Label errorOfPrice;
-    @FXML
-    private Label errorOfPrice2;
-    @FXML
-    private Label errorOfUnit1;
-    @FXML
-    private Label errorOfPrice1;
-    @FXML
-    private Label errorOfPrice21;
-    @FXML
     private TextField fullnameTextField;
     @FXML
     private ComboBox<String> genderComboBox;
@@ -87,9 +75,21 @@ public class UpdateUsersController implements Initializable {
     @FXML
     private TextField emailTextField;
     @FXML
-    private Label errorOfUnit11;
-    @FXML
     private TableColumn<Users, String> emailCol;
+    @FXML
+    private Label errorOfFullName;
+    @FXML
+    private Label errorOfGender;
+    @FXML
+    private Label errorOfPhone;
+    @FXML
+    private Label errorOfAddress;
+    @FXML
+    private Label errorOfEmail;
+    @FXML
+    private Label errorOfPosition;
+    @FXML
+    private Label errorOfDateOfBirth;
 
     /**
      * Initializes the controller class.
@@ -99,14 +99,57 @@ public class UpdateUsersController implements Initializable {
         try {
             // TODO
 
-            getUsersInfo();
+            getUsersInfoDefault();
             setGender();
             setPosition();
         } catch (SQLException ex) {
             Logger.getLogger(UpdateUsersController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        hideErrorOfFullName(false);
+        hideErrorOfGender(false);
+        hideErrorOfPhone(false);
+        hideErrorOfAddress(false);
+        hideErrorOfEmail(false);
+        hideErrorOfDateOfBrith(false);
+        hideErrorOfPosition(false);
+    }
+    
+    private void hideErrorOfFullName(boolean value){
+        errorOfFullName.setVisible(value);
+        errorOfFullName.managedProperty().bind(errorOfFullName.visibleProperty());
+    }
+    
+    private void hideErrorOfGender(boolean value){
+        errorOfGender.setVisible(value);
+        errorOfGender.managedProperty().bind(errorOfGender.visibleProperty());
+    }
+    
+    private void hideErrorOfPhone(boolean value){
+        errorOfPhone.setVisible(value);
+        errorOfPhone.managedProperty().bind(errorOfPhone.visibleProperty());
     }
 
+    private void hideErrorOfAddress(boolean value){
+        errorOfAddress.setVisible(value);
+        errorOfAddress.managedProperty().bind(errorOfAddress.visibleProperty());
+    }
+    
+    private void hideErrorOfEmail(boolean value){
+        errorOfEmail.setVisible(value);
+        errorOfEmail.managedProperty().bind(errorOfEmail.visibleProperty());
+    }
+    
+    private void hideErrorOfDateOfBrith(boolean value){
+        errorOfDateOfBirth.setVisible(value);
+        errorOfDateOfBirth.managedProperty().bind(errorOfDateOfBirth.visibleProperty());
+    }
+    
+    private void hideErrorOfPosition(boolean value){
+        errorOfPosition.setVisible(value);
+        errorOfPosition.managedProperty().bind(errorOfPosition.visibleProperty());
+    }
+    
     private void setPosition() {
         ObservableList<String> oList = FXCollections.observableArrayList();
         oList.add("Manager");
@@ -127,8 +170,25 @@ public class UpdateUsersController implements Initializable {
         lGender = genderComboBox.getValue();
     }
 
-    private void getUsersInfo() throws SQLException {
+    private void getUsersInfoDefault() throws SQLException {
         ObservableList<Users> oList = new UserModifier().getInfo();
+
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        fullNameCol.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        dateOfBirthCol.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        positionCol.setCellValueFactory(new PropertyValueFactory<>("position"));
+        emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+        tableViewUsers.setItems(oList);
+    }
+    
+    private void getUsersInfoAfterSearch() throws SQLException {
+        ObservableList<Users> oList = new UserModifier().searchByName(searchTextField.getText());
 
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
@@ -145,7 +205,8 @@ public class UpdateUsersController implements Initializable {
     }
 
     @FXML
-    private void searchReleased(KeyEvent event) {
+    private void searchReleased(KeyEvent event) throws SQLException {
+        getUsersInfoAfterSearch();
     }
 
     @FXML
@@ -163,26 +224,6 @@ public class UpdateUsersController implements Initializable {
             PositionComboBox.setValue(item.getPosition());
             emailTextField.setText(item.getEmail());
         }
-    }
-
-    @FXML
-    private void unitReleased(KeyEvent event) {
-    }
-
-    @FXML
-    private void priceReleased(KeyEvent event) {
-    }
-
-    @FXML
-    private void genderAction(ActionEvent event) {
-        lGender = genderComboBox.getValue();
-
-    }
-
-    @FXML
-    private void positionAction(ActionEvent event) {
-        lPosition = PositionComboBox.getValue();
-
     }
 
     @FXML
@@ -205,7 +246,7 @@ public class UpdateUsersController implements Initializable {
                 alert.setHeaderText("Success");
                 alert.setContentText("User is update successfully.");
                 alert.showAndWait();
-                getUsersInfo();
+                getUsersInfoDefault();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -214,6 +255,38 @@ public class UpdateUsersController implements Initializable {
             alert.setContentText("Please click on the line.");
             alert.showAndWait();
         }
+    }
+
+    @FXML
+    private void genderAction(ActionEvent event) {
+        lGender = genderComboBox.getValue();
+
+    }
+
+    @FXML
+    private void positionAction(ActionEvent event) {
+        lPosition = PositionComboBox.getValue();
+
+    }
+
+    @FXML
+    private void fullNameReleased(KeyEvent event) {
+    }
+
+    @FXML
+    private void phoneReleased(KeyEvent event) {
+    }
+
+    @FXML
+    private void addressReleased(KeyEvent event) {
+    }
+
+    @FXML
+    private void emailReleased(KeyEvent event) {
+    }
+
+    @FXML
+    private void dateOfBirthAction(ActionEvent event) {
     }
 
 }

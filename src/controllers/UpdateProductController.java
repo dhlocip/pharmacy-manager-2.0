@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.css.CssParser;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -38,7 +39,7 @@ import javafx.scene.paint.*;
  */
 public class UpdateProductController implements Initializable {
 
-    int lProductTypeId;
+    Integer lProductTypeId;
     int lProductId;
     String lProductName;
     String lUnit;
@@ -78,6 +79,8 @@ public class UpdateProductController implements Initializable {
     private TableColumn<Products, Double> priceDetail;
     @FXML
     private TextField searchTextField;
+    @FXML
+    private Label errorOfProductTypeId;
 
     /**
      * Initializes the controller class.
@@ -99,6 +102,11 @@ public class UpdateProductController implements Initializable {
             Logger.getLogger(UpdateProductController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        hideErrorOfPrice(false);
+        hideErrorOfUnit(false);
+        hideErrorOfProTypeId(false);
+        hideErrorOfProName(false);
+
     }
 
     private void setProductTypeId() throws SQLException {
@@ -119,7 +127,7 @@ public class UpdateProductController implements Initializable {
 
         productTypeTableView.setItems(oList);
     }
-    
+
     private void getProductsInfoWhenSearch(String productName) throws SQLException {
         ObservableList<Products> oList = new ProductsModifier().getInfoByIdOrName(productName);
 
@@ -144,44 +152,100 @@ public class UpdateProductController implements Initializable {
         productDetailTableView.setItems(oList);
     }
 
+    private void hideErrorOfProTypeId(boolean value) {
+        errorOfProductTypeId.setVisible(value);
+        errorOfProductTypeId.managedProperty().bind(errorOfProductTypeId.visibleProperty());
+    }
+
+    private void hideErrorOfProName(boolean value) {
+        errorOfProductName.setVisible(value);
+        errorOfProductName.managedProperty().bind(errorOfProductName.visibleProperty());
+    }
+
+    private void hideErrorOfUnit(boolean value) {
+        errorOfUnit.setVisible(value);
+        errorOfUnit.managedProperty().bind(errorOfUnit.visibleProperty());
+    }
+
+    private void hideErrorOfPrice(boolean value) {
+        errorOfPrice.setVisible(value);
+        errorOfPrice.managedProperty().bind(errorOfPrice.visibleProperty());
+    }
+
+    private boolean isProNameRight() {
+        String tmp = productNameTextField.getText();
+        return tmp.matches("^[a-zA-Z]{1}[\\w\\s]{2,30}");
+    }
+
     @FXML
     private void productNameReleased(KeyEvent event) {
-        lProductName = productNameTextField.getText();
+        if (isProNameRight()) {
+            lProductName = productNameTextField.getText();
+            hideErrorOfProName(false);
+        } else {
+            hideErrorOfProName(true);
+            errorOfProductName.setText(productNameTextField.getText() + " is invalid.");
+        }
+    }
+
+    private boolean isUnitRight() {
+        String tmp = unitTextField.getText();
+        return tmp.matches("^[a-zA-Z]{1}[a-zA-Z\\s]{1,30}");
     }
 
     @FXML
     private void unitReleased(KeyEvent event) {
-        lUnit = unitTextField.getText();
+        if (isUnitRight()) {
+            lUnit = unitTextField.getText();
+            hideErrorOfUnit(false);
+        } else {
+            hideErrorOfUnit(true);
+            errorOfUnit.setText(unitTextField.getText() + " is invalid.");
+        }
+    }
+
+    private boolean isPriceRight() {
+        String tmp = priceTextField.getText();
+        return tmp.matches("^[1-9]{1}[\\d]*") || tmp.matches("^[1-9]{1}[\\d]*[.]?[\\d]+");
     }
 
     @FXML
     private void priceReleased(KeyEvent event) {
-        lPrice = Double.parseDouble(priceTextField.getText());
+        if (isPriceRight()) {
+            lPrice = Double.parseDouble(priceTextField.getText());
+            hideErrorOfPrice(false);
+        } else {
+            hideErrorOfPrice(true);
+            errorOfPrice.setText(priceTextField.getText() + " is invalid.");
+        }
     }
 
     @FXML
     private void updateProductClicked(MouseEvent event) throws SQLException {
-        Products items = productDetailTableView.getSelectionModel().getSelectedItem();
-        lPrice = Double.parseDouble(priceTextField.getText());
-        lUnit = unitTextField.getText();
-        lProductName = productNameTextField.getText();
 
-        if (items != null) {
-            items.setProductTypeId(lProductTypeId);
-            items.setProductName(lProductName);
-            items.setUnit(lUnit);
-            items.setPrice(lPrice);
+        if (lProductTypeId != null && isPriceRight() && isUnitRight() && isProNameRight()) {
+            Products items = productDetailTableView.getSelectionModel().getSelectedItem();
+            lPrice = Double.parseDouble(priceTextField.getText());
+            lUnit = unitTextField.getText();
+            lProductName = productNameTextField.getText();
+            lProductTypeId = productTypeIdComboBox.getValue();
 
-            if (new ProductsModifier().updateProduct(items)) {
-                System.out.println("ok");
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Notification");
-                alert.setHeaderText("Success");
-                alert.setContentText("update product is successfully.");
-                alert.showAndWait();
+            if (items != null) {
+                items.setProductTypeId(lProductTypeId);
+                items.setProductName(lProductName);
+                items.setUnit(lUnit);
+                items.setPrice(lPrice);
+
+                if (new ProductsModifier().updateProducts(items)) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Notification");
+                    alert.setHeaderText("Success");
+                    alert.setContentText("update product is successfully.");
+                    alert.showAndWait();
 
 //                reload table products 
-                getProductsInfo();
+                    getProductsInfo();
+                }
             }
 
         } else {
@@ -190,6 +254,26 @@ public class UpdateProductController implements Initializable {
             alert.setHeaderText("Error");
             alert.setContentText("Please click to item.");
             alert.showAndWait();
+
+            if (!isPriceRight()) {
+                hideErrorOfPrice(true);
+                errorOfPrice.setText("Price is invalid.");
+            }
+
+            if (!isUnitRight()) {
+                hideErrorOfUnit(true);
+                errorOfUnit.setText("Unit is invalid.");
+            }
+
+            if (!isProNameRight()) {
+                hideErrorOfProName(true);
+                errorOfProductName.setText("ProductName is invalid.");
+            }
+
+            if (lProductTypeId == null) {
+                hideErrorOfProTypeId(true);
+                errorOfProductTypeId.setText("ProductTypeId can't empty.");
+            }
         }
     }
 
@@ -211,12 +295,24 @@ public class UpdateProductController implements Initializable {
             unitTextField.setText(items.getUnit());
             priceTextField.setText(String.valueOf(items.getPrice()));
 
+            hideErrorOfPrice(false);
+            hideErrorOfUnit(false);
+            hideErrorOfProTypeId(false);
+            hideErrorOfProName(false);
+
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Notification");
             alert.setHeaderText("Error");
             alert.setContentText("Please click to item.");
             alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void proTypeIdAction(ActionEvent event) {
+        if (productTypeIdComboBox.getValue() != null) {
+            hideErrorOfProTypeId(false);
         }
     }
 

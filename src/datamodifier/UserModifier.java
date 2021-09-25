@@ -143,6 +143,37 @@ public class UserModifier extends UseDataBase {
         return false;
     }
     
+    public boolean matchUserName(String userName) throws SQLException{
+        String sql = "select * from users "
+                + "where userName = ?";
+        
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+        preStatement.setString(1, userName);
+        preStatement.execute();
+        
+        ResultSet result = preStatement.getResultSet();
+        while(result.next()){
+            return true;
+        }
+        return false;
+    }
+    
+    public ObservableList<Users> searchByName(String name) throws SQLException{
+        ObservableList<Users> oList = FXCollections.observableArrayList();
+        
+        String sql = "select * from users "
+                + "where userName like '%" + name + "%' or fullName like '%" + name + "%'";
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+        preStatement.execute();
+        
+        ResultSet result = preStatement.getResultSet();
+        while(result.next()){
+            oList.add(new Users(result.getInt("userId"), result.getString("userName"), result.getString("password"),
+                    result.getString("phone"), result.getString("fullName"), result.getString("gender"),
+                    result.getString("dateOfBirth"), result.getString("address"), result.getString("position"), result.getString("email")));
+        }
+        return oList;
+    }
     
 //    public static void main(String[] args) throws SQLException {
 ////        System.out.println(signIn("dhlocc", "arootroot"));

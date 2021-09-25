@@ -92,8 +92,26 @@ public class DeleteUserController implements Initializable {
         tableViewUsers.setItems(oList);
     }
     
+    private void getUsersInfoAfterSearch() throws SQLException{
+        ObservableList<Users> oList = new UserModifier().searchByName(searchTextField.getText());
+        
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        fullNameCol.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        dateOfBirthCol.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        positionCol.setCellValueFactory(new PropertyValueFactory<>("position"));
+        emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+        
+        tableViewUsers.setItems(oList);
+    }
+    
     @FXML
-    private void searchReleased(KeyEvent event) {
+    private void searchReleased(KeyEvent event) throws SQLException {
+        getUsersInfoAfterSearch();
     }
 
     @FXML

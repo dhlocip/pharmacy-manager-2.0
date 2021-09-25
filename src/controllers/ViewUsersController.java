@@ -60,16 +60,16 @@ public class ViewUsersController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             // TODO
-            
-            getUsersInfo();
+
+            getUsersInfoDefault();
         } catch (SQLException ex) {
             Logger.getLogger(ViewUsersController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+    }
 
-    private void getUsersInfo() throws SQLException{
-        ObservableList<Users> oList = new UserModifier().getInfo();
-        
+    private void getUsersInfoAfterSearch() throws SQLException {
+        ObservableList<Users> oList = new UserModifier().searchByName(searchTextField.getText());
+
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
         passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
@@ -80,12 +80,30 @@ public class ViewUsersController implements Initializable {
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         positionCol.setCellValueFactory(new PropertyValueFactory<>("position"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
-        
+
         tableViewUsers.setItems(oList);
     }
-    
-    @FXML
-    private void searchReleased(KeyEvent event) {
+
+    private void getUsersInfoDefault() throws SQLException {
+        ObservableList<Users> oList = new UserModifier().getInfo();
+
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        fullNameCol.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        dateOfBirthCol.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        positionCol.setCellValueFactory(new PropertyValueFactory<>("position"));
+        emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+        tableViewUsers.setItems(oList);
     }
-    
+
+    @FXML
+    private void searchReleased(KeyEvent event) throws SQLException {
+        getUsersInfoAfterSearch();
+    }
+
 }

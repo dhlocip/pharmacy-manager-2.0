@@ -20,7 +20,7 @@ import javafx.collections.ObservableList;
  * @author sa
  */
 public class ProductTypeModifier extends UseDataBase {
-    
+
     //    get product type info
     public ObservableList<ProductType> getInfo() throws SQLException {
         ObservableList<ProductType> oList = FXCollections.observableArrayList();
@@ -33,7 +33,7 @@ public class ProductTypeModifier extends UseDataBase {
         }
         return oList;
     }
-    
+
 ////    get list productId
 //    public ObservableList<Integer> getListProId() throws SQLException {
 //        ObservableList<Integer> oList = FXCollections.observableArrayList();
@@ -46,7 +46,6 @@ public class ProductTypeModifier extends UseDataBase {
 //        }
 //        return oList;
 //    }
-
     //    insert product type new
     public boolean addProductTypeNew(String productTypeName) throws SQLException {
         String sql = "insert into productType "
@@ -56,7 +55,7 @@ public class ProductTypeModifier extends UseDataBase {
         preStatement.execute();
         return true;
     }
-    
+
     //    get list productTypeId
     public ObservableList<Integer> getListProTypeId() throws SQLException {
         ObservableList<Integer> oList = FXCollections.observableArrayList();
@@ -68,5 +67,23 @@ public class ProductTypeModifier extends UseDataBase {
             oList.add(result.getInt("productTypeId"));
         }
         return oList;
+    }
+
+    public boolean matchProductType(String productTypeName) throws SQLException {
+        String sql = "select *  from productType "
+                + "where productTypeName = ?";
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+        preStatement.setString(1, productTypeName);
+        preStatement.execute();
+
+        ResultSet result = preStatement.getResultSet();
+        while (result.next()) {
+            return true;
+        }
+        return false;
+    }
+    
+    public static void main(String[] args) throws SQLException {
+        System.out.println(new ProductTypeModifier().matchProductType("type a"));
     }
 }
