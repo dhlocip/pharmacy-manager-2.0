@@ -28,7 +28,8 @@ import main.Main;
 
 public class HomeManagerController implements Initializable {
 
-    static int userId;
+    static int gUserId;
+    static String gRole;
 
     @FXML
     private BorderPane homeBox;
@@ -68,11 +69,11 @@ public class HomeManagerController implements Initializable {
     }
 
 //    set info user from UI_Login
-    public void setInfoUser(String fullname, String position, int id) {
+    public void setInfoUser(String fullname, String position, int id, String role) {
         fullnameLabel.setText(fullname);
         positionLabel.setText(position);
-        userId = id;
-
+        gUserId = id;
+        gRole = role;
     }
 
 //    set center of layout
@@ -113,6 +114,7 @@ public class HomeManagerController implements Initializable {
         hideSupMyProfile(false);
         hideSupSettings(false);
         hideSupMyProfileAdmin(false);
+        System.out.println(gRole);
 
     }
 
@@ -156,6 +158,7 @@ public class HomeManagerController implements Initializable {
 
     @FXML
     private void logoutClicked(MouseEvent event) throws IOException {
+        gRole = null;
 //        event clicked to label log out
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Login.fxml"));
         Parent root = loader.load();

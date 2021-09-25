@@ -5,7 +5,6 @@
  */
 package controllers;
 
-import static controllers.HomeManagerController.userId;
 import data.Users;
 import datamodifier.UserModifier;
 import java.io.IOException;
@@ -85,7 +84,7 @@ public class LoginController implements Initializable {
 
             // pass info of user to view home
             HomeManagerController controller = loader.getController();
-            controller.setInfoUser(fullName, position, userId);
+            controller.setInfoUser(fullName, position, userId, position);
 
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -103,7 +102,7 @@ public class LoginController implements Initializable {
 
             // pass info of user to view home
             HomeMemberController controller = loader.getController();
-            controller.setInfoUser(fullName, position, userId);
+            controller.setInfoUser(fullName, position, userId, position);
 
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

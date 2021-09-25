@@ -123,7 +123,7 @@ public class ImportProductController implements Initializable {
             getProductInfo();
 
 //        load userId
-            userId = HomeManagerController.userId;
+            userId = HomeManagerController.gUserId;
 
 //        set value for impId
             impId = new ImportBatchModifier().getMaxImpBatchId(userId);

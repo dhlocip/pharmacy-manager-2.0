@@ -26,12 +26,12 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="fullnameTextField" maxWidth="-Infinity" onKeyReleased="#unitReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                  <TextField fx:id="fullnameTextField" maxWidth="-Infinity" onKeyReleased="#fullNameReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label fx:id="errorOfUnit" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                  <Label fx:id="errorOfFullName" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -52,7 +52,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </ComboBox>
-                  <Label fx:id="errorOfPrice" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                  <Label fx:id="errorOfGender" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -68,12 +68,12 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="phoneTextField" maxWidth="-Infinity" onKeyReleased="#priceReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                  <TextField fx:id="phoneTextField" maxWidth="-Infinity" onKeyReleased="#phoneReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label fx:id="errorOfPrice2" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                  <Label fx:id="errorOfPhone" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -89,12 +89,12 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="addressTextField" maxWidth="-Infinity" onKeyReleased="#unitReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                  <TextField fx:id="addressTextField" maxWidth="-Infinity" onKeyReleased="#addressReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label fx:id="errorOfUnit1" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                  <Label fx:id="errorOfAddress" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -107,8 +107,8 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="emailTextField" maxWidth="-Infinity" onKeyReleased="#unitReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1" />
-                  <Label fx:id="errorOfUnit11" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                  <TextField fx:id="emailTextField" maxWidth="-Infinity" onKeyReleased="#emailReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1" />
+                  <Label fx:id="errorOfEmail" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -121,12 +121,12 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <DatePicker fx:id="dateOfBirthDatePicker" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0">
+                  <DatePicker fx:id="dateOfBirthDatePicker" maxWidth="-Infinity" onAction="#dateOfBirthAction" prefHeight="35.0" prefWidth="369.0">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </DatePicker>
-                  <Label fx:id="errorOfPrice1" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                  <Label fx:id="errorOfDateOfBirth" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -147,7 +147,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </ComboBox>
-                  <Label fx:id="errorOfPrice21" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                  <Label fx:id="errorOfPosition" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
                         <Font size="12.0" />
                      </font>

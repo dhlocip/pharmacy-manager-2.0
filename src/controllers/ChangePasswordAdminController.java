@@ -30,6 +30,7 @@ public class ChangePasswordAdminController implements Initializable {
     String lCurrentPass;
     String lNewPass;
     String lRetypeNewPass;
+    int lUserId;
 
     @FXML
     private TextField currentPasswordTF;
@@ -54,7 +55,7 @@ public class ChangePasswordAdminController implements Initializable {
 
     @FXML
     private void changePasswordClicked(MouseEvent event) throws SQLException {
-        int userId = new HomeManagerController().userId;
+        int userId = new HomeManagerController().gUserId;
 
         if (isNewPassRight() && isRetypeNewPassRight() && isCurrentPassRight()) {
             if (new UserModifier().updatePassword(userId, lNewPass)) {
@@ -132,7 +133,7 @@ public class ChangePasswordAdminController implements Initializable {
 
     @FXML
     private void currentPasswordReleased(KeyEvent event) throws SQLException {
-        int userId = new HomeManagerController().userId;
+        int userId = new HomeManagerController().gUserId;
         if (isCurrentPassRight()
                 && lCurrentPass.equals(new UserModifier().getUser(userId).getPassword())) {
             errorOfCurrentPass.setText("");

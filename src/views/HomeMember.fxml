@@ -161,37 +161,13 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#exportProductClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/document-save-symbolic.symbolic.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label prefHeight="27.0" text="Export">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/document-edit-symbolic.symbolic.png" />
+                                    <Image url="@../img/accessories-calculator-symbolic.symbolic.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -199,31 +175,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="Update">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/user-trash-symbolic.symbolic.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label prefHeight="27.0" text="Delete">
+                        <Label prefHeight="27.0" text="Statistic">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -261,7 +213,7 @@
             </HBox>
             <VBox fx:id="supMyProfile" prefWidth="141.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#updateProfileClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" onMouseClicked="#updateProfileMemberClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -285,13 +237,13 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#exportProfileClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" onMouseClicked="#changePasswordMemberClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/document-save-symbolic.symbolic.png" />
+                                    <Image url="@../img/document-edit-symbolic.symbolic.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -299,31 +251,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="Export">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#statisticClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
-                           <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/accessories-calculator-symbolic.symbolic.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label prefHeight="27.0" text="Statistic">
+                        <Label prefHeight="27.0" text="Change password">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>

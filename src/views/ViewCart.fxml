@@ -3,8 +3,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -40,12 +43,11 @@
                         <Insets bottom="5.0" left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="checkOutLabel" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#checkOutClicked" prefHeight="30.0" prefWidth="190.0" style="-fx-background-color: gray; -fx-text-fill: white;" text="Checkout">
+                  <Button fx:id="checkOutLabel" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#checkOutClicked" prefHeight="30.0" prefWidth="210.0" style="-fx-background-color: gray; -fx-text-fill: white;" text="Checkout">
                      <VBox.margin>
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Button>
-                  <HBox prefHeight="49.0" prefWidth="209.0" />
                </children>
             </VBox>
          </right>
@@ -78,6 +80,111 @@
                </columnResizePolicy>
             </TableView>
          </center>
+         <bottom>
+            <HBox alignment="CENTER" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="86.0" prefWidth="328.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="328.0">
+                           <children>
+                              <Label prefHeight="35.0" style="-fx-font-weight: bold;" text="Product ID:">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="prodIdLabel" prefHeight="35.0" text="ID">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="328.0">
+                           <children>
+                              <Label prefHeight="35.0" style="-fx-font-weight: bold;" text="Product Name:">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="prodNameLabel" prefHeight="35.0" text="Name">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="328.0">
+                           <children>
+                              <Label prefHeight="35.0" style="-fx-font-weight: bold;" text="Quantity:">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Spinner fx:id="setQuantity" editable="true" prefHeight="30.0" prefWidth="86.0">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Spinner>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Button mnemonicParsing="false" onAction="#addToCartAction" prefHeight="35.0" style="-fx-background-color: gray; -fx-text-fill: white;" text="Add to cart">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </bottom>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+         </BorderPane.margin>
       </BorderPane>
    </center>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: grey;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+         </BorderPane.margin>
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="71.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="369.0" styleClass="labelMain" stylesheets="@../css/home.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/emoji-objects-symbolic.symbolic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="27.0" style="-fx-font-weight: bold;" text="Instruction">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label prefHeight="35.0" text="Select the line to delete then press OK.">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>

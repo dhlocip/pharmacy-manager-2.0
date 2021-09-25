@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import static controllers.HomeManagerController.gRole;
 import datamodifier.BillModifier;
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +31,8 @@ import javafx.stage.Stage;
  */
 public class HomeMemberController implements Initializable {
 
-    static int userId;
+    static int gUserId;
+    static String gRole;
     int billId;
 
     @FXML
@@ -62,38 +64,38 @@ public class HomeMemberController implements Initializable {
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(false);
-        
+
     }
 
-    public void setInfoUser(String fullname, String position, int id) {
+    public void setInfoUser(String fullname, String position, int id, String role) {
         fullnameLabel.setText(fullname);
         positionLabel.setText(position);
-        userId = id;
-        
+        gUserId = id;
+        gRole = role;
     }
 
     public void setCenterHomeBox(String view) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/" + view + ".fxml"));
         homeBox.setCenter(root);
-        
+
     }
 
     private void hideSupMedicine(boolean value) {
         supMedicine.setVisible(value);
         supMedicine.managedProperty().bind(supMedicine.visibleProperty());
-        
+
     }
 
     private void hideSupMyProfile(boolean value) {
         supMyProfile.setVisible(value);
         supMyProfile.managedProperty().bind(supMyProfile.visibleProperty());
-        
+
     }
 
     private void hideSupSettings(boolean value) {
         supSettings.setVisible(value);
         supSettings.managedProperty().bind(supSettings.visibleProperty());
-        
+
     }
 
     @FXML
@@ -101,7 +103,8 @@ public class HomeMemberController implements Initializable {
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(false);
-        
+        System.out.println(gRole);
+
     }
 
     @FXML
@@ -109,7 +112,7 @@ public class HomeMemberController implements Initializable {
         hideSupMedicine(true);
         hideSupMyProfile(false);
         hideSupSettings(false);
-        
+
     }
 
     @FXML
@@ -117,7 +120,7 @@ public class HomeMemberController implements Initializable {
         hideSupMedicine(false);
         hideSupMyProfile(true);
         hideSupSettings(false);
-        
+
     }
 
     @FXML
@@ -125,11 +128,12 @@ public class HomeMemberController implements Initializable {
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(true);
-        
+
     }
 
     @FXML
     private void logoutClicked(MouseEvent event) throws IOException {
+        gRole = null;
 //        event when clicked to log out lable 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Login.fxml"));
         Parent root = loader.load();
@@ -138,7 +142,7 @@ public class HomeMemberController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Sign in");
         stage.show();
-        
+
     }
 
     @FXML
@@ -151,25 +155,18 @@ public class HomeMemberController implements Initializable {
     private void viewClicked(MouseEvent event) throws IOException {
 //        event clicked to view label for show product
         setCenterHomeBox("ViewProduct");
-        
+
     }
 
     @FXML
-    private void exportProductClicked(MouseEvent event) throws IOException {
+    private void updateProfileMemberClicked(MouseEvent event) throws IOException {
 //        event clicked to export label for export file xlsx
-//        setCenterHomeBox("AddViewProduct");
+        setCenterHomeBox("UpdateProfileAdmin");
     }
 
     @FXML
-    private void updateProfileClicked(MouseEvent event) {
-    }
-
-    @FXML
-    private void exportProfileClicked(MouseEvent event) {
-    }
-
-    @FXML
-    private void statisticClicked(MouseEvent event) {
+    private void changePasswordMemberClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("ChangePasswordAdmin");
     }
 
 }

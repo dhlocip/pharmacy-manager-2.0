@@ -341,7 +341,7 @@ public class CreateUsersController implements Initializable {
             hideErrorOfPassword(false);
         } else {
             hideErrorOfPassword(true);
-            errorOfPassword.setText(passwordTextField.getText() + " is invalid.");
+            errorOfPassword.setText("Password is invalid.");
         }
     }
 

@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -24,6 +25,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -59,6 +61,12 @@ public class ViewCartController implements Initializable {
     private TableColumn<Cart, String> unit;
     @FXML
     private Label numberProductLabel;
+    @FXML
+    private Label prodIdLabel;
+    @FXML
+    private Label prodNameLabel;
+    @FXML
+    private Spinner<?> setQuantity;
 
     /**
      * Initializes the controller class.
@@ -78,12 +86,12 @@ public class ViewCartController implements Initializable {
             Logger.getLogger(ViewCartController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        userId = HomeMemberController.userId;
+        userId = HomeMemberController.gUserId;
     }
 
 //    get total 
     public void getTotalLabel() throws SQLException {
-        int billId = new BillModifier().getMaxBillId(HomeMemberController.userId);
+        int billId = new BillModifier().getMaxBillId(HomeMemberController.gUserId);
         List<Cart> list = new CartModifier().viewProduct(billId);
         int sum = 0;
         for (Cart cart : list) {
@@ -97,7 +105,7 @@ public class ViewCartController implements Initializable {
     public void getProductAllInCart() throws SQLException {
         CartModifier cartModifier = new CartModifier();
         ObservableList oLists = FXCollections.observableArrayList();
-        int billId = new BillModifier().getMaxBillId(HomeMemberController.userId);
+        int billId = new BillModifier().getMaxBillId(HomeMemberController.gUserId);
         int numberProduct = cartModifier.getNumberProduct(billId);
 
         if (numberProduct == 1) {
@@ -144,6 +152,10 @@ public class ViewCartController implements Initializable {
 //                Optional<ButtonType> result = alert.showAndWait();
 //                if(result.isPresent() )
         }
+    }
+
+    @FXML
+    private void addToCartAction(ActionEvent event) {
     }
 
 }

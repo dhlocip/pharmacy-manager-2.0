@@ -116,7 +116,7 @@ public class SearchProductController implements Initializable {
 
         try {
 //            the first load userId, billId, total number inside cart
-            userId = HomeMemberController.userId;
+            userId = HomeMemberController.gUserId;
             billId = new BillModifier().getMaxBillId(userId);
             if (billId < 1) {
                 new BillModifier().addBill(userId);
