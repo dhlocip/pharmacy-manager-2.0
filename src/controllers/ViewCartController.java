@@ -6,8 +6,10 @@
 package controllers;
 
 import data.Cart;
+import datamodifier.BillDetailModifier;
 import datamodifier.BillModifier;
 import datamodifier.CartModifier;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -19,17 +21,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -38,7 +48,9 @@ import javafx.scene.input.MouseEvent;
  */
 public class ViewCartController implements Initializable {
 
-    int userId;
+    int lUserId, lBillId, lQuantity, lProductId;
+    String lProductName, lUnit;
+    double lPrice, lAmount;
     int total;
 
     @FXML
@@ -62,11 +74,19 @@ public class ViewCartController implements Initializable {
     @FXML
     private Label numberProductLabel;
     @FXML
-    private Label prodIdLabel;
+    private VBox editCartVBox;
     @FXML
-    private Label prodNameLabel;
+    private Label setProId;
     @FXML
-    private Spinner<?> setQuantity;
+    private Label setProName;
+    @FXML
+    private Spinner<Integer> setQuantity;
+    @FXML
+    private Label setUnit;
+    @FXML
+    private Label setPrice;
+    @FXML
+    private Label setAmount;
 
     /**
      * Initializes the controller class.
@@ -75,24 +95,49 @@ public class ViewCartController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         try {
+            lUserId = HomeMemberController.gUserId;
+            lBillId = new BillModifier().getMaxBillId(lUserId);
+
+            getTotalLabel();
+
             getProductAllInCart();
         } catch (SQLException ex) {
             Logger.getLogger(ViewCartController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        try {
-            getTotalLabel();
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewCartController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        hideEditCart(false);
+    }
 
-        userId = HomeMemberController.gUserId;
+    private void setEditCartInfo() {
+        setProId.setText(lProductId + "");
+        setProName.setText(lProductName);
+        setUnit.setText(lUnit);
+        setPrice.setText(lPrice + "");
+        setAmount.setText(lAmount + "");
+    }
+
+    private void hideEditCart(boolean value) {
+        editCartVBox.setVisible(value);
+        editCartVBox.managedProperty().bind(editCartVBox.visibleProperty());
+    }
+
+    private void setSpiderQuantity(Integer value) {
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100);
+        valueFactory.setValue(value);
+        setQuantity.setEditable(true);
+        setQuantity.setValueFactory(valueFactory);
+        lQuantity = setQuantity.getValue();
+
+        setQuantity.valueProperty().addListener((o) -> {
+            lQuantity = setQuantity.getValue();
+        });
+
     }
 
 //    get total 
     public void getTotalLabel() throws SQLException {
-        int billId = new BillModifier().getMaxBillId(HomeMemberController.gUserId);
-        List<Cart> list = new CartModifier().viewProduct(billId);
+
+        List<Cart> list = new CartModifier().viewProduct(lBillId);
         int sum = 0;
         for (Cart cart : list) {
             sum += cart.getAmount();
@@ -105,8 +150,9 @@ public class ViewCartController implements Initializable {
     public void getProductAllInCart() throws SQLException {
         CartModifier cartModifier = new CartModifier();
         ObservableList oLists = FXCollections.observableArrayList();
-        int billId = new BillModifier().getMaxBillId(HomeMemberController.gUserId);
-        int numberProduct = cartModifier.getNumberProduct(billId);
+
+        lBillId = new BillModifier().getMaxBillId(lUserId);
+        int numberProduct = cartModifier.getNumberProduct(lBillId);
 
         if (numberProduct == 1) {
             numberProductLabel.setText("1 product in cart");
@@ -114,7 +160,7 @@ public class ViewCartController implements Initializable {
             numberProductLabel.setText(numberProduct + " products in cart");
         }
 
-        oLists = cartModifier.viewProduct(billId);
+        oLists = cartModifier.viewProduct(lBillId);
 
         productId.setCellValueFactory(new PropertyValueFactory<>("productId"));
         productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
@@ -127,35 +173,80 @@ public class ViewCartController implements Initializable {
     }
 
     @FXML
-    private void checkOutClicked(MouseEvent event) throws SQLException {
+    private void checkOutClicked(MouseEvent event) throws SQLException, IOException {
 //        event clicked to checkout label
         if (total != 0) {
-            if (new BillModifier().addBill(userId)) {
+            if (new BillModifier().addBill(lUserId)) {
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Notification");
                 alert.setHeaderText("Success");
                 alert.setContentText("Successful payment");
                 alert.showAndWait();
+                
+                new CartModifier().exportCartInfo(lBillId, lUserId);
 
 //            reload quantity product inside cart
                 getProductAllInCart();
 
 //            reset value of total = 0
                 totalLabel.setText("" + 0);
+
+                hideEditCart(false);
             }
-        }else {
+        } else {
             Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Notification");
-                alert.setHeaderText("Error");
-                alert.setContentText("Cart is empty");
-                alert.showAndWait();
+            alert.setTitle("Notification");
+            alert.setHeaderText("Error");
+            alert.setContentText("Cart is empty");
+            alert.showAndWait();
 //                Optional<ButtonType> result = alert.showAndWait();
 //                if(result.isPresent() )
         }
     }
 
     @FXML
-    private void addToCartAction(ActionEvent event) {
+    private void tableViewCartClicked(MouseEvent event) throws IOException {
+        Cart item = cartTableView.getSelectionModel().getSelectedItem();
+        if (item != null) {
+            lProductId = item.getProductId();
+            lProductName = item.getProductName();
+            lUnit = item.getUnit();
+            lPrice = item.getPrice();
+            lAmount = item.getAmount();
+
+            hideEditCart(true);
+            setSpiderQuantity(item.getQuantity());
+            setEditCartInfo();
+        }
+    }
+
+    @FXML
+    private void removeAction(ActionEvent event) throws SQLException {
+        if (new BillDetailModifier().deleteOnCart(lProductId, lBillId)) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Notification");
+            alert.setHeaderText("Success");
+            alert.setContentText("Remove product is successfully.");
+            alert.showAndWait();
+
+            getProductAllInCart();
+            hideEditCart(false);
+            totalLabel.setText("0");
+        }
+    }
+
+    @FXML
+    private void updateAction(ActionEvent event) throws SQLException {
+        if (new BillDetailModifier().updateQuantity(lQuantity, lBillId, lProductId)) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Notification");
+            alert.setHeaderText("Success");
+            alert.setContentText("Update quantity is successfully.");
+            alert.showAndWait();
+
+            getProductAllInCart();
+            hideEditCart(false);
+        }
     }
 
 }

@@ -9,6 +9,7 @@ import connection.UseDataBase;
 import static connection.UseDataBase.connect;
 import data.BillDetail;
 import java.sql.*;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -38,4 +39,42 @@ public class BillDetailModifier extends UseDataBase {
         preStatement.execute();
         return true;
     }
+    
+    public boolean deleteOnCart(int productId, int billId) throws SQLException{
+        String sql = "delete from billDetail "
+                + "where productId = ? and billId = ?";
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+        preStatement.setInt(1, productId);
+        preStatement.setInt(2, billId);
+        preStatement.execute();
+        return true;
+    }
+    
+    public boolean isExists(int productId, int billId) throws SQLException{
+        String sql = "select * from billDetail "
+                + "where productId = ? and billId = ?";
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+        preStatement.setInt(1, productId);
+        preStatement.setInt(2, billId);
+        preStatement.execute();
+        
+        ResultSet result = preStatement.getResultSet();
+        while(result.next()){
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean updateQuantity(int quantity, int billId, int productId) throws SQLException{
+        String sql = "update billDetail "
+                + "set saleQuantity = ? "
+                + "where billId = ? and productId = ?";
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+        preStatement.setInt(1, quantity);
+        preStatement.setInt(2, billId);
+        preStatement.setInt(3, productId);
+        preStatement.executeUpdate();
+        return true;
+    }
+    
 }

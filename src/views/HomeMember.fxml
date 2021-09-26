@@ -119,7 +119,7 @@
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/edit-find-symbolic.symbolic.png" />
+                                    <Image url="@../img/document-new-symbolic.symbolic.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -127,7 +127,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="Search">
+                        <Label prefHeight="27.0" text="Order">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>

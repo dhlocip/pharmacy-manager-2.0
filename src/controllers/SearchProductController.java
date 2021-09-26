@@ -55,7 +55,7 @@ public class SearchProductController implements Initializable {
     int billId;
     int prodId;
     int totalNumCart;
-
+    int currentValueQuantity;
     @FXML
     private TableView<AllInfoProduct> searchTableView;
     @FXML
@@ -78,7 +78,7 @@ public class SearchProductController implements Initializable {
     private TableColumn<AllInfoProduct, Double> price;
     @FXML
     private Spinner<Integer> setQuantity;
-    int currentValueQuantity;
+
     @FXML
     private Label prodIdLabel;
     @FXML
@@ -104,15 +104,7 @@ public class SearchProductController implements Initializable {
         }
 
 //        get value spinner of quantity product
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100);
-        valueFactory.setValue(1);
-        setQuantity.setEditable(true);
-        setQuantity.setValueFactory(valueFactory);
-        currentValueQuantity = setQuantity.getValue();
-
-        setQuantity.valueProperty().addListener((o) -> {
-            currentValueQuantity = setQuantity.getValue();
-        });
+        setSpiderQuantity();
 
         try {
 //            the first load userId, billId, total number inside cart
@@ -129,6 +121,19 @@ public class SearchProductController implements Initializable {
         }
 
         viewTotalNumber.setText(totalNumCart + "");
+
+    }
+
+    private void setSpiderQuantity() {
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100);
+        valueFactory.setValue(1);
+        setQuantity.setEditable(true);
+        setQuantity.setValueFactory(valueFactory);
+        currentValueQuantity = setQuantity.getValue();
+
+        setQuantity.valueProperty().addListener((o) -> {
+            currentValueQuantity = setQuantity.getValue();
+        });
 
     }
 
@@ -195,42 +200,46 @@ public class SearchProductController implements Initializable {
     private void addToCartAction(ActionEvent event) throws SQLException, IOException {
         AllInfoProduct item = searchTableView.getSelectionModel().getSelectedItem();
         if (item != null) {
-//            need to reload billId
+            //            need to reload billId
             billId = new BillModifier().getMaxBillId(userId);
-            BillDetail billDetail = new BillDetail();
-            billDetail.setBillId(billId);
-            billDetail.setProductId(prodId);
-            billDetail.setSaleQuantity(currentValueQuantity);
-            billDetail.setMfgDate(item.getMfgDate());
-            billDetail.setExpDate(item.getExpDate());
+            boolean check = new BillDetailModifier().isExists(item.getProductId(), billId);
+            System.out.println(check);
+            if (!check) {
 
-//            System.out.println(billDetail.getMfgDate());
-//            System.out.println(billDetail.getBillId());
+                BillDetail billDetail = new BillDetail();
+                billDetail.setBillId(billId);
+                billDetail.setProductId(prodId);
+                billDetail.setSaleQuantity(currentValueQuantity);
+                billDetail.setMfgDate(item.getMfgDate());
+                billDetail.setExpDate(item.getExpDate());
 
-            BillDetailModifier billDetailModifier = new BillDetailModifier();
-            if (billDetailModifier.addBillDetail(billDetail)) {
+                BillDetailModifier billDetailModifier = new BillDetailModifier();
+                if (billDetailModifier.addBillDetail(billDetail)) {
 
 //                from billId -> total inside cart
-                totalNumCart = new CartModifier().getNumberProduct(billId);
-                viewTotalNumber.setText(totalNumCart + "");
-                
+                    totalNumCart = new CartModifier().getNumberProduct(billId);
+                    viewTotalNumber.setText(totalNumCart + "");
+
 //                reload all product
-                getProductDefault();
-
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    getProductDefault();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Notification");
-                alert.setHeaderText("Success");
-                alert.setContentText("Add to cart successfully.");
+                alert.setHeaderText("Error");
+                alert.setContentText(item.getProductId() + " already exists.");
                 alert.showAndWait();
-
             }
-            
+
         } else {
-            System.out.println("click vo table dum");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Notification");
+            alert.setHeaderText("Error");
+            alert.setContentText("Please click on the line inside table.");
+            alert.showAndWait();
         }
 
     }
-
 
     @FXML
     private void gotocartClicked(MouseEvent event) throws IOException {
