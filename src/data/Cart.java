@@ -10,6 +10,8 @@ package data;
  * @author sa
  */
 public class Cart {
+    
+    private int userId;
     private int billId;
     private int productId;
     private String productName;
@@ -17,10 +19,24 @@ public class Cart {
     private String unit;
     private double price;
     private double amount;
+    private String transactionTime;
 
     public Cart() {
     }
 
+    public Cart(int userId, int billId, double amount, String transactionTime) {
+        this.userId = userId;
+        this.billId = billId;
+        this.amount = amount;
+        this.transactionTime = transactionTime;
+    }
+    
+    public Cart(int userId, double amount, String transactionTime) {
+        this.userId = userId;
+        this.amount = amount;
+        this.transactionTime = transactionTime;
+    }
+    
     public Cart(int billId, int productId, String productName, int quantity, String unit, double price, double amount) {
         this.billId = billId;
         this.productId = productId;
@@ -29,6 +45,33 @@ public class Cart {
         this.unit = unit;
         this.price = price;
         this.amount = amount;
+    }
+
+    public Cart(int billId, int productId, String productName, int quantity, String unit, double price, double amount, String transactionTime) {
+        this.billId = billId;
+        this.productId = productId;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.unit = unit;
+        this.price = price;
+        this.amount = amount;
+        this.transactionTime = transactionTime;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getTransactionTime() {
+        return transactionTime;
+    }
+
+    public void setTransactionTime(String transactionTime) {
+        this.transactionTime = transactionTime;
     }
 
     public String getUnit() {

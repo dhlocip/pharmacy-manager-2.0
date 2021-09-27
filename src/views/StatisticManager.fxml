@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="homeBox" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StatisticMemberController">
+<BorderPane fx:id="homeBox" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StatisticManagerController">
    <top>
       <HBox alignment="BOTTOM_LEFT" BorderPane.alignment="CENTER">
          <children>
@@ -129,6 +129,7 @@
                <children>
                   <TableView fx:id="tableViewByBillId" tableMenuButtonVisible="true" HBox.hgrow="ALWAYS">
                     <columns>
+                        <TableColumn fx:id="bUserId" prefWidth="75.0" text="User Id" />
                       <TableColumn fx:id="bBillId" prefWidth="75.0" text="Bill Id" />
                       <TableColumn fx:id="bTotal" prefWidth="75.0" text="Total" />
                         <TableColumn fx:id="bDate" prefWidth="75.0" text="Date" />
@@ -146,6 +147,7 @@
                <children>
                   <TableView fx:id="tableViewByDate" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" HBox.hgrow="ALWAYS">
                     <columns>
+                        <TableColumn fx:id="dUserId" prefWidth="75.0" text="User Id" />
                       <TableColumn fx:id="dTotal" prefWidth="75.0" text="Total" />
                       <TableColumn fx:id="dDate" prefWidth="75.0" text="Date" />
                     </columns>

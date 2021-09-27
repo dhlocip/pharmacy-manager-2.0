@@ -14,7 +14,7 @@
 
 <BorderPane fx:id="homeBox" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DeleteProductController">
    <center>
-      <TableView fx:id="searchTableView" onMouseClicked="#tableViewClicked" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="searchTableView" onMouseClicked="#tableViewClicked" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="productTypeId" prefWidth="89.0" text="Product Type ID" />
           <TableColumn fx:id="productId" prefWidth="61.0" text="Product ID" />
@@ -31,7 +31,7 @@
       </TableView>
    </center>
    <top>
-      <HBox alignment="CENTER" prefHeight="69.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="68.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" maxWidth="-Infinity" prefHeight="45.0" prefWidth="430.0" style="-fx-background-color: gray; -fx-background-radius: 15;">
                <children>

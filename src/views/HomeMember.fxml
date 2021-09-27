@@ -161,7 +161,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" onMouseClicked="#statisticClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>

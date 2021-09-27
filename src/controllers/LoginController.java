@@ -64,7 +64,11 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         signInButton.setDisable(true);
-        errorBox.setVisible(false);
+        hideError(false);
+    }
+    
+    private void hideError(boolean value){
+        errorBox.setVisible(value);
         errorBox.managedProperty().bind(errorBox.visibleProperty());
     }
     
@@ -137,18 +141,18 @@ public class LoginController implements Initializable {
             userId = user.getUserId();
             nextToHome(event, position);
         } else {
-            errorBox.setVisible(true);
+            hideError(true);
         }
     }
 
     @FXML
     private void clickCloseError(ActionEvent event) {
-        errorBox.setVisible(false);
-        errorBox.managedProperty().bind(errorBox.visibleProperty());
+        hideError(false);
     }
 
     @FXML
     private void usernameReleased(KeyEvent event) {
+        hideError(false);
         if (isUserRight() && isPasswordRight()) {
             signInButton.setDisable(false);
         } else {
@@ -158,6 +162,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private void passwordReleased(KeyEvent event) {
+        hideError(false);
         if (isUserRight() && isPasswordRight()) {
             signInButton.setDisable(false);
         } else {

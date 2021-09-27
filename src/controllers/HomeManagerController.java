@@ -60,12 +60,17 @@ public class HomeManagerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        hide supLabel medicine, my profile, setting when the first load 
-        hideSupMedicine(false);
-        hideSupMyProfile(false);
-        hideSupSettings(false);
-        hideSupMyProfileAdmin(false);
-
+        try {
+            //        hide supLabel medicine, my profile, setting when the first load
+            hideSupMedicine(false);
+            hideSupMyProfile(false);
+            hideSupSettings(false);
+            hideSupMyProfileAdmin(false);
+            
+            setCenterHomeBox("Notice");
+        } catch (IOException ex) {
+            Logger.getLogger(HomeManagerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 //    set info user from UI_Login
@@ -108,14 +113,14 @@ public class HomeManagerController implements Initializable {
     }
 
     @FXML
-    private void dashboardClicked(MouseEvent event) {
+    private void dashboardClicked(MouseEvent event) throws IOException {
 //        event clicked to label dashboard
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(false);
         hideSupMyProfileAdmin(false);
-        System.out.println(gRole);
 
+        setCenterHomeBox("Notice");
     }
 
     @FXML
@@ -216,7 +221,8 @@ public class HomeManagerController implements Initializable {
     }
 
     @FXML
-    private void statisticClicked(MouseEvent event) {
+    private void statisticClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("StatisticManager");
     }
 
     @FXML

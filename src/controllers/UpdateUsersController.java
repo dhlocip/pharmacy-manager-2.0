@@ -115,6 +115,8 @@ public class UpdateUsersController implements Initializable {
         hideErrorOfEmail(false);
         hideErrorOfDateOfBrith(false);
         hideErrorOfPosition(false);
+        
+
     }
 
     private void hideErrorOfFullName(boolean value) {

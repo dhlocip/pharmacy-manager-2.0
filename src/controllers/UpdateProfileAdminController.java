@@ -136,8 +136,10 @@ public class UpdateProfileAdminController implements Initializable {
         if (new HomeManagerController().gRole != null
                 && new HomeMemberController().gRole == null) {
             lUserId = new HomeManagerController().gUserId;
+            PositionComboBox.setDisable(false);
         } else {
             lUserId = new HomeMemberController().gUserId;
+            PositionComboBox.setDisable(true);
         }
         Users user = new UserModifier().getUser(lUserId);
 

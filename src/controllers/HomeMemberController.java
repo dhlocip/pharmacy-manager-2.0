@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -60,11 +62,16 @@ public class HomeMemberController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        hide supLabel medicine, my profile, setting when the first load 
-        hideSupMedicine(false);
-        hideSupMyProfile(false);
-        hideSupSettings(false);
-
+        try {
+            //        hide supLabel medicine, my profile, setting when the first load
+            hideSupMedicine(false);
+            hideSupMyProfile(false);
+            hideSupSettings(false);
+            
+            setCenterHomeBox("Notice");
+        } catch (IOException ex) {
+            Logger.getLogger(HomeMemberController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void setInfoUser(String fullname, String position, int id, String role) {
@@ -103,8 +110,8 @@ public class HomeMemberController implements Initializable {
         hideSupMedicine(false);
         hideSupMyProfile(false);
         hideSupSettings(false);
-        System.out.println(gRole);
 
+        setCenterHomeBox("Notice");
     }
 
     @FXML
@@ -167,6 +174,11 @@ public class HomeMemberController implements Initializable {
     @FXML
     private void changePasswordMemberClicked(MouseEvent event) throws IOException {
         setCenterHomeBox("ChangePasswordAdmin");
+    }
+
+    @FXML
+    private void statisticClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("StatisticMember");
     }
 
 }

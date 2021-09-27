@@ -27,9 +27,8 @@ public class AllInfoProductModifier extends UseDataBase {
         try {
             productId = Integer.parseInt(productName);
             sql = "select * from allInforProduct "
-                    + "where productId = ?";
+                    + "where productId like '%" + productName + "%'";
             preStatement = connect().prepareStatement(sql);
-            preStatement.setInt(1, productId);
             preStatement.execute();
         } catch (NumberFormatException ex) {
             sql = "select * from allInforProduct "
