@@ -5,20 +5,26 @@
  */
 package controllers;
 
+import static controllers.HomeManagerController.gLanguage;
 import static controllers.HomeManagerController.gRole;
 import datamodifier.BillModifier;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -35,6 +41,7 @@ public class HomeMemberController implements Initializable {
 
     static int gUserId;
     static String gRole;
+    static String gLanguage;
     int billId;
 
     @FXML
@@ -59,18 +66,70 @@ public class HomeMemberController implements Initializable {
     private Label fullnameLabel;
     @FXML
     private Label positionLabel;
+    @FXML
+    private ComboBox<String> languageLabel;
+    @FXML
+    private Label bdDashboard;
+    @FXML
+    private Label bdMedicine;
+    @FXML
+    private Label bdOrderMedicine;
+    @FXML
+    private Label bdViewMedicine;
+    @FXML
+    private Label bdStatisticMedicine;
+    @FXML
+    private Label bdMyProfile;
+    @FXML
+    private Label bdUpdateMyProfile;
+    @FXML
+    private Label bdPassword;
+    @FXML
+    private Label bdSetting;
+    @FXML
+    private Label bdLogout;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            //        hide supLabel medicine, my profile, setting when the first load
-            hideSupMedicine(false);
-            hideSupMyProfile(false);
-            hideSupSettings(false);
-            
-            setCenterHomeBox("Notice");
-        } catch (IOException ex) {
-            Logger.getLogger(HomeMemberController.class.getName()).log(Level.SEVERE, null, ex);
+        //        hide supLabel medicine, my profile, setting when the first load
+        hideSupMedicine(false);
+        hideSupMyProfile(false);
+        hideSupSettings(false);
+
+        setLanguageItem();
+    }
+
+    private void changeLanguage(String language, String country) {
+
+        Locale locale = new Locale(language, country);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/home_member/Bundle", locale);
+
+        bdDashboard.setText(resourceBundle.getString("bdDashboard"));
+        bdMedicine.setText(resourceBundle.getString("bdMedicine"));
+        bdOrderMedicine.setText(resourceBundle.getString("bdOrderMedicine"));
+        bdViewMedicine.setText(resourceBundle.getString("bdViewMedicine"));
+        bdStatisticMedicine.setText(resourceBundle.getString("bdStatisticMedicine"));
+        bdMyProfile.setText(resourceBundle.getString("bdMyProfile"));
+        bdUpdateMyProfile.setText(resourceBundle.getString("bdUpdateMyProfile"));
+        bdPassword.setText(resourceBundle.getString("bdPassword"));
+        bdSetting.setText(resourceBundle.getString("bdSetting"));
+        bdLogout.setText(resourceBundle.getString("bdLogout"));
+
+    }
+
+    private void setLanguageItem() {
+        ObservableList<String> sList = FXCollections.observableArrayList();
+        sList.add("English");
+        sList.add("Vietnamese");
+
+        languageLabel.setItems(sList);
+        languageLabel.setValue(sList.get(0));
+        gLanguage = languageLabel.getValue();
+
+        if (gLanguage.equalsIgnoreCase("english")) {
+            changeLanguage("en", "EN");
+        } else {
+            changeLanguage("vi", "VN");
         }
     }
 
@@ -141,6 +200,7 @@ public class HomeMemberController implements Initializable {
     @FXML
     private void logoutClicked(MouseEvent event) throws IOException {
         gRole = null;
+//        gLanguage = null;
 //        event when clicked to log out lable 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Login.fxml"));
         Parent root = loader.load();
@@ -179,6 +239,17 @@ public class HomeMemberController implements Initializable {
     @FXML
     private void statisticClicked(MouseEvent event) throws IOException {
         setCenterHomeBox("StatisticMember");
+    }
+
+    @FXML
+    private void languageAction(ActionEvent event) {
+        gLanguage = languageLabel.getValue();
+
+        if (gLanguage.equalsIgnoreCase("english")) {
+            changeLanguage("en", "EN");
+        } else {
+            changeLanguage("vi", "VN");
+        }
     }
 
 }

@@ -124,6 +124,7 @@ public class ImportProductController implements Initializable {
 
 //        load userId
             userId = HomeManagerController.gUserId;
+            System.out.println(userId);
 
 //        set value for impId
             impId = new ImportBatchModifier().getMaxImpBatchId(userId);

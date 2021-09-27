@@ -78,6 +78,10 @@ public class AddProductController implements Initializable {
     private TextField priceTextField;
     @FXML
     private Label errorOfPrice;
+    @FXML
+    private Label bdProTypeName;
+    @FXML
+    private Label bdAddProType;
 
     /**
      * Initializes the controller class.

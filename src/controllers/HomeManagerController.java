@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -30,6 +32,7 @@ public class HomeManagerController implements Initializable {
 
     static int gUserId;
     static String gRole;
+    static String gLanguage;
 
     @FXML
     private BorderPane homeBox;
@@ -57,19 +60,99 @@ public class HomeManagerController implements Initializable {
     private HBox myprofileAdmin;
     @FXML
     private VBox supMyProfileAdmin;
+    @FXML
+    private ComboBox<String> languageLabel;
+    @FXML
+    private Label bdDashboard;
+    @FXML
+    private Label bdManageMedicine;
+    @FXML
+    private Label bdImport;
+    private Label bdDelete;
+    @FXML
+    private Label bdStatistic;
+    @FXML
+    private Label bdManageProfile;
+    @FXML
+    private Label bdMyProfile;
+    @FXML
+    private Label bdChangePassword;
+    @FXML
+    private Label bdSetting;
+    @FXML
+    private Label bdLogout;
+    @FXML
+    private Label bdViewManageMedicine;
+    @FXML
+    private Label bdCreateManageMedicine;
+    @FXML
+    private Label bdUpdateManageMedicine;
+    @FXML
+    private Label bdDeleteManageMedicine;
+    @FXML
+    private Label bdViewManageProfile;
+    @FXML
+    private Label bdCreateManageProfile;
+    @FXML
+    private Label bdUpdateManageProfile;
+    @FXML
+    private Label bdDeleteManageProfile;
+    @FXML
+    private Label bdUpdateMyProfile;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            //        hide supLabel medicine, my profile, setting when the first load
-            hideSupMedicine(false);
-            hideSupMyProfile(false);
-            hideSupSettings(false);
-            hideSupMyProfileAdmin(false);
-            
-            setCenterHomeBox("Notice");
-        } catch (IOException ex) {
-            Logger.getLogger(HomeManagerController.class.getName()).log(Level.SEVERE, null, ex);
+
+        //        hide supLabel medicine, my profile, setting when the first load
+        hideSupMedicine(false);
+        hideSupMyProfile(false);
+        hideSupSettings(false);
+        hideSupMyProfileAdmin(false);
+
+        setLanguageItem();
+
+    }
+
+    private void changeLanguage(String language, String country) {
+
+        Locale locale = new Locale(language, country);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/home_manager/Bundle", locale);
+
+        bdDashboard.setText(resourceBundle.getString("bdDashboard"));
+        bdManageMedicine.setText(resourceBundle.getString("bdManageMedicine"));
+        bdImport.setText(resourceBundle.getString("bdImport"));
+        bdStatistic.setText(resourceBundle.getString("bdStatistic"));
+        bdManageProfile.setText(resourceBundle.getString("bdManageProfile"));
+        bdMyProfile.setText(resourceBundle.getString("bdMyProfile"));
+        bdChangePassword.setText(resourceBundle.getString("bdChangePassword"));
+        bdSetting.setText(resourceBundle.getString("bdSetting"));
+        bdLogout.setText(resourceBundle.getString("bdLogout"));
+
+        bdViewManageMedicine.setText(resourceBundle.getString("bdViewManageMedicine"));
+        bdCreateManageMedicine.setText(resourceBundle.getString("bdCreateManageMedicine"));
+        bdUpdateManageMedicine.setText(resourceBundle.getString("bdUpdateManageMedicine"));
+        bdDeleteManageMedicine.setText(resourceBundle.getString("bdDeleteManageMedicine"));
+        bdViewManageProfile.setText(resourceBundle.getString("bdViewManageProfile"));
+        bdCreateManageProfile.setText(resourceBundle.getString("bdCreateManageProfile"));
+        bdUpdateManageProfile.setText(resourceBundle.getString("bdUpdateManageProfile"));
+        bdDeleteManageProfile.setText(resourceBundle.getString("bdDeleteManageProfile"));
+        bdUpdateMyProfile.setText(resourceBundle.getString("bdUpdateMyProfile"));
+
+    }
+
+    private void setLanguageItem() {
+        ObservableList<String> sList = FXCollections.observableArrayList();
+        sList.add("English");
+        sList.add("Vietnamese");
+
+        languageLabel.setItems(sList);
+        languageLabel.setValue(sList.get(0));
+        gLanguage = languageLabel.getValue();
+
+        if (gLanguage.equalsIgnoreCase("english")) {
+            changeLanguage("en", "EN");
+        } else {
+            changeLanguage("vi", "VN");
         }
     }
 
@@ -164,6 +247,7 @@ public class HomeManagerController implements Initializable {
     @FXML
     private void logoutClicked(MouseEvent event) throws IOException {
         gRole = null;
+//        gLanguage = null;
 //        event clicked to label log out
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Login.fxml"));
         Parent root = loader.load();
@@ -233,6 +317,17 @@ public class HomeManagerController implements Initializable {
     @FXML
     private void changePasswordProfileAdminClicked(MouseEvent event) throws IOException {
         setCenterHomeBox("ChangePasswordAdmin");
+    }
+
+    @FXML
+    private void languageAction(ActionEvent event) {
+        gLanguage = languageLabel.getValue();
+
+        if (gLanguage.equalsIgnoreCase("english")) {
+            changeLanguage("en", "EN");
+        } else {
+            changeLanguage("vi", "VN");
+        }
     }
 
 }

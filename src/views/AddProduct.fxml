@@ -54,7 +54,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefWidth="369.0">
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Product Type Name" VBox.vgrow="NEVER">
+                  <Label fx:id="bdProTypeName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Product Type Name" VBox.vgrow="NEVER">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -89,7 +89,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="Add Product Type">
+                        <Label fx:id="bdAddProType" prefHeight="27.0" text="Add Product Type">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>

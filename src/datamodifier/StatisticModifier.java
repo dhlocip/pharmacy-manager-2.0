@@ -8,6 +8,7 @@ package datamodifier;
 import data.Cart;
 import javafx.collections.ObservableList;
 import java.sql.*;
+import java.text.DecimalFormat;
 import javafx.collections.FXCollections;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
@@ -50,7 +51,7 @@ public class StatisticModifier extends UserModifier {
         }
         return cList;
     }
-    
+
     public ObservableList<Cart> getTotalSaleMemberByBill(String startDate, String endDate) throws SQLException {
         ObservableList<Cart> cList = FXCollections.observableArrayList();
         String sql = "select * from vStatisticByBill "
@@ -83,7 +84,7 @@ public class StatisticModifier extends UserModifier {
         }
         return cList;
     }
-    
+
     public ObservableList<Cart> getTotalSaleMemberByDate(String startDate, String endDate) throws SQLException {
         ObservableList<Cart> cList = FXCollections.observableArrayList();
         String sql = "select * from vStatisticByDate "
@@ -101,10 +102,16 @@ public class StatisticModifier extends UserModifier {
     }
 
     public static void main(String[] args) throws SQLException {
-        ObservableList<Cart> cart = new StatisticModifier().getTotalSaleMemberByDate(10002, "09/01/2020", "09/30/2020");
-        cart.forEach((t) -> {
-            System.out.println(t.getAmount());
-        });
+//        ObservableList<Cart> cart = new StatisticModifier().getTotalSaleMemberByDate(10001, "09/01/2020", "09/30/2021");
+//        cart.forEach((t) -> {
+//            System.out.println(t.getAmount());
+//        });
+
+        double num = 2.5E7;
+        System.out.println(num);
+        DecimalFormat format = new DecimalFormat("#0,000.00");
+        String formattedNumber = format.format(num);
+        System.out.println(formattedNumber);
     }
 
 }

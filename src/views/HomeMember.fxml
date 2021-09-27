@@ -61,9 +61,9 @@
          </children></HBox>
    </top>
    <left>
-      <VBox prefHeight="642.0" prefWidth="210.0" style="-fx-border-color: gray;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="642.0" style="-fx-border-color: gray;" BorderPane.alignment="CENTER">
          <children>
-            <HBox fx:id="dashboardLabel" alignment="CENTER_LEFT" onMouseClicked="#dashboardClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-background-color: green; -fx-cursor: hand;">
+            <HBox fx:id="dashboardLabel" alignment="CENTER_LEFT" onMouseClicked="#dashboardClicked" prefHeight="40.0" style="-fx-background-color: green; -fx-cursor: hand;">
                <children>
                   <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                      <graphic>
@@ -77,9 +77,9 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label prefHeight="27.0" text="Dashboard">
+                  <Label fx:id="bdDashboard" prefHeight="27.0" text="Dashboard">
                      <HBox.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0" right="10.0" />
                      </HBox.margin>
                      <font>
                         <Font size="15.0" />
@@ -87,7 +87,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox fx:id="medicineLabel" alignment="CENTER_LEFT" onMouseClicked="#medicineClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand; -fx-background-color: green;" styleClass="labelMain" stylesheets="@../css/home.css">
+            <HBox fx:id="medicineLabel" alignment="CENTER_LEFT" onMouseClicked="#medicineClicked" prefHeight="40.0" style="-fx-cursor: hand; -fx-background-color: green;" styleClass="labelMain" stylesheets="@../css/home.css">
                <children>
                   <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                      <graphic>
@@ -101,9 +101,9 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label prefHeight="27.0" text="Medicine">
+                  <Label fx:id="bdMedicine" prefHeight="27.0" text="Medicine">
                      <HBox.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0" right="10.0" />
                      </HBox.margin>
                      <font>
                         <Font size="15.0" />
@@ -111,9 +111,9 @@
                   </Label>
                </children>
             </HBox>
-            <VBox fx:id="supMedicine" prefWidth="141.0">
+            <VBox fx:id="supMedicine">
                <children>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#searchClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" onMouseClicked="#searchClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -127,9 +127,9 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="Order">
+                        <Label fx:id="bdOrderMedicine" prefHeight="27.0" text="Order">
                            <HBox.margin>
-                              <Insets left="5.0" />
+                              <Insets left="5.0" right="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="15.0" />
@@ -137,7 +137,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#viewClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" onMouseClicked="#viewClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -151,9 +151,9 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="View">
+                        <Label fx:id="bdViewMedicine" prefHeight="27.0" text="View">
                            <HBox.margin>
-                              <Insets left="5.0" />
+                              <Insets left="5.0" right="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="15.0" />
@@ -161,7 +161,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#statisticClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" onMouseClicked="#statisticClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -175,9 +175,9 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="Statistic">
+                        <Label fx:id="bdStatisticMedicine" prefHeight="27.0" text="Statistic">
                            <HBox.margin>
-                              <Insets left="5.0" />
+                              <Insets left="5.0" right="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="15.0" />
@@ -187,7 +187,7 @@
                   </HBox>
                </children>
             </VBox>
-            <HBox fx:id="myprofileLabel" alignment="CENTER_LEFT" onMouseClicked="#myprofileClicked" prefHeight="40.0" prefWidth="141.0" style="-fx-background-color: green; -fx-cursor: hand;">
+            <HBox fx:id="myprofileLabel" alignment="CENTER_LEFT" onMouseClicked="#myprofileClicked" prefHeight="40.0" style="-fx-background-color: green; -fx-cursor: hand;">
                <children>
                   <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                      <graphic>
@@ -201,9 +201,9 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label prefHeight="27.0" text="My Profile">
+                  <Label fx:id="bdMyProfile" prefHeight="27.0" text="My Profile">
                      <HBox.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0" right="10.0" />
                      </HBox.margin>
                      <font>
                         <Font size="15.0" />
@@ -211,9 +211,9 @@
                   </Label>
                </children>
             </HBox>
-            <VBox fx:id="supMyProfile" prefWidth="141.0">
+            <VBox fx:id="supMyProfile">
                <children>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#updateProfileMemberClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" onMouseClicked="#updateProfileMemberClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -227,9 +227,9 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="Update">
+                        <Label fx:id="bdUpdateMyProfile" prefHeight="27.0" text="Update">
                            <HBox.margin>
-                              <Insets left="5.0" />
+                              <Insets left="5.0" right="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="15.0" />
@@ -237,7 +237,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#changePasswordMemberClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" onMouseClicked="#changePasswordMemberClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -251,9 +251,9 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="Change password">
+                        <Label fx:id="bdPassword" prefHeight="27.0" text="Change password">
                            <HBox.margin>
-                              <Insets left="5.0" />
+                              <Insets left="5.0" right="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="15.0" />
@@ -263,7 +263,7 @@
                   </HBox>
                </children>
             </VBox>
-            <HBox fx:id="settingLabel" alignment="CENTER_LEFT" onMouseClicked="#settingClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-background-color: green; -fx-cursor: hand;">
+            <HBox fx:id="settingLabel" alignment="CENTER_LEFT" onMouseClicked="#settingClicked" prefHeight="40.0" style="-fx-background-color: green; -fx-cursor: hand;">
                <children>
                   <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                      <graphic>
@@ -277,9 +277,9 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label prefHeight="27.0" text="Settings">
+                  <Label fx:id="bdSetting" prefHeight="27.0" text="Settings">
                      <HBox.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0" right="10.0" />
                      </HBox.margin>
                      <font>
                         <Font size="15.0" />
@@ -287,7 +287,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox fx:id="supSettings" alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+            <HBox fx:id="supSettings" alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
                <children>
                   <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                      <graphic>
@@ -301,14 +301,14 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox prefHeight="24.0" prefWidth="126.0" promptText="Language" HBox.hgrow="ALWAYS">
+                  <ComboBox fx:id="languageLabel" onAction="#languageAction" prefHeight="24.0" prefWidth="126.0" promptText="Language" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
                   </ComboBox>
                </children>
             </HBox>
-            <HBox fx:id="logoutLabel" alignment="CENTER_LEFT" onMouseClicked="#logoutClicked" prefHeight="40.0" prefWidth="73.0" style="-fx-background-color: green; -fx-cursor: hand;">
+            <HBox fx:id="logoutLabel" alignment="CENTER_LEFT" onMouseClicked="#logoutClicked" prefHeight="40.0" style="-fx-background-color: green; -fx-cursor: hand;">
                <children>
                   <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                      <graphic>
@@ -322,9 +322,9 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label prefHeight="27.0" text="Log Out">
+                  <Label fx:id="bdLogout" prefHeight="27.0" text="Log Out">
                      <HBox.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0" right="10.0" />
                      </HBox.margin>
                      <font>
                         <Font size="15.0" />
@@ -334,7 +334,7 @@
             </HBox>
             <VBox>
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -350,7 +350,7 @@
                         </Label>
                         <Label fx:id="fullnameLabel" prefHeight="27.0" text="Dinh Huu Loc">
                            <HBox.margin>
-                              <Insets left="5.0" />
+                              <Insets left="5.0" right="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="15.0" />
@@ -358,7 +358,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -382,7 +382,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="73.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <HBox.margin>
@@ -404,4 +404,27 @@
          </children>
       </VBox>
    </left>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="673.0">
+                     <children>
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="534.0">
+                           <children>
+                              <ImageView fitHeight="534.0" fitWidth="666.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/pharmacy-background.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </center>
+      </BorderPane>
+   </center>
 </BorderPane>
