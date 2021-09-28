@@ -11,6 +11,7 @@ import datamodifier.ProductTypeModifier;
 import datamodifier.ProductsModifier;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,6 +83,16 @@ public class AddProductController implements Initializable {
     private Label bdProTypeName;
     @FXML
     private Label bdAddProType;
+    @FXML
+    private Label bdProTypeId;
+    @FXML
+    private Label bdProName;
+    @FXML
+    private Label bdUnit;
+    @FXML
+    private Label bdPrice;
+    @FXML
+    private Label bdAddProDetail;
 
     /**
      * Initializes the controller class.
@@ -102,6 +113,31 @@ public class AddProductController implements Initializable {
             Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        setLanguage();
+        
+    }
+
+    private void setLanguage() {
+        String langManager = HomeManagerController.gLanguage;
+        if (langManager.equalsIgnoreCase("english")) {
+            changeLanguage("en", "EN");
+        } else {
+            changeLanguage("vi", "VN");
+        }
+    }
+
+    private void changeLanguage(String language, String country) {
+
+        Locale locale = new Locale(language, country);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/add_product/Bundle", locale);
+
+        bdProTypeName.setText(resourceBundle.getString("bdProTypeName"));
+        bdAddProType.setText(resourceBundle.getString("bdAddProType"));
+        bdProTypeId.setText(resourceBundle.getString("bdProTypeId"));
+        bdProName.setText(resourceBundle.getString("bdProName"));
+        bdUnit.setText(resourceBundle.getString("bdUnit"));
+        bdPrice.setText(resourceBundle.getString("bdPrice"));
+        bdAddProDetail.setText(resourceBundle.getString("bdAddProDetail"));
     }
 
     private void setValueProTypeIdComboBox() throws SQLException {

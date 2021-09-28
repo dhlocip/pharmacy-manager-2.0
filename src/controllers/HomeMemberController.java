@@ -43,6 +43,7 @@ public class HomeMemberController implements Initializable {
     static String gRole;
     static String gLanguage;
     int billId;
+    String color = "#FFE194";
 
     @FXML
     private BorderPane homeBox;
@@ -88,6 +89,18 @@ public class HomeMemberController implements Initializable {
     private Label bdSetting;
     @FXML
     private Label bdLogout;
+    @FXML
+    private HBox cssOrder;
+    @FXML
+    private HBox cssView;
+    @FXML
+    private HBox cssStatistic;
+    @FXML
+    private HBox cssUpdate;
+    @FXML
+    private HBox cssChangePassword;
+    @FXML
+    private Label bdHotline;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -114,6 +127,7 @@ public class HomeMemberController implements Initializable {
         bdPassword.setText(resourceBundle.getString("bdPassword"));
         bdSetting.setText(resourceBundle.getString("bdSetting"));
         bdLogout.setText(resourceBundle.getString("bdLogout"));
+        bdHotline.setText(resourceBundle.getString("bdHotline"));
 
     }
 
@@ -149,13 +163,16 @@ public class HomeMemberController implements Initializable {
     private void hideSupMedicine(boolean value) {
         supMedicine.setVisible(value);
         supMedicine.managedProperty().bind(supMedicine.visibleProperty());
-
+        cssOrder.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssView.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssStatistic.setStyle("-fx-cursor: hand; -fx-background-color: null");
     }
 
     private void hideSupMyProfile(boolean value) {
         supMyProfile.setVisible(value);
         supMyProfile.managedProperty().bind(supMyProfile.visibleProperty());
-
+        cssUpdate.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssChangePassword.setStyle("-fx-cursor: hand; -fx-background-color: null");
     }
 
     private void hideSupSettings(boolean value) {
@@ -213,15 +230,12 @@ public class HomeMemberController implements Initializable {
     }
 
     @FXML
-    private void searchClicked(MouseEvent event) throws IOException {
-//        event clicked to search label for load layout searchProduct
-        setCenterHomeBox("SearchProduct");
-    }
-
-    @FXML
     private void viewClicked(MouseEvent event) throws IOException {
 //        event clicked to view label for show product
         setCenterHomeBox("ViewProduct");
+        cssOrder.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssView.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
+        cssStatistic.setStyle("-fx-cursor: hand; -fx-background-color: null");
 
     }
 
@@ -229,16 +243,23 @@ public class HomeMemberController implements Initializable {
     private void updateProfileMemberClicked(MouseEvent event) throws IOException {
 //        event clicked to export label for export file xlsx
         setCenterHomeBox("UpdateProfileAdmin");
+        cssUpdate.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
+        cssChangePassword.setStyle("-fx-cursor: hand; -fx-background-color: null");
     }
 
     @FXML
     private void changePasswordMemberClicked(MouseEvent event) throws IOException {
         setCenterHomeBox("ChangePasswordAdmin");
+        cssUpdate.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssChangePassword.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
     }
 
     @FXML
     private void statisticClicked(MouseEvent event) throws IOException {
         setCenterHomeBox("StatisticMember");
+        cssOrder.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssView.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssStatistic.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
     }
 
     @FXML
@@ -250,6 +271,15 @@ public class HomeMemberController implements Initializable {
         } else {
             changeLanguage("vi", "VN");
         }
+    }
+
+    @FXML
+    private void orderClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("SearchProduct");
+        cssOrder.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
+        cssView.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssStatistic.setStyle("-fx-cursor: hand; -fx-background-color: null");
+
     }
 
 }

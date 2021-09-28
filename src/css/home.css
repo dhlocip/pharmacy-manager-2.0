@@ -3,18 +3,17 @@
  */
 
 .root {
-    -fx-background-color: #00ccff;
+    /*-fx-background-color: #00ccff;*/
 }
 
-.labelMain:hover {
-    -fx-background-color: #66ff00;
+.lable-button {
+    /*-fx-background-color: #FFB740;*/
+    -fx-background-color: #FFB319;
+    
 }
 
-#btnclick:selected {
-    -fx-background-color: orange;
-    -fx-text-fill: white;
-}
-
-.text-field-search {
-    /*-fx-background-color: rgba(0,0,0,0);*/
+.lable-button-is-hover:hover {
+    /*-fx-background-color: #FDE49C;*/
+    -fx-background-color: #FFE194;
+    
 }

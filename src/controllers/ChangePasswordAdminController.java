@@ -8,6 +8,7 @@ package controllers;
 import datamodifier.UserModifier;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,6 +45,12 @@ public class ChangePasswordAdminController implements Initializable {
     private Label errorOfNewPass;
     @FXML
     private Label errorOfRetypeNewPass;
+    @FXML
+    private Label bdConfirmPass;
+    @FXML
+    private Label bdRetypePass;
+    @FXML
+    private Label bdChangePass;
 
     /**
      * Initializes the controller class.
@@ -51,6 +58,36 @@ public class ChangePasswordAdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        setLanguage();
+    }
+    
+    private void setLanguage() {
+        String role = HomeManagerController.gRole;
+        String langManager = HomeManagerController.gLanguage;
+        String langMeber = HomeMemberController.gLanguage;
+        if (role != null) {
+            if (langManager.equalsIgnoreCase("english")) {
+                changeLanguage("en", "EN");
+            } else {
+                changeLanguage("vi", "VN");
+            }
+        } else {
+            if (langMeber.equalsIgnoreCase("english")) {
+                changeLanguage("en", "EN");
+            } else {
+                changeLanguage("vi", "VN");
+            }
+        }
+    }
+
+    private void changeLanguage(String language, String country) {
+
+        Locale locale = new Locale(language, country);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/change_password/Bundle", locale);
+
+        bdConfirmPass.setText(resourceBundle.getString("bdConfirmPass"));
+        bdRetypePass.setText(resourceBundle.getString("bdRetypePass"));
+        bdChangePass.setText(resourceBundle.getString("bdChangePass"));
     }
 
     @FXML

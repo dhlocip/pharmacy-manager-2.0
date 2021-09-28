@@ -9,6 +9,8 @@ import data.Cart;
 import javafx.collections.ObservableList;
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
@@ -18,6 +20,53 @@ import javafx.scene.chart.XYChart.Data;
  * @author sa
  */
 public class StatisticModifier extends UserModifier {
+    
+    
+    public ObservableList<Cart> getTableSale(String startDate, String endDate) throws SQLException{
+        ObservableList<Cart> dList = FXCollections.observableArrayList();
+        String sql = "select bills.userId as userId, "
+                + "sum((billDetail.saleQuantity * products.price)) as total "
+                + "from products "
+                + "inner join billDetail "
+                + "on products.productId = billDetail.productId "
+                + "inner join bills "
+                + "on bills.billId = billDetail.billId "
+                + "where bills.transactionTime between ? and ? "
+                + "group by bills.userId";
+        PreparedStatement preS = connect().prepareStatement(sql);
+        preS.setString(1, startDate);
+        preS.setString(2, endDate);
+        preS.execute();
+        ResultSet result = preS.getResultSet();
+        while (result.next()) {
+            dList.add(new Cart(result.getInt("userId"), result.getDouble("total")));
+        }
+        return dList;
+        
+    }
+        
+    public ObservableList<Data<String, Number>> getBarChart(String startDate, String endDate) throws SQLException{
+        ObservableList<Data<String, Number>> dList = FXCollections.observableArrayList();
+        String sql = "select bills.userId as userId, "
+                + "sum((billDetail.saleQuantity * products.price)) as total "
+                + "from products "
+                + "inner join billDetail "
+                + "on products.productId = billDetail.productId "
+                + "inner join bills "
+                + "on bills.billId = billDetail.billId "
+                + "where bills.transactionTime between ? and ? "
+                + "group by bills.userId";
+        PreparedStatement preS = connect().prepareStatement(sql);
+        preS.setString(1, startDate);
+        preS.setString(2, endDate);
+        preS.execute();
+        ResultSet result = preS.getResultSet();
+        while (result.next()) {
+            dList.add(new XYChart.Data((result.getString("userId")), result.getDouble("total")));
+        }
+        return dList;
+        
+    }
 
     public ObservableList<Data<String, Number>> getLineChartSaleMember(int userId, String startDate, String endDate) throws SQLException {
         ObservableList<Data<String, Number>> dList = FXCollections.observableArrayList();
@@ -88,7 +137,7 @@ public class StatisticModifier extends UserModifier {
     public ObservableList<Cart> getTotalSaleMemberByDate(String startDate, String endDate) throws SQLException {
         ObservableList<Cart> cList = FXCollections.observableArrayList();
         String sql = "select * from vStatisticByDate "
-                + "where transactionTime between ? and ?";
+                + "where transactionTime between ? and ? order by userId";
         PreparedStatement preS = connect().prepareStatement(sql);
         preS.setString(1, startDate);
         preS.setString(2, endDate);
@@ -100,6 +149,7 @@ public class StatisticModifier extends UserModifier {
         }
         return cList;
     }
+
 
     public static void main(String[] args) throws SQLException {
 //        ObservableList<Cart> cart = new StatisticModifier().getTotalSaleMemberByDate(10001, "09/01/2020", "09/30/2021");

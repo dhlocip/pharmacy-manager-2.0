@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
@@ -41,7 +42,7 @@
             <VBox />
             <VBox alignment="BOTTOM_CENTER">
                <children>
-                  <HBox alignment="CENTER" onMouseClicked="#executeClicked" style="-fx-background-color: orange; -fx-cursor: hand;">
+                  <HBox alignment="CENTER" onMouseClicked="#executeClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                      <children>
                         <Label prefHeight="35.0">
                            <graphic>
@@ -61,6 +62,10 @@
                            </HBox.margin>
                         </Label>
                      </children>
+                     <styleClass>
+                        <String fx:value="lable-button-is-hover" />
+                        <String fx:value="lable-button" />
+                     </styleClass>
                   </HBox>
                </children>
                <HBox.margin>
@@ -73,12 +78,12 @@
          </BorderPane.margin></HBox>
    </top>
    <center>
-      <LineChart fx:id="lineChart" BorderPane.alignment="CENTER">
+      <LineChart fx:id="lineChart" legendSide="RIGHT" BorderPane.alignment="CENTER">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <CategoryAxis side="BOTTOM" fx:id="xAxis" />
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT" />
+          <NumberAxis fx:id="yAxis" side="LEFT" />
         </yAxis>
          <BorderPane.margin>
             <Insets left="10.0" />

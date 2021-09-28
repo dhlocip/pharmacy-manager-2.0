@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -53,7 +54,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="viewTotalNumber" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: red; -fx-alignment: center; -fx-font-weight: bold; -fx-background-radius: 100;" text="0" textFill="WHITE">
+                  <Label fx:id="viewTotalNumber" prefHeight="25.0" prefWidth="25.0" style="-fx-alignment: center; -fx-font-weight: bold; -fx-background-radius: 100;" styleClass="lable-button" stylesheets="@../css/home.css" text="0" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -112,10 +113,14 @@
                   </HBox>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#addToCartAction" prefHeight="35.0" style="-fx-background-color: gray; -fx-text-fill: white;" text="Add to cart">
+            <Button mnemonicParsing="false" onAction="#addToCartAction" prefHeight="35.0" stylesheets="@../css/home.css" text="Add to cart">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
+               <styleClass>
+                  <String fx:value="lable-button" />
+                  <String fx:value="lable-button-is-hover" />
+               </styleClass>
             </Button>
          </children>
       </HBox>

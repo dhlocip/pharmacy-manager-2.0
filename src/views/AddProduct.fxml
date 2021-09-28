@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -62,7 +63,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="productTypeNameTextField" maxWidth="-Infinity" onKeyReleased="#productTypeNameReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                  <TextField fx:id="productTypeNameTextField" maxWidth="-Infinity" onKeyReleased="#productTypeNameReleased" prefHeight="35.0" prefWidth="369.0" promptText="enter..">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -75,7 +76,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#addProductTypeClicked" prefHeight="35.0" prefWidth="369.0" style="-fx-cursor: hand; -fx-background-color: green;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#addProductTypeClicked" prefHeight="35.0" prefWidth="369.0" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -101,6 +102,10 @@
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
+                     <styleClass>
+                        <String fx:value="lable-button" />
+                        <String fx:value="lable-button-is-hover" />
+                     </styleClass>
                   </HBox>
                </children>
                <HBox.margin>
@@ -109,7 +114,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="369.0">
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Product Type ID" VBox.vgrow="NEVER">
+                  <Label fx:id="bdProTypeId" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Product Type ID" VBox.vgrow="NEVER">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -122,7 +127,7 @@
                         <Insets />
                      </VBox.margin>
                   </ComboBox>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Product Name" VBox.vgrow="NEVER">
+                  <Label fx:id="bdProName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Product Name" VBox.vgrow="NEVER">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -130,7 +135,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="productNameTextField" maxWidth="-Infinity" onKeyReleased="#productNameReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                  <TextField fx:id="productNameTextField" maxWidth="-Infinity" onKeyReleased="#productNameReleased" prefHeight="35.0" prefWidth="369.0" promptText="enter..">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -150,7 +155,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="369.0">
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Unit" VBox.vgrow="NEVER">
+                  <Label fx:id="bdUnit" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Unit" VBox.vgrow="NEVER">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -158,7 +163,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="unitTextField" maxWidth="-Infinity" onKeyReleased="#unitReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                  <TextField fx:id="unitTextField" maxWidth="-Infinity" onKeyReleased="#unitReleased" prefHeight="35.0" prefWidth="369.0" promptText="enter..">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -171,7 +176,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Price" VBox.vgrow="NEVER">
+                  <Label fx:id="bdPrice" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Price" VBox.vgrow="NEVER">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -179,7 +184,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="priceTextField" maxWidth="-Infinity" onKeyReleased="#priceReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                  <TextField fx:id="priceTextField" maxWidth="-Infinity" onKeyReleased="#priceReleased" prefHeight="35.0" prefWidth="369.0" promptText="enter..">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -192,7 +197,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#addProductDetailClicked" prefHeight="35.0" prefWidth="369.0" style="-fx-cursor: hand; -fx-background-color: green;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#addProductDetailClicked" prefHeight="35.0" prefWidth="369.0" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -206,7 +211,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="Add Product Detail">
+                        <Label fx:id="bdAddProDetail" prefHeight="27.0" text="Add Product Detail">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -218,6 +223,10 @@
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
+                     <styleClass>
+                        <String fx:value="lable-button" />
+                        <String fx:value="lable-button-is-hover" />
+                     </styleClass>
                   </HBox>
                </children>
             </VBox>

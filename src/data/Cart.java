@@ -24,6 +24,11 @@ public class Cart {
     public Cart() {
     }
 
+    public Cart(int userId, double amount) {
+        this.userId = userId;
+        this.amount = amount;
+    }
+    
     public Cart(int userId, int billId, double amount, String transactionTime) {
         this.userId = userId;
         this.billId = billId;

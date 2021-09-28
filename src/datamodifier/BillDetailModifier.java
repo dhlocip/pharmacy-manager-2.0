@@ -77,4 +77,12 @@ public class BillDetailModifier extends UseDataBase {
         return true;
     }
     
+    public boolean deleteByBillId(int billId) throws SQLException{
+        String sql = "delete from billDetail "
+                + "where billId = ?";
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+        preStatement.setInt(1, billId);
+        preStatement.execute();
+        return true;
+    }
 }

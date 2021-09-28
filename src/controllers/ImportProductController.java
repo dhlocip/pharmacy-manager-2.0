@@ -124,7 +124,6 @@ public class ImportProductController implements Initializable {
 
 //        load userId
             userId = HomeManagerController.gUserId;
-            System.out.println(userId);
 
 //        set value for impId
             impId = new ImportBatchModifier().getMaxImpBatchId(userId);
@@ -158,7 +157,7 @@ public class ImportProductController implements Initializable {
         hideErrorQuantity(false);
         hideErrorMfgDate(false);
         hideErrorExpDate(false);
-
+        impFileExcelLabel.setDisable(true);
     }
 
 //    get total product inside an importId

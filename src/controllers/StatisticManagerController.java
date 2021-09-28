@@ -7,16 +7,26 @@ package controllers;
 
 import data.Cart;
 import datamodifier.StatisticModifier;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -25,6 +35,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -43,7 +55,7 @@ public class StatisticManagerController implements Initializable {
     @FXML
     private Label endDate;
     @FXML
-    private Label tTotal;
+    private TableColumn<Cart, Double> tTotal;
     @FXML
     private TableView<Cart> tableViewByBillId;
     @FXML
@@ -69,9 +81,45 @@ public class StatisticManagerController implements Initializable {
     @FXML
     private DatePicker dpEndDate;
     @FXML
-    private TableColumn<?, ?> bUserId;
+    private TableColumn<Cart, Integer> bUserId;
     @FXML
-    private TableColumn<?, ?> dUserId;
+    private TableColumn<Cart, Integer> dUserId;
+    @FXML
+    private HBox saleDetailBack;
+    @FXML
+    private HBox topSaleNext;
+    @FXML
+    private VBox detailSaleBox;
+    @FXML
+    private Label tTotal1;
+    @FXML
+    private VBox topSaleBox;
+    @FXML
+    private Label endDate1;
+    @FXML
+    private Label tTotal2;
+    @FXML
+    private TableView<Cart> tableViewTopSale;
+    @FXML
+    private TableColumn<Cart, Integer> tUserid;
+    @FXML
+    private HBox executeTopBox;
+    @FXML
+    private HBox executeDetailBox;
+    @FXML
+    private HBox lineChartBox;
+    @FXML
+    private HBox barChartBox;
+    @FXML
+    private BarChart<String, Number> barChart;
+    @FXML
+    private NumberAxis yAxisLine;
+    @FXML
+    private CategoryAxis xAxisLine;
+    @FXML
+    private NumberAxis yAxisBar;
+    @FXML
+    private CategoryAxis xAxisBar;
 
     /**
      * Initializes the controller class.
@@ -81,36 +129,64 @@ public class StatisticManagerController implements Initializable {
         // TODO
         hideErrorOfStartDate(false);
         hideErrorOfStartBill(false);
+//        xAxis.s
 
-
+        hideTopSale(false);
+        hideSaleDetailBack(false);
+        hideExecuteTop(false);
+        hideBarChart(false);
+    }
+    
+    private void getTableTopSale() throws SQLException{
+        ObservableList<Cart> oList = new StatisticModifier().getTableSale(lStartDate, lEndDate);
+        
+        tUserid.setCellValueFactory(new PropertyValueFactory<>("userId"));
+        tTotal.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        
+        tableViewTopSale.setItems(oList);
     }
 
-    private void getLineChart() throws SQLException {
-        ObservableList<XYChart.Data<String, Number>> dList1 = new StatisticModifier().getLineChartSaleMember(10001, lStartDate, lEndDate);
-        ObservableList<XYChart.Data<String, Number>> dList2 = new StatisticModifier().getLineChartSaleMember(10002, lStartDate, lEndDate);
-        ObservableList<XYChart.Data<String, Number>> dList3 = new StatisticModifier().getLineChartSaleMember(10003, lStartDate, lEndDate);
-        ObservableList<XYChart.Data<String, Number>> dList4 = new StatisticModifier().getLineChartSaleMember(10004, lStartDate, lEndDate);
+    private void getBarChart() throws SQLException {
+        ObservableList<XYChart.Data<String, Number>> data = new StatisticModifier().getBarChart(lStartDate, lEndDate);
 
-        XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
-        series1.getData().addAll(dList1);
-        XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
-        series2.getData().addAll(dList2);
-        XYChart.Series<String, Number> series3 = new XYChart.Series<String, Number>();
-        series3.getData().addAll(dList3);
-        XYChart.Series<String, Number> series4 = new XYChart.Series<String, Number>();
-        series4.getData().addAll(dList4);
+        XYChart.Series<String, Number> series = new XYChart.Series();
+        series.getData().addAll(data);
+
+        barChart.getData().clear();
+        barChart.getData().add(series);
+        barChart.setTitle("Top sales");
+        xAxisBar.setLabel("User ID");
+    }
+    
+    private void getLineChart() throws SQLException {
+        ObservableList<XYChart.Series<String, Number>> series = FXCollections.observableArrayList();
+
+        ObservableList<Cart> cList = new StatisticModifier().getTotalSaleMemberByDate(lStartDate, lEndDate);
+
+        XYChart.Series<String, Number> tmpSeries = new XYChart.Series();
+
+        for (int i = 1; i < cList.size(); i++) {
+            tmpSeries.getData().add(new XYChart.Data(cList.get(i - 1).getTransactionTime(), cList.get(i - 1).getAmount()));
+
+            if (cList.get(i - 1).getUserId() != cList.get(i).getUserId()) {
+                series.add(tmpSeries);
+                tmpSeries.setName("Employee No. " + cList.get(i - 1).getUserId());
+                tmpSeries = new XYChart.Series();
+
+                tmpSeries.getData().add(new XYChart.Data(cList.get(i).getTransactionTime(), cList.get(i).getAmount()));
+            } else {
+                tmpSeries.getData().add(new XYChart.Data(cList.get(i).getTransactionTime(), cList.get(i).getAmount()));
+            }
+
+            if (i == cList.size() - 1) {
+                tmpSeries.setName("Employee No. " + cList.get(i).getUserId());
+                series.add(tmpSeries);
+            }
+        }
 
         lineChart.getData().clear();
-        lineChart.getData().add(series1);
-        lineChart.getData().add(series2);
-        lineChart.getData().add(series3);
-        lineChart.getData().add(series4);
-        
-        lineChart.setTitle("Total sales");
-        series1.setName("Member 10001");
-        series2.setName("Member 10002");
-        series3.setName("Member 10003");
-        series4.setName("Member 10004");
+        lineChart.getData().addAll(series);
+        lineChart.setTitle("Sales by day");
     }
 
     private void getTableTotalSaleByDate() throws SQLException {
@@ -132,6 +208,46 @@ public class StatisticManagerController implements Initializable {
         bDate.setCellValueFactory(new PropertyValueFactory<>("transactionTime"));
 
         tableViewByBillId.setItems(cList);
+    }
+    
+    private void hideLineChart(boolean value) {
+        lineChartBox.setVisible(value);
+        lineChartBox.managedProperty().bind(lineChartBox.visibleProperty());
+    }
+    
+    private void hideBarChart(boolean value) {
+        barChartBox.setVisible(value);
+        barChartBox.managedProperty().bind(barChartBox.visibleProperty());
+    }
+    
+    private void hideExecuteTop(boolean value) {
+        executeTopBox.setVisible(value);
+        executeTopBox.managedProperty().bind(executeTopBox.visibleProperty());
+    }
+    
+    private void hideExecuteDetail(boolean value) {
+        executeDetailBox.setVisible(value);
+        executeDetailBox.managedProperty().bind(executeDetailBox.visibleProperty());
+    }
+    
+    private void hideSaleDetailBack(boolean value) {
+        saleDetailBack.setVisible(value);
+        saleDetailBack.managedProperty().bind(saleDetailBack.visibleProperty());
+    }
+    
+    private void hideTopSaleNext(boolean value) {
+        topSaleNext.setVisible(value);
+        topSaleNext.managedProperty().bind(topSaleNext.visibleProperty());
+    }
+    
+    private void hideSaleDetail(boolean value) {
+        detailSaleBox.setVisible(value);
+        detailSaleBox.managedProperty().bind(detailSaleBox.visibleProperty());
+    }
+    
+    private void hideTopSale(boolean value) {
+        topSaleBox.setVisible(value);
+        topSaleBox.managedProperty().bind(topSaleBox.visibleProperty());
     }
 
     private void hideErrorOfStartBill(boolean value) {
@@ -157,7 +273,37 @@ public class StatisticManagerController implements Initializable {
     }
 
     @FXML
-    private void executeClicked(MouseEvent event) throws SQLException {
+    private void topSaleClicked(MouseEvent event) throws IOException {
+        hideSaleDetail(false);
+        hideTopSaleNext(false);
+        hideExecuteDetail(false);
+        hideSaleDetailBack(true);
+        hideTopSale(true);
+        hideExecuteTop(true);
+        hideLineChart(false);
+        hideBarChart(true);
+    }
+
+    @FXML
+    private void detailSaleClicked(MouseEvent event) {
+        hideSaleDetail(true);
+        hideTopSaleNext(true);
+        hideExecuteDetail(true);
+        hideExecuteTop(false);
+        hideSaleDetailBack(false);
+        hideTopSale(false);
+        hideBarChart(false);
+        hideLineChart(true);
+    }
+
+    @FXML
+    private void executeTopClicked(MouseEvent event) throws SQLException {
+        getBarChart();
+        getTableTopSale();
+    }
+
+    @FXML
+    private void executeDetailClicked(MouseEvent event) throws SQLException {
         getLineChart();
         getTableTotalSaleByDate();
         getTableTotalSaleByBill();

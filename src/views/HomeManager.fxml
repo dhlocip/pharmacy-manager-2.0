@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -14,7 +15,7 @@
    <top>
       <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="900.0" style="-fx-border-color: grey;" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="35.0" prefWidth="51.0" text="Pcity">
+            <Label prefHeight="35.0" text="Pcity">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -32,7 +33,7 @@
                   <Insets left="25.0" />
                </HBox.margin>
             </Label>
-            <Label prefHeight="27.0" prefWidth="176.0" text="pharmacy@gmail.com">
+            <Label prefHeight="27.0" text="pharmacy@gmail.com">
                <HBox.margin>
                   <Insets left="3.0" />
                </HBox.margin>
@@ -50,7 +51,7 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Label prefHeight="27.0" prefWidth="175.0" text="Hotline: 0948 00 0949">
+            <Label fx:id="bdHotline" prefHeight="27.0" text="Hotline: 0948 00 0949">
                <HBox.margin>
                   <Insets left="3.0" />
                </HBox.margin>
@@ -64,7 +65,7 @@
    <left>
       <VBox prefHeight="673.0" style="-fx-border-color: gray;" BorderPane.alignment="CENTER">
          <children>
-            <HBox fx:id="dashboardLabel" alignment="CENTER_LEFT" onMouseClicked="#dashboardClicked" prefHeight="40.0" style="-fx-background-color: green; -fx-cursor: hand;">
+            <HBox fx:id="dashboardLabel" alignment="CENTER_LEFT" onMouseClicked="#dashboardClicked" prefHeight="40.0" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                <children>
                   <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                      <graphic>
@@ -87,8 +88,12 @@
                      </font>
                   </Label>
                </children>
+               <styleClass>
+                  <String fx:value="lable-button" />
+                  <String fx:value="lable-button-is-hover" />
+               </styleClass>
             </HBox>
-            <HBox fx:id="medicineLabel" alignment="CENTER_LEFT" onMouseClicked="#medicineClicked" prefHeight="40.0" style="-fx-cursor: hand; -fx-background-color: green;" styleClass="labelMain" stylesheets="@../css/home.css">
+            <HBox fx:id="medicineLabel" alignment="CENTER_LEFT" onMouseClicked="#medicineClicked" prefHeight="40.0" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                <children>
                   <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                      <graphic>
@@ -111,10 +116,14 @@
                      </font>
                   </Label>
                </children>
+               <styleClass>
+                  <String fx:value="lable-button" />
+                  <String fx:value="lable-button-is-hover" />
+               </styleClass>
             </HBox>
             <VBox fx:id="supMedicine">
                <children>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#viewClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox fx:id="cssViewProduct" alignment="CENTER_LEFT" onMouseClicked="#viewClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="lable-button-is-hover" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -138,7 +147,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#createProductClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox fx:id="cssCreateProduct" alignment="CENTER_LEFT" onMouseClicked="#createProductClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="lable-button-is-hover" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -162,7 +171,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#updateClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox fx:id="cssUpdateProduct" alignment="CENTER_LEFT" onMouseClicked="#updateClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="lable-button-is-hover" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -186,7 +195,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#importCliecked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox fx:id="cssImportProduct" alignment="CENTER_LEFT" onMouseClicked="#importCliecked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="lable-button-is-hover" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -210,7 +219,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#deleteClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox fx:id="cssDeleteProduct" alignment="CENTER_LEFT" onMouseClicked="#deleteClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="lable-button-is-hover" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -234,7 +243,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#statisticClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox fx:id="cssStatistic" alignment="CENTER_LEFT" onMouseClicked="#statisticClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="lable-button-is-hover" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -260,7 +269,7 @@
                   </HBox>
                </children>
             </VBox>
-            <HBox fx:id="myprofileLabel" alignment="CENTER_LEFT" onMouseClicked="#manageProfileClicked" prefHeight="40.0" style="-fx-background-color: green; -fx-cursor: hand;">
+            <HBox fx:id="myprofileLabel" alignment="CENTER_LEFT" onMouseClicked="#manageProfileClicked" prefHeight="40.0" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                <children>
                   <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                      <graphic>
@@ -283,10 +292,14 @@
                      </font>
                   </Label>
                </children>
+               <styleClass>
+                  <String fx:value="lable-button" />
+                  <String fx:value="lable-button-is-hover" />
+               </styleClass>
             </HBox>
             <VBox fx:id="supMyProfile">
                <children>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#viewProfileClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox fx:id="cssViewMem" alignment="CENTER_LEFT" onMouseClicked="#viewMemberClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="lable-button-is-hover" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -310,7 +323,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#createProfileClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox fx:id="cssCreateMem" alignment="CENTER_LEFT" onMouseClicked="#createMemberClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="lable-button-is-hover" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -334,7 +347,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#updateProfileClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox fx:id="cssUpdateMem" alignment="CENTER_LEFT" onMouseClicked="#updateMemberClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="lable-button-is-hover" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -358,7 +371,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#deleteProfileClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox fx:id="cssDeleteMem" alignment="CENTER_LEFT" onMouseClicked="#deleteMemberClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="lable-button-is-hover" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -384,7 +397,7 @@
                   </HBox>
                </children>
             </VBox>
-            <HBox fx:id="myprofileAdmin" alignment="CENTER_LEFT" onMouseClicked="#myprofileAdminClicked" prefHeight="40.0" style="-fx-background-color: green; -fx-cursor: hand;">
+            <HBox fx:id="myprofileAdmin" alignment="CENTER_LEFT" onMouseClicked="#myprofileAdminClicked" prefHeight="40.0" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                <children>
                   <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                      <graphic>
@@ -407,10 +420,14 @@
                      </font>
                   </Label>
                </children>
+               <styleClass>
+                  <String fx:value="lable-button" />
+                  <String fx:value="lable-button-is-hover" />
+               </styleClass>
             </HBox>
             <VBox fx:id="supMyProfileAdmin">
                <children>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#updateProfileAdminClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox fx:id="cssUpdateProfile" alignment="CENTER_LEFT" onMouseClicked="#updateProfileAdminClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="lable-button-is-hover" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -434,7 +451,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#changePasswordProfileAdminClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox fx:id="cssChangePassword" alignment="CENTER_LEFT" onMouseClicked="#changePasswordProfileAdminClicked" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="lable-button-is-hover" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -460,7 +477,7 @@
                   </HBox>
                </children>
             </VBox>
-            <HBox fx:id="settingLabel" alignment="CENTER_LEFT" onMouseClicked="#settingClicked" prefHeight="40.0" style="-fx-background-color: green; -fx-cursor: hand;">
+            <HBox fx:id="settingLabel" alignment="CENTER_LEFT" onMouseClicked="#settingClicked" prefHeight="40.0" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                <children>
                   <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                      <graphic>
@@ -483,8 +500,12 @@
                      </font>
                   </Label>
                </children>
+               <styleClass>
+                  <String fx:value="lable-button" />
+                  <String fx:value="lable-button-is-hover" />
+               </styleClass>
             </HBox>
-            <HBox fx:id="supSettings" alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+            <HBox fx:id="supSettings" alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="lable-button-is-hover" stylesheets="@../css/home.css">
                <children>
                   <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                      <graphic>
@@ -505,7 +526,7 @@
                   </ComboBox>
                </children>
             </HBox>
-            <HBox fx:id="logoutLabel" alignment="CENTER_LEFT" onMouseClicked="#logoutClicked" prefHeight="40.0" style="-fx-background-color: green; -fx-cursor: hand;">
+            <HBox fx:id="logoutLabel" alignment="CENTER_LEFT" onMouseClicked="#logoutClicked" prefHeight="40.0" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                <children>
                   <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                      <graphic>
@@ -531,10 +552,14 @@
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+               <styleClass>
+                  <String fx:value="lable-button" />
+                  <String fx:value="lable-button-is-hover" />
+               </styleClass>
             </HBox>
             <VBox>
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-cursor: hand;">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -558,7 +583,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-cursor: hand;">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -572,7 +597,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="positionLabel" prefHeight="27.0" text="Manager">
+                        <Label fx:id="positionLabel" prefHeight="27.0" style="-fx-font-weight: bold;" text="Manager">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -582,7 +607,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-cursor: hand;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" style="-fx-cursor: hand;">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <HBox.margin>

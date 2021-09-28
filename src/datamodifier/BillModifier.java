@@ -7,6 +7,8 @@ package datamodifier;
 
 import connection.UseDataBase;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -23,24 +25,6 @@ public class BillModifier extends UseDataBase {
         return true;
     }
 
-    
-
-//    public int getNumberProduct(int id) throws SQLException {
-//        String sql = "select count(*) as number "
-//                + "from billDetail where billId =?";
-//
-//        PreparedStatement preStatement = connect().prepareStatement(sql);
-//        preStatement.setInt(1, id);
-//        preStatement.execute();
-//
-//        ResultSet result = preStatement.getResultSet();
-//
-//        while (result.next()) {
-//            return result.getInt("number");
-//        }
-//        return 0;
-//    }
-
     public int getMaxBillId(int userId) throws SQLException {
         String sql = "select max(billId) as number "
                 + "from bills where userId =?";
@@ -53,11 +37,27 @@ public class BillModifier extends UseDataBase {
         }
         return 0;
     }
+    
+    public List<Integer> getListBills(int userId) throws SQLException{
+        List<Integer> list = new ArrayList<>();
+        String sql = "select * from bills where userId = ?";
+        PreparedStatement preS = connect().prepareStatement(sql);
+        preS.setInt(1, userId);
+        preS.execute();
+        ResultSet result = preS.getResultSet();
+        while(result.next()){
+            list.add(result.getInt("billId"));
+        }
+        return list;
+    }
+    
+    public boolean deleteByUserId(int userId) throws SQLException{
+        String sql = "delete from bills "
+                + "where userId = ?";
+        PreparedStatement preStatement = connect().prepareStatement(sql);
+        preStatement.setInt(1, userId);
+        preStatement.execute();
+        return true;
+    }
 
-//    public static void main(String[] args) throws SQLException {
-////        BillModifier bill = new BillModifier();
-//////        if (bill.addToBillDetail(50055, 30000, 2)) {
-////            System.out.println("ok");
-////        }
-//    }
 }

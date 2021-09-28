@@ -33,6 +33,7 @@ public class HomeManagerController implements Initializable {
     static int gUserId;
     static String gRole;
     static String gLanguage;
+    String color = "#FFE194";
 
     @FXML
     private BorderPane homeBox;
@@ -99,6 +100,32 @@ public class HomeManagerController implements Initializable {
     private Label bdDeleteManageProfile;
     @FXML
     private Label bdUpdateMyProfile;
+    @FXML
+    private HBox cssViewProduct;
+    @FXML
+    private HBox cssCreateProduct;
+    @FXML
+    private HBox cssUpdateProduct;
+    @FXML
+    private HBox cssImportProduct;
+    @FXML
+    private HBox cssDeleteProduct;
+    @FXML
+    private HBox cssStatistic;
+    @FXML
+    private HBox cssViewMem;
+    @FXML
+    private HBox cssCreateMem;
+    @FXML
+    private HBox cssUpdateMem;
+    @FXML
+    private HBox cssDeleteMem;
+    @FXML
+    private HBox cssUpdateProfile;
+    @FXML
+    private HBox cssChangePassword;
+    @FXML
+    private Label bdHotline;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -137,6 +164,7 @@ public class HomeManagerController implements Initializable {
         bdUpdateManageProfile.setText(resourceBundle.getString("bdUpdateManageProfile"));
         bdDeleteManageProfile.setText(resourceBundle.getString("bdDeleteManageProfile"));
         bdUpdateMyProfile.setText(resourceBundle.getString("bdUpdateMyProfile"));
+        bdHotline.setText(resourceBundle.getString("bdHotline"));
 
     }
 
@@ -174,13 +202,21 @@ public class HomeManagerController implements Initializable {
     private void hideSupMedicine(boolean value) {
         supMedicine.setVisible(value);
         supMedicine.managedProperty().bind(supMedicine.visibleProperty());
-
+        cssViewProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssCreateProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssUpdateProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssImportProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssDeleteProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssStatistic.setStyle("-fx-cursor: hand; -fx-background-color: null");
     }
 
     private void hideSupMyProfile(boolean value) {
         supMyProfile.setVisible(value);
         supMyProfile.managedProperty().bind(supMyProfile.visibleProperty());
-
+        cssViewMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssCreateMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssUpdateMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssDeleteMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
     }
 
     private void hideSupSettings(boolean value) {
@@ -192,7 +228,8 @@ public class HomeManagerController implements Initializable {
     private void hideSupMyProfileAdmin(boolean value) {
         supMyProfileAdmin.setVisible(value);
         supMyProfileAdmin.managedProperty().bind(supMyProfileAdmin.visibleProperty());
-
+        cssUpdateProfile.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssChangePassword.setStyle("-fx-cursor: hand; -fx-background-color: null");
     }
 
     @FXML
@@ -262,61 +299,83 @@ public class HomeManagerController implements Initializable {
     @FXML
     private void importCliecked(MouseEvent event) throws IOException {
         setCenterHomeBox("ImportProduct");
+        cssViewProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssCreateProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssUpdateProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssImportProduct.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
+        cssDeleteProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssStatistic.setStyle("-fx-cursor: hand; -fx-background-color: null");
     }
 
     @FXML
     private void createProductClicked(MouseEvent event) throws IOException {
         setCenterHomeBox("AddProduct");
+        cssViewProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssCreateProduct.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
+        cssUpdateProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssImportProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssDeleteProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssStatistic.setStyle("-fx-cursor: hand; -fx-background-color: null");
     }
 
     @FXML
     private void updateClicked(MouseEvent event) throws IOException {
         setCenterHomeBox("UpdateProduct");
+        cssViewProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssCreateProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssUpdateProduct.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
+        cssImportProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssDeleteProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssStatistic.setStyle("-fx-cursor: hand; -fx-background-color: null");
+
     }
 
     @FXML
     private void viewClicked(MouseEvent event) throws IOException {
         setCenterHomeBox("ViewProduct");
+        cssViewProduct.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
+        cssCreateProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssUpdateProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssImportProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssDeleteProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssStatistic.setStyle("-fx-cursor: hand; -fx-background-color: null");
+
     }
 
     @FXML
     private void deleteClicked(MouseEvent event) throws IOException {
         setCenterHomeBox("DeleteProduct");
-    }
-
-    @FXML
-    private void viewProfileClicked(MouseEvent event) throws IOException {
-        setCenterHomeBox("ViewUsers");
-    }
-
-    @FXML
-    private void createProfileClicked(MouseEvent event) throws IOException {
-        setCenterHomeBox("CreateUsers");
-    }
-
-    @FXML
-    private void updateProfileClicked(MouseEvent event) throws IOException {
-        setCenterHomeBox("UpdateUsers");
-    }
-
-    @FXML
-    private void deleteProfileClicked(MouseEvent event) throws IOException {
-        setCenterHomeBox("DeleteUser");
+        cssViewProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssCreateProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssUpdateProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssImportProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssDeleteProduct.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
+        cssStatistic.setStyle("-fx-cursor: hand; -fx-background-color: null");
     }
 
     @FXML
     private void statisticClicked(MouseEvent event) throws IOException {
         setCenterHomeBox("StatisticManager");
+        cssViewProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssCreateProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssUpdateProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssImportProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssDeleteProduct.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssStatistic.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
     }
 
     @FXML
     private void updateProfileAdminClicked(MouseEvent event) throws IOException {
         setCenterHomeBox("UpdateProfileAdmin");
+        cssUpdateProfile.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
+        cssChangePassword.setStyle("-fx-cursor: hand; -fx-background-color: null");
     }
 
     @FXML
     private void changePasswordProfileAdminClicked(MouseEvent event) throws IOException {
         setCenterHomeBox("ChangePasswordAdmin");
+        cssUpdateProfile.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssChangePassword.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
     }
 
     @FXML
@@ -328,6 +387,46 @@ public class HomeManagerController implements Initializable {
         } else {
             changeLanguage("vi", "VN");
         }
+    }
+
+    @FXML
+    private void viewMemberClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("ViewUsers");
+        cssViewMem.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
+        cssCreateMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssUpdateMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssDeleteMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+
+    }
+
+    @FXML
+    private void createMemberClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("CreateUsers");
+        cssViewMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssCreateMem.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
+        cssUpdateMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssDeleteMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+
+    }
+
+    @FXML
+    private void updateMemberClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("UpdateUsers");
+        cssViewMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssCreateMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssUpdateMem.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
+        cssDeleteMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+
+    }
+
+    @FXML
+    private void deleteMemberClicked(MouseEvent event) throws IOException {
+        setCenterHomeBox("DeleteUser");
+        cssViewMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssCreateMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssUpdateMem.setStyle("-fx-cursor: hand; -fx-background-color: null");
+        cssDeleteMem.setStyle("-fx-cursor: hand; -fx-background-color:" + color);
+
     }
 
 }

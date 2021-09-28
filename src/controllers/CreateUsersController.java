@@ -10,6 +10,7 @@ import datamodifier.UserModifier;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -100,6 +101,26 @@ public class CreateUsersController implements Initializable {
     private Label errorOfPosition;
     @FXML
     private ComboBox<String> positionComboBox;
+    @FXML
+    private Label bdUserName;
+    @FXML
+    private Label bdPass;
+    @FXML
+    private Label bdFullName;
+    @FXML
+    private Label bdGender;
+    @FXML
+    private Label bdPhone;
+    @FXML
+    private Label bdAddress;
+    @FXML
+    private Label bdEmail;
+    @FXML
+    private Label bdDate;
+    @FXML
+    private Label bdPosition;
+    @FXML
+    private Label bdCreate;
 
     /**
      * Initializes the controller class.
@@ -128,6 +149,34 @@ public class CreateUsersController implements Initializable {
         hideErrorOfEmail(false);
         hideErrorOfDateOfBrith(false);
         hideErrorOfPosition(false);
+        
+        setLanguage();
+    }
+
+    private void setLanguage() {
+        String langManager = HomeManagerController.gLanguage;
+        if (langManager.equalsIgnoreCase("english")) {
+            changeLanguage("en", "EN");
+        } else {
+            changeLanguage("vi", "VN");
+        }
+    }
+
+    private void changeLanguage(String language, String country) {
+
+        Locale locale = new Locale(language, country);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/create_user/Bundle", locale);
+
+        bdUserName.setText(resourceBundle.getString("bdUserName"));
+        bdPass.setText(resourceBundle.getString("bdPass"));
+        bdFullName.setText(resourceBundle.getString("bdFullName"));
+        bdGender.setText(resourceBundle.getString("bdGender"));
+        bdPhone.setText(resourceBundle.getString("bdPhone"));
+        bdAddress.setText(resourceBundle.getString("bdAddress"));
+        bdEmail.setText(resourceBundle.getString("bdEmail"));
+        bdDate.setText(resourceBundle.getString("bdDate"));
+        bdPosition.setText(resourceBundle.getString("bdPosition"));
+        bdCreate.setText(resourceBundle.getString("bdCreate"));
     }
 
     private void hideErrorOfUserName(boolean value) {

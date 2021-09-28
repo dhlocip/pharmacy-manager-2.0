@@ -8,7 +8,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.NoticeController">
    <center>
-      <VBox alignment="CENTER" style="-fx-border-color: grey; -fx-background-color: orange;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" style="-fx-border-color: grey;" styleClass="lable-button" stylesheets="@../css/home.css" BorderPane.alignment="CENTER">
          <children>
             <VBox style="-fx-border-color: grey; -fx-background-color: white;">
                <children>

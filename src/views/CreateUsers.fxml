@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -21,34 +22,34 @@
          <children>
             <VBox prefWidth="369.0">
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="User Name">
+                  <Label fx:id="bdUserName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="User Name">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="userNameTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#userNameReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1" />
+                  <TextField fx:id="userNameTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#userNameReleased" prefHeight="35.0" prefWidth="369.0" promptText="enter..." />
                   <Label fx:id="errorOfUserName" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Password">
+                  <Label fx:id="bdPass" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Password">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="passwordTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#passwordReleased" prefHeight="35.0" prefWidth="369.0" />
+                  <PasswordField fx:id="passwordTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#passwordReleased" prefHeight="35.0" prefWidth="369.0" promptText="enter..." />
                   <Label fx:id="errorOfPassword" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Full Name">
+                  <Label fx:id="bdFullName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Full Name">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="fullnameTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#fullNameReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1" />
+                  <TextField fx:id="fullnameTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#fullNameReleased" prefHeight="35.0" prefWidth="369.0" promptText="enter..." />
                   <Label fx:id="errorOfFullName" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
                         <Font size="12.0" />
@@ -58,7 +59,7 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefWidth="369.0">
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Gender">
+                  <Label fx:id="bdGender" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Gender">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -79,7 +80,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Phone">
+                  <Label fx:id="bdPhone" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Phone">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -87,7 +88,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="phoneTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#phoneReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                  <TextField fx:id="phoneTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#phoneReleased" prefHeight="35.0" prefWidth="369.0" promptText="enter...">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -100,7 +101,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Address">
+                  <Label fx:id="bdAddress" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Address">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -108,7 +109,7 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="addressTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#addressReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                  <TextField fx:id="addressTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#addressReleased" prefHeight="35.0" prefWidth="369.0" promptText="enter...">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -128,29 +129,29 @@
             </VBox>
             <VBox prefWidth="369.0">
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Email">
+                  <Label fx:id="bdEmail" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Email">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="emailTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#emailReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1" />
+                  <TextField fx:id="emailTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#emailReleased" prefHeight="35.0" prefWidth="369.0" promptText="enter..." />
                   <Label fx:id="errorOfEmail" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Date Of Birth">
+                  <Label fx:id="bdDate" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Date Of Birth">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="dateOfBirthDatePicker" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#dateOfBirthAction" prefHeight="35.0" prefWidth="369.0" />
+                  <DatePicker fx:id="dateOfBirthDatePicker" maxHeight="-Infinity" maxWidth="-Infinity" onAction="#dateOfBirthAction" prefHeight="35.0" prefWidth="369.0" promptText="select" />
                   <Label fx:id="errorOfDateOfBirth" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Position">
+                  <Label fx:id="bdPosition" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Position">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -161,7 +162,7 @@
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#createUserClicked" prefHeight="35.0" prefWidth="369.0" style="-fx-cursor: hand; -fx-background-color: green;" styleClass="labelMain" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" onMouseClicked="#createUserClicked" prefHeight="35.0" prefWidth="369.0" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="GRAPHIC_ONLY" prefHeight="24.0" prefWidth="24.0" text="Label">
                            <graphic>
@@ -175,7 +176,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="Create User">
+                        <Label fx:id="bdCreate" prefHeight="27.0" text="Create User">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -187,6 +188,10 @@
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
+                     <styleClass>
+                        <String fx:value="lable-button" />
+                        <String fx:value="lable-button-is-hover" />
+                     </styleClass>
                   </HBox>
                </children>
             </VBox>

@@ -8,11 +8,13 @@ package controllers;
 import data.Products;
 import data.Users;
 import datamodifier.BillDetailModifier;
+import datamodifier.BillModifier;
 import datamodifier.ImportBatchDetailModifier;
 import datamodifier.ProductsModifier;
 import datamodifier.UserModifier;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -68,16 +70,16 @@ public class DeleteUserController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             // TODO
-            
+
             getUsersInfo();
         } catch (SQLException ex) {
             Logger.getLogger(DeleteUserController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+    }
 
-    private void getUsersInfo() throws SQLException{
+    private void getUsersInfo() throws SQLException {
         ObservableList<Users> oList = new UserModifier().getInfo();
-        
+
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
         passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
@@ -88,13 +90,13 @@ public class DeleteUserController implements Initializable {
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         positionCol.setCellValueFactory(new PropertyValueFactory<>("position"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
-        
+
         tableViewUsers.setItems(oList);
     }
-    
-    private void getUsersInfoAfterSearch() throws SQLException{
+
+    private void getUsersInfoAfterSearch() throws SQLException {
         ObservableList<Users> oList = new UserModifier().searchByName(searchTextField.getText());
-        
+
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
         userNameCol.setCellValueFactory(new PropertyValueFactory<>("userName"));
         passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
@@ -105,10 +107,10 @@ public class DeleteUserController implements Initializable {
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         positionCol.setCellValueFactory(new PropertyValueFactory<>("position"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
-        
+
         tableViewUsers.setItems(oList);
     }
-    
+
     @FXML
     private void searchReleased(KeyEvent event) throws SQLException {
         getUsersInfoAfterSearch();
@@ -117,25 +119,33 @@ public class DeleteUserController implements Initializable {
     @FXML
     private void tableViewUserClicked(MouseEvent event) throws SQLException {
         Users item = tableViewUsers.getSelectionModel().getSelectedItem();
-        if(item != null){
+
+        if (item == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Notification");
+            alert.setHeaderText("Error");
+            alert.setContentText("Please click on the line different null");
+        } else {
+            List<Integer> listBills = new BillModifier().getListBills(item.getUserId());
+            
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Notification");
             alert.setHeaderText("Confirm");
             alert.setContentText("Are you sure?\nClick OK to delete the line.");
             Optional<ButtonType> result = alert.showAndWait();
-            
-            if(result.isPresent() && result.get() == ButtonType.OK){
-                if(new UserModifier().deleteByUserId(item.getUserId())){
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+
+                for (Integer listBill : listBills) {
+                    new BillDetailModifier().deleteByBillId(listBill);
+                }
+
+                if (new BillModifier().deleteByUserId(item.getUserId())) {
+                    new UserModifier().deleteByUserId(item.getUserId());
                     getUsersInfo();
                 }
             }
-                    
-        }else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Notification");
-            alert.setHeaderText("Error");
-            alert.setContentText("Please click on the line different null");
         }
     }
-    
+
 }

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -41,7 +43,32 @@
             <VBox />
             <VBox alignment="BOTTOM_CENTER">
                <children>
-                  <HBox alignment="CENTER" onMouseClicked="#executeClicked" style="-fx-background-color: orange; -fx-cursor: hand;">
+                  <HBox fx:id="executeTopBox" alignment="CENTER" onMouseClicked="#executeTopClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
+                     <children>
+                        <Label prefHeight="35.0">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/view-list-ordered-symbolic.symbolic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="35.0" text="Execute">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <styleClass>
+                        <String fx:value="lable-button" />
+                        <String fx:value="lable-button-is-hover" />
+                     </styleClass>
+                  </HBox>
+                  <HBox fx:id="executeDetailBox" alignment="CENTER" onMouseClicked="#executeDetailClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                      <children>
                         <Label prefHeight="35.0">
                            <graphic>
@@ -61,10 +88,71 @@
                            </HBox.margin>
                         </Label>
                      </children>
+                     <styleClass>
+                        <String fx:value="lable-button" />
+                        <String fx:value="lable-button-is-hover" />
+                     </styleClass>
                   </HBox>
                </children>
                <HBox.margin>
                   <Insets left="20.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="BOTTOM_CENTER">
+               <children>
+                  <HBox fx:id="saleDetailBack" alignment="CENTER" onMouseClicked="#detailSaleClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
+                     <children>
+                        <Label prefHeight="35.0">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/edit-redo-symbolic-rtl.symbolic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="35.0" text="Sale Detail">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <styleClass>
+                        <String fx:value="lable-button" />
+                        <String fx:value="lable-button-is-hover" />
+                     </styleClass>
+                  </HBox>
+                  <HBox fx:id="topSaleNext" alignment="CENTER" onMouseClicked="#topSaleClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
+                     <children>
+                        <Label prefHeight="35.0">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/edit-redo-symbolic.symbolic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="35.0" text="Top Sale">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <styleClass>
+                        <String fx:value="lable-button" />
+                        <String fx:value="lable-button-is-hover" />
+                     </styleClass>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
                </HBox.margin>
             </VBox>
          </children>
@@ -72,98 +160,163 @@
             <Insets bottom="5.0" />
          </BorderPane.margin></HBox>
    </top>
-   <center>
-      <LineChart fx:id="lineChart" BorderPane.alignment="CENTER">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-         <BorderPane.margin>
-            <Insets left="10.0" />
-         </BorderPane.margin>
-         <padding>
-            <Insets bottom="10.0" right="10.0" top="10.0" />
-         </padding>
-      </LineChart>
-   </center>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
    <left>
-      <VBox prefHeight="417.0" prefWidth="415.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
          <children>
-            <HBox>
+            <VBox fx:id="detailSaleBox" VBox.vgrow="ALWAYS">
                <children>
-                  <Label prefHeight="40.0" text="Total sales from day">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-                  <Label fx:id="startDate" prefHeight="40.0" style="-fx-font-weight: bold;" text="A">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label prefHeight="40.0" text="to">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label fx:id="endDate" prefHeight="40.0" style="-fx-font-weight: bold;" text="B">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label prefHeight="40.0" text=":">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label fx:id="tTotal" prefHeight="40.0" style="-fx-font-weight: bold;" text="1000">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Label>
+                  <HBox>
+                     <children>
+                        <Label prefHeight="40.0" text="Total sales from day">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="startDate" prefHeight="40.0" style="-fx-font-weight: bold;" text="A">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="40.0" text="to">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="endDate" prefHeight="40.0" style="-fx-font-weight: bold;" text="B">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="40.0" text=":">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="tTotal1" prefHeight="40.0" style="-fx-font-weight: bold;" text="1000">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <TableView fx:id="tableViewByBillId" tableMenuButtonVisible="true" HBox.hgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="bUserId" prefWidth="75.0" text="User Id" />
+                              <TableColumn fx:id="bBillId" prefWidth="75.0" text="Bill Id" />
+                              <TableColumn fx:id="bTotal" prefWidth="75.0" text="Total" />
+                              <TableColumn fx:id="bDate" prefWidth="75.0" text="Date" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="100.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <TableView fx:id="tableViewByDate" tableMenuButtonVisible="true" HBox.hgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="dUserId" prefWidth="75.0" text="User Id" />
+                              <TableColumn fx:id="dTotal" prefWidth="75.0" text="Total" />
+                              <TableColumn fx:id="dDate" prefWidth="75.0" text="Date" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox prefHeight="100.0" VBox.vgrow="ALWAYS">
+            </VBox>
+            <VBox fx:id="topSaleBox" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView fx:id="tableViewByBillId" tableMenuButtonVisible="true" HBox.hgrow="ALWAYS">
-                    <columns>
-                        <TableColumn fx:id="bUserId" prefWidth="75.0" text="User Id" />
-                      <TableColumn fx:id="bBillId" prefWidth="75.0" text="Bill Id" />
-                      <TableColumn fx:id="bTotal" prefWidth="75.0" text="Total" />
-                        <TableColumn fx:id="bDate" prefWidth="75.0" text="Date" />
-                    </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
+                  <HBox>
+                     <children>
+                        <Label prefHeight="40.0" text="No 1.">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="endDate1" prefHeight="40.0" style="-fx-font-weight: bold;" text="B">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="40.0" text=":">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="tTotal2" prefHeight="40.0" style="-fx-font-weight: bold;" text="1000">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <TableView fx:id="tableViewTopSale" tableMenuButtonVisible="true" HBox.hgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="tUserid" prefWidth="75.0" text="User Id" />
+                              <TableColumn fx:id="tTotal" prefWidth="75.0" text="Total" />
+                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </HBox>
                </children>
-               <VBox.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <TableView fx:id="tableViewByDate" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" HBox.hgrow="ALWAYS">
-                    <columns>
-                        <TableColumn fx:id="dUserId" prefWidth="75.0" text="User Id" />
-                      <TableColumn fx:id="dTotal" prefWidth="75.0" text="Total" />
-                      <TableColumn fx:id="dDate" prefWidth="75.0" text="Date" />
-                    </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
-               </children>
-            </HBox>
+            </VBox>
          </children>
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
       </VBox>
    </left>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
+   <center>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="lineChartBox" VBox.vgrow="ALWAYS">
+               <children>
+                  <LineChart fx:id="lineChart" alternativeColumnFillVisible="true" legendSide="RIGHT" HBox.hgrow="ALWAYS">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" fx:id="xAxisLine" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="yAxisLine" side="LEFT" />
+                    </yAxis>
+                     <padding>
+                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </LineChart>
+               </children>
+            </HBox>
+            <HBox fx:id="barChartBox" VBox.vgrow="ALWAYS">
+               <children>
+                  <BarChart fx:id="barChart" HBox.hgrow="ALWAYS">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" fx:id="xAxisBar" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="yAxisBar" side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets left="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
 </BorderPane>

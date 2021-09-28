@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -41,10 +42,14 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="checkOutLabel" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#checkOutClicked" prefHeight="30.0" prefWidth="210.0" style="-fx-background-color: gray; -fx-text-fill: white;" text="Checkout">
+                  <Button fx:id="checkOutLabel" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#checkOutClicked" prefHeight="30.0" prefWidth="210.0" stylesheets="@../css/home.css" text="Checkout">
                      <VBox.margin>
                         <Insets bottom="5.0" left="10.0" top="5.0" />
                      </VBox.margin>
+                     <styleClass>
+                        <String fx:value="lable-button" />
+                        <String fx:value="lable-button-is-hover" />
+                     </styleClass>
                   </Button>
                   <VBox fx:id="editCartVBox" alignment="CENTER">
                      <children>
@@ -156,15 +161,23 @@
                         </VBox>
                         <HBox alignment="CENTER">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#removeAction" prefHeight="35.0" style="-fx-background-color: gray; -fx-text-fill: white;" text="Remove">
+                              <Button mnemonicParsing="false" onAction="#removeAction" prefHeight="35.0" stylesheets="@../css/home.css" text="Remove">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="lable-button" />
+                                    <String fx:value="lable-button-is-hover" />
+                                 </styleClass>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#updateAction" prefHeight="35.0" style="-fx-background-color: gray; -fx-text-fill: white;" text="Update">
+                              <Button mnemonicParsing="false" onAction="#updateAction" prefHeight="35.0" stylesheets="@../css/home.css" text="Update">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="lable-button" />
+                                    <String fx:value="lable-button-is-hover" />
+                                 </styleClass>
                               </Button>
                            </children>
                            <VBox.margin>

@@ -5,7 +5,12 @@
  */
 package main;
 
+import data.Cart;
+import datamodifier.StatisticModifier;
+import java.sql.SQLException;
+import java.util.List;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,8 +30,23 @@ public class Main extends Application {
         stage.setTitle("Login");
         stage.show();
     }
-    
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws SQLException {
         launch(args);
+
+//        List<Cart> cList = new StatisticModifier().getTest("09/01/2020", "09/30/2020");
+//
+//        
+//        
+//        for (int i = 1; i < cList.size(); i++) {
+//            if(cList.get(i-1).getUserId() == cList.get(i).getUserId()){
+//                System.out.println(cList.get(i-1).getUserId() + " = " + cList.get(i).getUserId());
+//            }else{
+//                System.out.println(cList.get(i-1).getUserId() + " != " + cList.get(i).getUserId());
+//            }
+//            
+//        }
+//        System.out.println(cList.size());
+//        System.out.println("end");
     }
 }
