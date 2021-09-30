@@ -43,11 +43,4 @@ public class ProductChildModifier extends UseDataBase {
         return oList;
     }
 
-//    public static void main(String[] args) throws SQLException {
-//        ObservableList<ProductChild> oList = new ProductChildModifier().getInfo();
-//        oList.forEach((t) -> {
-//            System.out.println(t.getName());
-//        });
-//
-//    }
 }

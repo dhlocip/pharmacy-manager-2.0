@@ -85,13 +85,4 @@ public class ImportBatchModifier extends UseDataBase {
         return oList;
     }
     
-//    public static void main(String[] args) throws SQLException {
-////        ObservableList<ImportBatch> list = new ImportBatchModifier().getImpBatchInfo(10001);
-////        list.forEach((t) -> {
-////            System.out.println(t.getDate());
-////        });
-//
-//        int tes = new ImportBatchModifier().getImpId(10000);
-//        System.out.println(tes);
-//    }
 }

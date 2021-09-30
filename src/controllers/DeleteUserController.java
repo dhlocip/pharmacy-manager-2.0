@@ -15,6 +15,7 @@ import datamodifier.UserModifier;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -24,6 +25,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -62,6 +64,10 @@ public class DeleteUserController implements Initializable {
     private TableColumn<Users, String> passwordCol;
     @FXML
     private TableColumn<Users, String> emailCol;
+    @FXML
+    private Label bdInstruction;
+    @FXML
+    private Label bdIntrucstionDetail;
 
     /**
      * Initializes the controller class.
@@ -75,6 +81,28 @@ public class DeleteUserController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(DeleteUserController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        setLanguage();
+    }
+    
+    private void setLanguage() {
+        String langManager = HomeManagerController.gLanguage;
+        if (langManager.equalsIgnoreCase("english")) {
+            changeLanguage("en", "EN");
+        } else {
+            changeLanguage("vi", "VN");
+        }
+    }
+
+    private void changeLanguage(String language, String country) {
+
+        Locale locale = new Locale(language, country);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/delete/Bundle", locale);
+
+        searchTextField.setPromptText(resourceBundle.getString("searchTextField"));
+        
+        bdInstruction.setText(resourceBundle.getString("bdInstruction"));
+        bdIntrucstionDetail.setText(resourceBundle.getString("bdIntrucstionDetail"));
     }
 
     private void getUsersInfo() throws SQLException {

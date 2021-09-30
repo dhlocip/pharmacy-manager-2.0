@@ -11,6 +11,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -74,6 +75,14 @@ public class StatisticMemberController implements Initializable {
     private NumberAxis yAxis;
     @FXML
     private CategoryAxis xAxis;
+    @FXML
+    private Label bdStartDate;
+    @FXML
+    private Label bdEndDate;
+    @FXML
+    private Label bdExeTop;
+    @FXML
+    private Label bdTitleDetail;
 
     /**
      * Initializes the controller class.
@@ -85,7 +94,28 @@ public class StatisticMemberController implements Initializable {
         hideErrorOfStartBill(false);
 
         lUserId = new HomeMemberController().gUserId;
+        setLanguage();
+    }
+    
+    private void setLanguage() {
+        String langMember = HomeMemberController.gLanguage;
+        if (langMember.equalsIgnoreCase("english")) {
+            changeLanguage("en", "EN");
+        } else {
+            changeLanguage("vi", "VN");
+        }
+    }
 
+    private void changeLanguage(String language, String country) {
+
+        Locale locale = new Locale(language, country);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/statistic_manager/Bundle", locale);
+
+        bdStartDate.setText(resourceBundle.getString("bdStartDate"));
+        bdEndDate.setText(resourceBundle.getString("bdEndDate"));
+        bdExeTop.setText(resourceBundle.getString("bdExeTop"));
+        bdTitleDetail.setText(resourceBundle.getString("bdTitleDetail"));
+        
     }
 
     private void getLineChart() throws SQLException {

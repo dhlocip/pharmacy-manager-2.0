@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -120,6 +121,22 @@ public class StatisticManagerController implements Initializable {
     private NumberAxis yAxisBar;
     @FXML
     private CategoryAxis xAxisBar;
+    @FXML
+    private Label bdStartDate;
+    @FXML
+    private Label bdEndDate;
+    @FXML
+    private Label bdExeTop;
+    @FXML
+    private Label bdExeDetail;
+    @FXML
+    private Label bdSaleDetail;
+    @FXML
+    private Label bdTopSale;
+    @FXML
+    private Label bdTitleDetail;
+    @FXML
+    private Label bdTitleTop;
 
     /**
      * Initializes the controller class.
@@ -135,14 +152,41 @@ public class StatisticManagerController implements Initializable {
         hideSaleDetailBack(false);
         hideExecuteTop(false);
         hideBarChart(false);
+        
+        setLanguage();
     }
     
-    private void getTableTopSale() throws SQLException{
-        ObservableList<Cart> oList = new StatisticModifier().getTableSale(lStartDate, lEndDate);
+    private void setLanguage() {
+        String langManager = HomeManagerController.gLanguage;
+        if (langManager.equalsIgnoreCase("english")) {
+            changeLanguage("en", "EN");
+        } else {
+            changeLanguage("vi", "VN");
+        }
+    }
+
+    private void changeLanguage(String language, String country) {
+
+        Locale locale = new Locale(language, country);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/statistic_manager/Bundle", locale);
+
+        bdStartDate.setText(resourceBundle.getString("bdStartDate"));
+        bdEndDate.setText(resourceBundle.getString("bdEndDate"));
+        bdExeTop.setText(resourceBundle.getString("bdExeTop"));
+        bdExeDetail.setText(resourceBundle.getString("bdExeDetail"));
+        bdSaleDetail.setText(resourceBundle.getString("bdSaleDetail"));
+        bdTopSale.setText(resourceBundle.getString("bdTopSale"));
+        bdTitleDetail.setText(resourceBundle.getString("bdTitleDetail"));
+        bdTitleTop.setText(resourceBundle.getString("bdTitleTop"));
         
+    }
+
+    private void getTableTopSale() throws SQLException {
+        ObservableList<Cart> oList = new StatisticModifier().getTableSale(lStartDate, lEndDate);
+
         tUserid.setCellValueFactory(new PropertyValueFactory<>("userId"));
         tTotal.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        
+
         tableViewTopSale.setItems(oList);
     }
 
@@ -157,7 +201,7 @@ public class StatisticManagerController implements Initializable {
         barChart.setTitle("Top sales");
         xAxisBar.setLabel("User ID");
     }
-    
+
     private void getLineChart() throws SQLException {
         ObservableList<XYChart.Series<String, Number>> series = FXCollections.observableArrayList();
 
@@ -182,6 +226,13 @@ public class StatisticManagerController implements Initializable {
                 tmpSeries.setName("Employee No. " + cList.get(i).getUserId());
                 series.add(tmpSeries);
             }
+
+        }
+        if (cList.size() == 1) {
+            tmpSeries.getData().add(new XYChart.Data(cList.get(0).getTransactionTime(), cList.get(0).getAmount()));
+            series.add(tmpSeries);
+            tmpSeries.setName("Employee No. " + cList.get(0).getUserId());
+
         }
 
         lineChart.getData().clear();
@@ -209,42 +260,42 @@ public class StatisticManagerController implements Initializable {
 
         tableViewByBillId.setItems(cList);
     }
-    
+
     private void hideLineChart(boolean value) {
         lineChartBox.setVisible(value);
         lineChartBox.managedProperty().bind(lineChartBox.visibleProperty());
     }
-    
+
     private void hideBarChart(boolean value) {
         barChartBox.setVisible(value);
         barChartBox.managedProperty().bind(barChartBox.visibleProperty());
     }
-    
+
     private void hideExecuteTop(boolean value) {
         executeTopBox.setVisible(value);
         executeTopBox.managedProperty().bind(executeTopBox.visibleProperty());
     }
-    
+
     private void hideExecuteDetail(boolean value) {
         executeDetailBox.setVisible(value);
         executeDetailBox.managedProperty().bind(executeDetailBox.visibleProperty());
     }
-    
+
     private void hideSaleDetailBack(boolean value) {
         saleDetailBack.setVisible(value);
         saleDetailBack.managedProperty().bind(saleDetailBack.visibleProperty());
     }
-    
+
     private void hideTopSaleNext(boolean value) {
         topSaleNext.setVisible(value);
         topSaleNext.managedProperty().bind(topSaleNext.visibleProperty());
     }
-    
+
     private void hideSaleDetail(boolean value) {
         detailSaleBox.setVisible(value);
         detailSaleBox.managedProperty().bind(detailSaleBox.visibleProperty());
     }
-    
+
     private void hideTopSale(boolean value) {
         topSaleBox.setVisible(value);
         topSaleBox.managedProperty().bind(topSaleBox.visibleProperty());

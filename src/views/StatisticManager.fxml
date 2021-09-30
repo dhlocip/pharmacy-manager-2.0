@@ -16,13 +16,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="homeBox" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StatisticManagerController">
+<BorderPane fx:id="homeBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StatisticManagerController">
    <top>
-      <HBox alignment="BOTTOM_LEFT" BorderPane.alignment="CENTER">
+      <HBox alignment="BOTTOM_LEFT" BorderPane.alignment="CENTER_LEFT">
          <children>
             <VBox>
                <children>
-                  <Label prefHeight="35.0" text="Start Date:" />
+                  <Label fx:id="bdStartDate" prefHeight="35.0" text="Start Date:" />
                   <Label fx:id="errorOfStartDate" text="error" />
                   <DatePicker fx:id="dpStartDate" onAction="#startDateAction" prefHeight="35.0" prefWidth="260.0" />
                </children>
@@ -32,7 +32,7 @@
             </VBox>
             <VBox>
                <children>
-                  <Label prefHeight="35.0" text="End Date:" />
+                  <Label fx:id="bdEndDate" prefHeight="35.0" text="End Date:" />
                   <Label fx:id="errorOfEndDate" text="error" />
                   <DatePicker fx:id="dpEndDate" onAction="#endDateAction" prefHeight="35.0" prefWidth="260.0" />
                </children>
@@ -40,10 +40,9 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </VBox>
-            <VBox />
             <VBox alignment="BOTTOM_CENTER">
                <children>
-                  <HBox fx:id="executeTopBox" alignment="CENTER" onMouseClicked="#executeTopClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
+                  <HBox fx:id="executeTopBox" alignment="CENTER" minWidth="-Infinity" onMouseClicked="#executeTopClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                      <children>
                         <Label prefHeight="35.0">
                            <graphic>
@@ -57,7 +56,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="35.0" text="Execute">
+                        <Label fx:id="bdExeTop" prefHeight="35.0" style="-fx-font-weight: bold;" text="Execute">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
@@ -68,7 +67,7 @@
                         <String fx:value="lable-button-is-hover" />
                      </styleClass>
                   </HBox>
-                  <HBox fx:id="executeDetailBox" alignment="CENTER" onMouseClicked="#executeDetailClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
+                  <HBox fx:id="executeDetailBox" alignment="CENTER" minWidth="-Infinity" onMouseClicked="#executeDetailClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                      <children>
                         <Label prefHeight="35.0">
                            <graphic>
@@ -82,7 +81,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="35.0" text="Execute">
+                        <Label fx:id="bdExeDetail" prefHeight="35.0" style="-fx-font-weight: bold;" text="Execute">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
@@ -100,7 +99,7 @@
             </VBox>
             <VBox alignment="BOTTOM_CENTER">
                <children>
-                  <HBox fx:id="saleDetailBack" alignment="CENTER" onMouseClicked="#detailSaleClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
+                  <HBox fx:id="saleDetailBack" alignment="CENTER" minWidth="-Infinity" onMouseClicked="#detailSaleClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                      <children>
                         <Label prefHeight="35.0">
                            <graphic>
@@ -114,7 +113,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="35.0" text="Sale Detail">
+                        <Label fx:id="bdSaleDetail" prefHeight="35.0" style="-fx-font-weight: bold;" text="Sale Detail">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
@@ -125,7 +124,7 @@
                         <String fx:value="lable-button-is-hover" />
                      </styleClass>
                   </HBox>
-                  <HBox fx:id="topSaleNext" alignment="CENTER" onMouseClicked="#topSaleClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
+                  <HBox fx:id="topSaleNext" alignment="CENTER" minWidth="-Infinity" onMouseClicked="#topSaleClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                      <children>
                         <Label prefHeight="35.0">
                            <graphic>
@@ -139,7 +138,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="35.0" text="Top Sale">
+                        <Label fx:id="bdTopSale" prefHeight="35.0" style="-fx-font-weight: bold;" text="Top Sale">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
@@ -152,7 +151,7 @@
                   </HBox>
                </children>
                <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
+                  <Insets left="20.0" />
                </HBox.margin>
             </VBox>
          </children>
@@ -161,7 +160,7 @@
          </BorderPane.margin></HBox>
    </top>
    <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      <Insets bottom="10.0" left="10.0" right="10.0" />
    </padding>
    <left>
       <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
@@ -170,7 +169,7 @@
                <children>
                   <HBox>
                      <children>
-                        <Label prefHeight="40.0" text="Total sales from day">
+                        <Label fx:id="bdTitleDetail" prefHeight="40.0" text="Total sales from day">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -240,7 +239,7 @@
                <children>
                   <HBox>
                      <children>
-                        <Label prefHeight="40.0" text="No 1.">
+                        <Label fx:id="bdTitleTop" prefHeight="40.0" text="No 1.">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

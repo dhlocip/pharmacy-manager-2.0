@@ -76,7 +76,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" style="-fx-font-weight: bold;" text="Instruction">
+                        <Label fx:id="bdInstruction" prefHeight="27.0" style="-fx-font-weight: bold;" text="Instruction">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -86,7 +86,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label prefHeight="35.0" text="Select the line to delete then press OK.">
+                  <Label fx:id="bdIntrucstionDetail" prefHeight="35.0" text="Select the line to delete then press OK.">
                      <font>
                         <Font size="15.0" />
                      </font>

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -37,6 +38,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -52,6 +54,8 @@ public class ViewCartController implements Initializable {
     String lProductName, lUnit;
     double lPrice, lAmount;
     int total;
+    String bdNumberInCart;
+    String bdNumberInCarts;
 
     @FXML
     private TableView<Cart> cartTableView;
@@ -87,6 +91,28 @@ public class ViewCartController implements Initializable {
     private Label setPrice;
     @FXML
     private Label setAmount;
+    @FXML
+    private BorderPane homeBox;
+    @FXML
+    private Label bdShoppingCart;
+    @FXML
+    private Label bdTotal;
+    @FXML
+    private Label bdProductId;
+    @FXML
+    private Label bdProductName;
+    @FXML
+    private Label bdQuantity;
+    @FXML
+    private Label bdUnit;
+    @FXML
+    private Label bdPrice;
+    @FXML
+    private Label bdAmount;
+    @FXML
+    private Button bdRemove;
+    @FXML
+    private Button bdUpdate;
 
     /**
      * Initializes the controller class.
@@ -97,7 +123,9 @@ public class ViewCartController implements Initializable {
         try {
             lUserId = HomeMemberController.gUserId;
             lBillId = new BillModifier().getMaxBillId(lUserId);
-
+            
+            setLanguage();
+            
             getTotalLabel();
 
             getProductAllInCart();
@@ -106,6 +134,38 @@ public class ViewCartController implements Initializable {
         }
 
         hideEditCart(false);
+
+        
+    }
+
+    private void setLanguage() {
+        String langMember = HomeMemberController.gLanguage;
+        if (langMember.equalsIgnoreCase("english")) {
+            changeLanguage("en", "EN");
+        } else {
+            changeLanguage("vi", "VN");
+        }
+    }
+
+    private void changeLanguage(String language, String country) {
+
+        Locale locale = new Locale(language, country);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/view_cart/Bundle", locale);
+
+        bdNumberInCart = resourceBundle.getString("bdNumberInCart");
+        bdNumberInCarts = resourceBundle.getString("bdNumberInCarts");
+
+        checkOutLabel.setText(resourceBundle.getString("checkOutLabel"));
+        bdShoppingCart.setText(resourceBundle.getString("bdShoppingCart"));
+        bdTotal.setText(resourceBundle.getString("bdTotal"));
+        bdProductId.setText(resourceBundle.getString("bdProductId"));
+        bdProductName.setText(resourceBundle.getString("bdProductName"));
+        bdQuantity.setText(resourceBundle.getString("bdQuantity"));
+        bdUnit.setText(resourceBundle.getString("bdUnit"));
+        bdPrice.setText(resourceBundle.getString("bdPrice"));
+        bdAmount.setText(resourceBundle.getString("bdAmount"));
+        bdRemove.setText(resourceBundle.getString("bdRemove"));
+        bdUpdate.setText(resourceBundle.getString("bdUpdate"));
     }
 
     private void setEditCartInfo() {
@@ -155,9 +215,12 @@ public class ViewCartController implements Initializable {
         int numberProduct = cartModifier.getNumberProduct(lBillId);
 
         if (numberProduct == 1) {
-            numberProductLabel.setText("1 product in cart");
+            numberProductLabel.setText("1 " + bdNumberInCart);
         } else {
-            numberProductLabel.setText(numberProduct + " products in cart");
+            if (numberProduct == 0) {
+                numberProductLabel.setText("0 " + bdNumberInCart);
+            }
+            numberProductLabel.setText(numberProduct + " " + bdNumberInCarts);
         }
 
         oLists = cartModifier.viewProduct(lBillId);
@@ -182,7 +245,7 @@ public class ViewCartController implements Initializable {
                 alert.setHeaderText("Success");
                 alert.setContentText("Successful payment");
                 alert.showAndWait();
-                
+
                 new CartModifier().exportCartInfo(lBillId, lUserId);
 
 //            reload quantity product inside cart
@@ -199,8 +262,6 @@ public class ViewCartController implements Initializable {
             alert.setHeaderText("Error");
             alert.setContentText("Cart is empty");
             alert.showAndWait();
-//                Optional<ButtonType> result = alert.showAndWait();
-//                if(result.isPresent() )
         }
     }
 
@@ -231,7 +292,7 @@ public class ViewCartController implements Initializable {
 
             getProductAllInCart();
             hideEditCart(false);
-            totalLabel.setText("0");
+            getTotalLabel();
         }
     }
 
@@ -246,6 +307,7 @@ public class ViewCartController implements Initializable {
 
             getProductAllInCart();
             hideEditCart(false);
+            getTotalLabel();
         }
     }
 

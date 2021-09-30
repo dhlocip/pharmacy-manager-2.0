@@ -283,12 +283,4 @@ public class CartModifier extends UseDataBase {
         return true;
     }
 
-//    public static void main(String[] args) throws SQLException {
-////        ObservableList<Cart> list = new CartModifier().viewProduct(50055);
-////        list.forEach((t) -> {
-////            System.out.println(t.getProductName());
-////        });
-//        
-//        System.out.println(new CartModifier().getNumberProduct(333));
-//    }
 }

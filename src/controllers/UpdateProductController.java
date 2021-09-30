@@ -13,6 +13,7 @@ import datamodifier.ProductTypeModifier;
 import datamodifier.ProductsModifier;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,6 +82,16 @@ public class UpdateProductController implements Initializable {
     private TextField searchTextField;
     @FXML
     private Label errorOfProductTypeId;
+    @FXML
+    private Label bdProductTypeId;
+    @FXML
+    private Label bdProductName;
+    @FXML
+    private Label bdUnit;
+    @FXML
+    private Label bdPrice;
+    @FXML
+    private Label bdUpdateProduct;
 
     /**
      * Initializes the controller class.
@@ -106,7 +117,36 @@ public class UpdateProductController implements Initializable {
         hideErrorOfUnit(false);
         hideErrorOfProTypeId(false);
         hideErrorOfProName(false);
+        
+        setLanguage();
+    }
+    
+    private void setLanguage() {
+        String langManager = HomeManagerController.gLanguage;
+        if (langManager.equalsIgnoreCase("english")) {
+            changeLanguage("en", "EN");
+        } else {
+            changeLanguage("vi", "VN");
+        }
+    }
 
+    private void changeLanguage(String language, String country) {
+
+        Locale locale = new Locale(language, country);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/update_product/Bundle", locale);
+
+        searchTextField.setPromptText(resourceBundle.getString("searchTextField"));
+        
+        bdProductTypeId.setText(resourceBundle.getString("bdProductTypeId"));
+        bdProductName.setText(resourceBundle.getString("bdProductName"));
+        bdUnit.setText(resourceBundle.getString("bdUnit"));
+        bdPrice.setText(resourceBundle.getString("bdPrice"));
+        bdUpdateProduct.setText(resourceBundle.getString("bdUpdateProduct"));
+        
+        productNameTextField.setPromptText(resourceBundle.getString("productNameTextField"));
+        unitTextField.setPromptText(resourceBundle.getString("unitTextField"));
+        priceTextField.setPromptText(resourceBundle.getString("priceTextField"));
+        
     }
 
     private void setProductTypeId() throws SQLException {

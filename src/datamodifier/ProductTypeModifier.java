@@ -34,18 +34,6 @@ public class ProductTypeModifier extends UseDataBase {
         return oList;
     }
 
-////    get list productId
-//    public ObservableList<Integer> getListProId() throws SQLException {
-//        ObservableList<Integer> oList = FXCollections.observableArrayList();
-//        String sql = "select * from productType";
-//        PreparedStatement preStatement = connect().prepareStatement(sql);
-//        preStatement.execute();
-//        ResultSet result = preStatement.getResultSet();
-//        while (result.next()) {
-//            oList.add(result.getInt("productTypeId"));
-//        }
-//        return oList;
-//    }
     //    insert product type new
     public boolean addProductTypeNew(String productTypeName) throws SQLException {
         String sql = "insert into productType "
@@ -83,7 +71,4 @@ public class ProductTypeModifier extends UseDataBase {
         return false;
     }
     
-    public static void main(String[] args) throws SQLException {
-        System.out.println(new ProductTypeModifier().matchProductType("type a"));
-    }
 }

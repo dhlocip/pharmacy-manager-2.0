@@ -72,7 +72,7 @@
                <children>
                   <VBox alignment="CENTER" prefWidth="369.0">
                      <children>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Full Name" VBox.vgrow="NEVER">
+                        <Label fx:id="bdFullName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Full Name" VBox.vgrow="NEVER">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -93,7 +93,7 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Gender" VBox.vgrow="NEVER">
+                        <Label fx:id="bdGender" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Gender" VBox.vgrow="NEVER">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -114,7 +114,7 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Phone">
+                        <Label fx:id="bdPhone" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Phone">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -139,7 +139,7 @@
                   </VBox>
                   <VBox prefWidth="369.0">
                      <children>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Address">
+                        <Label fx:id="bdAddress" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Address">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -150,7 +150,7 @@
                               <Font size="12.0" />
                            </font>
                         </Label>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Email">
+                        <Label fx:id="bdEmail" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Email">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -161,7 +161,7 @@
                               <Font size="12.0" />
                            </font>
                         </Label>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Date Of Birth">
+                        <Label fx:id="bdDateOfBirth" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Date Of Birth">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -179,7 +179,7 @@
                   </VBox>
                   <VBox prefWidth="369.0">
                      <children>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Position">
+                        <Label fx:id="bdPosition" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Position">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -204,7 +204,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label prefHeight="27.0" text="Update User">
+                              <Label fx:id="bdUpdateUser" prefHeight="27.0" text="Update User">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -235,6 +235,6 @@
       </BorderPane>
    </center>
    <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      <Insets bottom="10.0" left="10.0" right="10.0" />
    </padding>
 </BorderPane>

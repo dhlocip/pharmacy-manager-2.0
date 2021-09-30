@@ -77,6 +77,8 @@ public class NoticeController implements Initializable {
 
         bdNotice.setText(resourceBundle.getString("bdNotice"));
         bdNoticeTitle.setText(resourceBundle.getString("bdNotice"));
+        bdWorkTime.setText(resourceBundle.getString("bdWorkTime"));
+        
         bdNoticeSup1.setText(resourceBundle.getString("bdNoticeSup1"));
         bdNoticeSup2.setText(resourceBundle.getString("bdNoticeSup2"));
         bdWorkTimeSup1.setText(resourceBundle.getString("bdWorkTimeSup1"));

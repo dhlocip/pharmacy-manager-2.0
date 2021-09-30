@@ -62,11 +62,4 @@ public class AllInfoProductModifier extends UseDataBase {
         return listProducts;
     }
 
-//    public static void main(String[] args) throws SQLException {
-////        ObservableList<AllInfoProduct> list = new AllInfoProductModifier().findProduct("Medicine ");
-////        System.out.println("size: " + list.size());
-////        list.forEach((t) -> {
-////            System.out.println(t.getProductName());
-////        });
-//    }
 }

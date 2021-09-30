@@ -2,11 +2,13 @@
  * Empty Stylesheet file.
  */
 
-.root {
-    /*-fx-background-color: #00ccff;*/
+
+.sup-background {
+    -fx-background-color: #fff;
+    
 }
 
-.lable-button {
+.lable-button, .background {
     /*-fx-background-color: #FFB740;*/
     -fx-background-color: #FFB319;
     

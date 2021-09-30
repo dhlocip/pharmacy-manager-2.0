@@ -42,7 +42,7 @@
                         <Insets />
                      </HBox.margin>
                   </Label>
-                  <Label prefHeight="27.0" text="Import New Batch">
+                  <Label fx:id="bdImportNewBatch" prefHeight="27.0" style="-fx-font-weight: bold;" text="Import New Batch">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -106,7 +106,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefWidth="369.0">
                      <children>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Product ID" VBox.vgrow="NEVER">
+                        <Label fx:id="bdProductId" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Product ID" VBox.vgrow="NEVER">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -124,7 +124,7 @@
                               <Font size="12.0" />
                            </font>
                         </Label>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Price" VBox.vgrow="NEVER">
+                        <Label fx:id="bdPrice" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Price" VBox.vgrow="NEVER">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -132,7 +132,7 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="impPriceTextField" maxWidth="-Infinity" onKeyReleased="#priceReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                        <TextField fx:id="impPriceTextField" maxWidth="-Infinity" onKeyReleased="#priceReleased" prefHeight="35.0" prefWidth="369.0" promptText="value greater than 0">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -145,7 +145,7 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Quantity" VBox.vgrow="NEVER">
+                        <Label fx:id="bdQuantity" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Quantity" VBox.vgrow="NEVER">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -153,7 +153,7 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="impQuantityTextField" maxWidth="-Infinity" onKeyReleased="#quantityReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1">
+                        <TextField fx:id="impQuantityTextField" maxWidth="-Infinity" onKeyReleased="#quantityReleased" prefHeight="35.0" prefWidth="369.0" promptText="value greater than 0">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -173,7 +173,7 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefWidth="369.0">
                      <children>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="MFG Date">
+                        <Label fx:id="bdMfgDate" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="MFG Date">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -181,7 +181,7 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <DatePicker fx:id="mfgDateTextField" maxWidth="-Infinity" onAction="#mfgDateClicked" prefHeight="35.0" prefWidth="369.0" promptText="choose mfg date" showWeekNumbers="true">
+                        <DatePicker fx:id="mfgDateTextField" maxWidth="-Infinity" onAction="#mfgDateClicked" prefHeight="35.0" prefWidth="369.0" promptText="select" showWeekNumbers="true">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -194,7 +194,7 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="EXP Date">
+                        <Label fx:id="bdExpDate" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="EXP Date">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -202,7 +202,7 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <DatePicker fx:id="expDateTextField" maxWidth="-Infinity" onAction="#expDateClicked" prefHeight="35.0" prefWidth="369.0" promptText="choose exp date" showWeekNumbers="true">
+                        <DatePicker fx:id="expDateTextField" maxWidth="-Infinity" onAction="#expDateClicked" prefHeight="35.0" prefWidth="369.0" promptText="select" showWeekNumbers="true">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -229,7 +229,7 @@
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label prefHeight="27.0" text="Import Detail Batch">
+                              <Label fx:id="bdImportDetailBatch" prefHeight="27.0" style="-fx-font-weight: bold;" text="Import Detail Batch">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -260,7 +260,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <Label prefHeight="27.0" text="Import File Excel">
+                              <Label fx:id="bdImportFileExcel" prefHeight="27.0" style="-fx-font-weight: bold;" text="Import File Excel">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -312,7 +312,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" style="-fx-font-weight: bold;" text="Instruction">
+                        <Label fx:id="bdInstruction" prefHeight="27.0" style="-fx-font-weight: bold;" text="Instruction">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -322,7 +322,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label prefHeight="35.0" text="Need to import new batch before  import batch detail.">
+                  <Label fx:id="bdInstructionDetail" prefHeight="35.0" text="Need to import new batch before  import batch detail.">
                      <font>
                         <Font size="15.0" />
                      </font>

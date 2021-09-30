@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewCartController">
+<BorderPane fx:id="homeBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewCartController">
    <top>
-      <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="68.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="68.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="40.0" style="-fx-font-weight: bold;" text="Shopping Cart">
+            <Label fx:id="bdShoppingCart" prefHeight="40.0" style="-fx-font-weight: bold;" text="Shopping Cart">
                <font>
                   <Font size="40.0" />
                </font>
@@ -28,11 +28,11 @@
       </HBox>
    </top>
    <center>
-      <BorderPane prefHeight="500.0" prefWidth="819.0" BorderPane.alignment="CENTER">
+      <BorderPane BorderPane.alignment="CENTER">
          <right>
             <VBox BorderPane.alignment="CENTER">
                <children>
-                  <Label prefHeight="30.0" text="Total:">
+                  <Label fx:id="bdTotal" prefHeight="30.0" text="Total:">
                      <VBox.margin>
                         <Insets bottom="5.0" left="10.0" />
                      </VBox.margin>
@@ -42,7 +42,7 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="checkOutLabel" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#checkOutClicked" prefHeight="30.0" prefWidth="210.0" stylesheets="@../css/home.css" text="Checkout">
+                  <Button fx:id="checkOutLabel" maxWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#checkOutClicked" prefHeight="30.0" prefWidth="210.0" style="-fx-font-weight: bold;" stylesheets="@../css/home.css" text="Check out">
                      <VBox.margin>
                         <Insets bottom="5.0" left="10.0" top="5.0" />
                      </VBox.margin>
@@ -57,7 +57,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="35.0">
                                  <children>
-                                    <Label prefHeight="35.0" style="-fx-font-weight: bold;" text="Product ID:">
+                                    <Label fx:id="bdProductId" prefHeight="35.0" style="-fx-font-weight: bold;" text="Product ID:">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -74,7 +74,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="35.0">
                                  <children>
-                                    <Label prefHeight="35.0" style="-fx-font-weight: bold;" text="Product Name:">
+                                    <Label fx:id="bdProductName" prefHeight="35.0" style="-fx-font-weight: bold;" text="Product Name:">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -91,7 +91,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="35.0">
                                  <children>
-                                    <Label prefHeight="35.0" style="-fx-font-weight: bold;" text="Quantity:">
+                                    <Label fx:id="bdQuantity" prefHeight="35.0" style="-fx-font-weight: bold;" text="Quantity:">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -108,7 +108,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="35.0">
                                  <children>
-                                    <Label prefHeight="35.0" style="-fx-font-weight: bold;" text="Unit:">
+                                    <Label fx:id="bdUnit" prefHeight="35.0" style="-fx-font-weight: bold;" text="Unit:">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -125,7 +125,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="35.0">
                                  <children>
-                                    <Label prefHeight="35.0" style="-fx-font-weight: bold;" text="Price:">
+                                    <Label fx:id="bdPrice" prefHeight="35.0" style="-fx-font-weight: bold;" text="Price:">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -142,7 +142,7 @@
                               </HBox>
                               <HBox alignment="CENTER_LEFT" prefHeight="35.0">
                                  <children>
-                                    <Label prefHeight="35.0" style="-fx-font-weight: bold;" text="Amount:">
+                                    <Label fx:id="bdAmount" prefHeight="35.0" style="-fx-font-weight: bold;" text="Amount:">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -161,7 +161,7 @@
                         </VBox>
                         <HBox alignment="CENTER">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#removeAction" prefHeight="35.0" stylesheets="@../css/home.css" text="Remove">
+                              <Button fx:id="bdRemove" mnemonicParsing="false" onAction="#removeAction" prefHeight="35.0" style="-fx-font-weight: bold;" stylesheets="@../css/home.css" text="Remove">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
@@ -170,7 +170,7 @@
                                     <String fx:value="lable-button-is-hover" />
                                  </styleClass>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#updateAction" prefHeight="35.0" stylesheets="@../css/home.css" text="Update">
+                              <Button fx:id="bdUpdate" mnemonicParsing="false" onAction="#updateAction" prefHeight="35.0" style="-fx-font-weight: bold;" stylesheets="@../css/home.css" text="Update">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -190,9 +190,9 @@
             </VBox>
          </right>
          <top>
-            <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="36.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER_LEFT" prefHeight="36.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="numberProductLabel" prefHeight="30.0" text="2 products in Cart">
+                  <Label fx:id="numberProductLabel" prefHeight="30.0" text="? products in Cart">
                      <VBox.margin>
                         <Insets left="10.0" />
                      </VBox.margin>
@@ -204,7 +204,7 @@
             </VBox>
          </top>
          <center>
-            <TableView fx:id="cartTableView" onMouseClicked="#tableViewCartClicked" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
+            <TableView fx:id="cartTableView" onMouseClicked="#tableViewCartClicked" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="productId" prefWidth="75.0" text="Product ID" />
                 <TableColumn fx:id="productName" prefWidth="75.0" text="Product Name" />
@@ -223,7 +223,4 @@
          </BorderPane.margin>
       </BorderPane>
    </center>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
 </BorderPane>

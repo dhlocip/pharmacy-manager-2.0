@@ -177,6 +177,15 @@ public class CreateUsersController implements Initializable {
         bdDate.setText(resourceBundle.getString("bdDate"));
         bdPosition.setText(resourceBundle.getString("bdPosition"));
         bdCreate.setText(resourceBundle.getString("bdCreate"));
+        
+        userNameTextField.setPromptText(resourceBundle.getString("userNameTextField"));
+        passwordTextField.setPromptText(resourceBundle.getString("passwordTextField"));
+        fullnameTextField.setPromptText(resourceBundle.getString("fullnameTextField"));
+        phoneTextField.setPromptText(resourceBundle.getString("phoneTextField"));
+        addressTextField.setPromptText(resourceBundle.getString("addressTextField"));
+        emailTextField.setPromptText(resourceBundle.getString("emailTextField"));
+        dateOfBirthDatePicker.setPromptText(resourceBundle.getString("dateOfBirthDatePicker"));
+        
     }
 
     private void hideErrorOfUserName(boolean value) {
@@ -359,7 +368,6 @@ public class CreateUsersController implements Initializable {
         String tmp = userNameTextField.getText();
         lUserName = tmp;
         return tmp.matches("^[a-zA-Z]{1}[\\w]*[.]?[\\w]+") && tmp.length() >= 6;
-//        return tmp.matches("^[a-zA-Z]{1}[\\w]*[.]?[\\w]+") && tmp.length() >= 6 && check != true;
     }
 
     @FXML

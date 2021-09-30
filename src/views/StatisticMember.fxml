@@ -15,13 +15,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="homeBox" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StatisticMemberController">
+<BorderPane fx:id="homeBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StatisticMemberController">
    <top>
       <HBox alignment="BOTTOM_LEFT" BorderPane.alignment="CENTER">
          <children>
             <VBox>
                <children>
-                  <Label prefHeight="35.0" text="Start Date:" />
+                  <Label fx:id="bdStartDate" prefHeight="35.0" text="Start Date:" />
                   <Label fx:id="errorOfStartDate" text="error" />
                   <DatePicker fx:id="dpStartDate" onAction="#startDateAction" prefHeight="35.0" prefWidth="260.0" />
                </children>
@@ -31,7 +31,7 @@
             </VBox>
             <VBox>
                <children>
-                  <Label prefHeight="35.0" text="End Date:" />
+                  <Label fx:id="bdEndDate" prefHeight="35.0" text="End Date:" />
                   <Label fx:id="errorOfEndDate" text="error" />
                   <DatePicker fx:id="dpEndDate" onAction="#endDateAction" prefHeight="35.0" prefWidth="260.0" />
                </children>
@@ -42,7 +42,7 @@
             <VBox />
             <VBox alignment="BOTTOM_CENTER">
                <children>
-                  <HBox alignment="CENTER" onMouseClicked="#executeClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
+                  <HBox alignment="CENTER" minWidth="-Infinity" onMouseClicked="#executeClicked" style="-fx-cursor: hand;" stylesheets="@../css/home.css">
                      <children>
                         <Label prefHeight="35.0">
                            <graphic>
@@ -56,7 +56,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="35.0" text="Execute">
+                        <Label fx:id="bdExeTop" prefHeight="35.0" style="-fx-font-weight: bold;" text="Execute">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
@@ -88,17 +88,14 @@
          <BorderPane.margin>
             <Insets left="10.0" />
          </BorderPane.margin>
-         <padding>
-            <Insets bottom="10.0" right="10.0" top="10.0" />
-         </padding>
       </LineChart>
    </center>
    <left>
-      <VBox prefHeight="417.0" prefWidth="415.0" BorderPane.alignment="CENTER">
+      <VBox BorderPane.alignment="CENTER">
          <children>
             <HBox>
                <children>
-                  <Label prefHeight="40.0" text="Total sales from day">
+                  <Label fx:id="bdTitleDetail" prefHeight="40.0" text="Total sales from day">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -167,6 +164,6 @@
       </VBox>
    </left>
    <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      <Insets bottom="10.0" left="10.0" right="10.0" />
    </padding>
 </BorderPane>

@@ -24,15 +24,11 @@ public class StatisticModifier extends UserModifier {
     
     public ObservableList<Cart> getTableSale(String startDate, String endDate) throws SQLException{
         ObservableList<Cart> dList = FXCollections.observableArrayList();
-        String sql = "select bills.userId as userId, "
-                + "sum((billDetail.saleQuantity * products.price)) as total "
-                + "from products "
-                + "inner join billDetail "
-                + "on products.productId = billDetail.productId "
-                + "inner join bills "
-                + "on bills.billId = billDetail.billId "
-                + "where bills.transactionTime between ? and ? "
-                + "group by bills.userId";
+        String sql = "select userId, "
+                + "sum(total) as total "
+                + "from vStatisticByDate "
+                + "where transactionTime between ? and ? "
+                + "group by userId";
         PreparedStatement preS = connect().prepareStatement(sql);
         preS.setString(1, startDate);
         preS.setString(2, endDate);
@@ -47,15 +43,11 @@ public class StatisticModifier extends UserModifier {
         
     public ObservableList<Data<String, Number>> getBarChart(String startDate, String endDate) throws SQLException{
         ObservableList<Data<String, Number>> dList = FXCollections.observableArrayList();
-        String sql = "select bills.userId as userId, "
-                + "sum((billDetail.saleQuantity * products.price)) as total "
-                + "from products "
-                + "inner join billDetail "
-                + "on products.productId = billDetail.productId "
-                + "inner join bills "
-                + "on bills.billId = billDetail.billId "
-                + "where bills.transactionTime between ? and ? "
-                + "group by bills.userId";
+        String sql = "select userId, "
+                + "sum(total) as total "
+                + "from vStatisticByDate "
+                + "where transactionTime between ? and ? "
+                + "group by userId";
         PreparedStatement preS = connect().prepareStatement(sql);
         preS.setString(1, startDate);
         preS.setString(2, endDate);
@@ -148,20 +140,6 @@ public class StatisticModifier extends UserModifier {
                     result.getDouble("total"), result.getString("transactionTime")));
         }
         return cList;
-    }
-
-
-    public static void main(String[] args) throws SQLException {
-//        ObservableList<Cart> cart = new StatisticModifier().getTotalSaleMemberByDate(10001, "09/01/2020", "09/30/2021");
-//        cart.forEach((t) -> {
-//            System.out.println(t.getAmount());
-//        });
-
-        double num = 2.5E7;
-        System.out.println(num);
-        DecimalFormat format = new DecimalFormat("#0,000.00");
-        String formattedNumber = format.format(num);
-        System.out.println(formattedNumber);
     }
 
 }

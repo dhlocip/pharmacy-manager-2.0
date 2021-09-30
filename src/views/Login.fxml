@@ -13,87 +13,94 @@
 
 <BorderPane fx:id="signInBorderBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="452.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
    <center>
-      <VBox fx:id="signInVbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="465.0" prefWidth="408.0" BorderPane.alignment="CENTER">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-border-color: red;" styleClass="background" stylesheets="@../css/home.css" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="63.0" prefWidth="408.0" VBox.vgrow="ALWAYS">
+            <VBox fx:id="signInVbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="408.0" style="-fx-border-color: red;" styleClass="sup-background" stylesheets="@../css/home.css">
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" text="Sign in to Pharmacy" HBox.hgrow="NEVER">
-                     <font>
-                        <Font name="System Bold" size="22.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox fx:id="errorBox" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="63.0" prefWidth="408.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="51.0" prefWidth="369.0" style="-fx-border-color: red; -fx-border-radius: 6; -fx-background-color: #f6f8fa;" HBox.hgrow="NEVER">
+                  <HBox alignment="CENTER" prefHeight="63.0" prefWidth="408.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="355.0" text="Incorrent username or password." textFill="RED" HBox.hgrow="ALWAYS">
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" text="Sign in to Pharmacy" HBox.hgrow="NEVER">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="errorBox" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="63.0" prefWidth="408.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="51.0" prefWidth="369.0" style="-fx-border-color: red; -fx-border-radius: 6; -fx-background-color: #f6f8fa;" HBox.hgrow="NEVER">
+                           <children>
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="355.0" text="Incorrent username or password." textFill="RED" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </Label>
+                              <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#clickCloseError" style="-fx-background-color: #f6f8fa;" text="X" textFill="#fc0000" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="311.0" prefWidth="408.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="369.0" text="Username or email address" VBox.vgrow="NEVER">
                            <font>
                               <Font size="15.0" />
                            </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
                         </Label>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#clickCloseError" style="-fx-background-color: #f6f8fa;" text="X" textFill="#fc0000" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="usernameTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#usernameReleased" prefHeight="36.0" prefWidth="369.0" promptText="Use 6 or more characters" VBox.vgrow="NEVER">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="369.0" text="Password" VBox.vgrow="NEVER">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font size="15.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <PasswordField fx:id="passwordTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#passwordReleased" prefHeight="36.0" prefWidth="369.0" promptText="Use 8 or more characters" VBox.vgrow="NEVER">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </PasswordField>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="369.0" text="Forgot password?" textFill="#3606e1" VBox.vgrow="NEVER">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Button fx:id="signInButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#clickSignIn" prefHeight="36.0" prefWidth="369.0" style="-fx-font-weight: bold;" stylesheets="@../css/home.css" text="Sign in">
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" />
+                           </VBox.margin>
+                           <styleClass>
+                              <String fx:value="lable-button" />
+                              <String fx:value="lable-button-is-hover" />
+                           </styleClass>
                         </Button>
                      </children>
-                     <HBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </HBox.margin>
-                  </HBox>
+                  </VBox>
                </children>
-            </HBox>
-            <VBox alignment="TOP_CENTER" prefHeight="311.0" prefWidth="408.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="369.0" text="Username or email address" VBox.vgrow="NEVER">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="usernameTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#usernameReleased" prefHeight="36.0" prefWidth="369.0" promptText="Use 6 or more characters" VBox.vgrow="NEVER">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="369.0" text="Password" VBox.vgrow="NEVER">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <PasswordField fx:id="passwordTextField" maxHeight="-Infinity" maxWidth="-Infinity" onKeyReleased="#passwordReleased" prefHeight="36.0" prefWidth="369.0" promptText="Use 8 or more characters" VBox.vgrow="NEVER">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </PasswordField>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="369.0" text="Forgot password?" textFill="#3606e1" VBox.vgrow="NEVER">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Button fx:id="signInButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#clickSignIn" prefHeight="36.0" prefWidth="369.0" style="-fx-font-weight: bold;" stylesheets="@../css/home.css" text="Sign in">
-                     <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
-                     </VBox.margin>
-                     <styleClass>
-                        <String fx:value="lable-button" />
-                        <String fx:value="lable-button-is-hover" />
-                     </styleClass>
-                  </Button>
-               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
             </VBox>
          </children>
       </VBox>

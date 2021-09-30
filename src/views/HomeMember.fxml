@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="homeBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeMemberController">
+<BorderPane fx:id="homeBox" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeMemberController">
    <top>
-      <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" prefWidth="900.0" style="-fx-border-color: grey;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="40.0" style="-fx-border-color: grey;" BorderPane.alignment="CENTER">
          <children>
             <Label prefHeight="35.0" text="Pcity">
                <font>
@@ -426,7 +426,7 @@
       </VBox>
    </left>
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <BorderPane BorderPane.alignment="CENTER">
          <center>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>

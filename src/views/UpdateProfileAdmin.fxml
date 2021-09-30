@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateProfileAdminController">
+<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.UpdateProfileAdminController">
    <center>
       <VBox prefWidth="250.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefWidth="369.0" style="-fx-background-color: #f6f8fa;" VBox.vgrow="ALWAYS">
                <children>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Full Name" VBox.vgrow="NEVER">
+                  <Label fx:id="bdFullName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Full Name" VBox.vgrow="NEVER">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -27,7 +27,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="fullnameTextField" maxWidth="-Infinity" onKeyReleased="#fullNameReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                  <TextField fx:id="fullnameTextField" maxWidth="-Infinity" onKeyReleased="#fullNameReleased" prefHeight="35.0" prefWidth="369.0" promptText="only alphabetic character">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
@@ -40,7 +40,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Gender" VBox.vgrow="NEVER">
+                  <Label fx:id="bdGender" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Gender" VBox.vgrow="NEVER">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -61,7 +61,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Phone">
+                  <Label fx:id="bdPhone" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Phone">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -69,7 +69,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="phoneTextField" maxWidth="-Infinity" onKeyReleased="#phoneReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                  <TextField fx:id="phoneTextField" maxWidth="-Infinity" onKeyReleased="#phoneReleased" prefHeight="35.0" prefWidth="369.0" promptText="new phone">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
@@ -82,7 +82,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Address">
+                  <Label fx:id="bdAddress" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Address">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -90,7 +90,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="addressTextField" maxWidth="-Infinity" onKeyReleased="#addressReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1">
+                  <TextField fx:id="addressTextField" maxWidth="-Infinity" onKeyReleased="#addressReleased" prefHeight="35.0" prefWidth="369.0" promptText="new address">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
@@ -103,18 +103,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Email">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="emailTextField" maxWidth="-Infinity" onKeyReleased="#emailReleased" prefHeight="35.0" prefWidth="369.0" promptText="ex: value greater or equal 1 and  1.1" />
-                  <Label fx:id="errorOfEmail" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Date Of Birth">
+                  <Label fx:id="bdEmail" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Email">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -122,7 +111,24 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <DatePicker fx:id="dateOfBirthDatePicker" maxWidth="-Infinity" onAction="#dateOfBirthAction" prefHeight="35.0" prefWidth="369.0">
+                  <TextField fx:id="emailTextField" maxWidth="-Infinity" onKeyReleased="#emailReleased" prefHeight="35.0" prefWidth="369.0" promptText="new email">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin></TextField>
+                  <Label fx:id="errorOfEmail" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="369.0" textFill="RED">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="bdDateOfBirth" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Date Of Birth">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <DatePicker fx:id="dateOfBirthDatePicker" maxWidth="-Infinity" onAction="#dateOfBirthAction" prefHeight="35.0" prefWidth="369.0" promptText="select">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
@@ -135,7 +141,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Position">
+                  <Label fx:id="bdPosition" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="369.0" text="Position">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -170,7 +176,7 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefHeight="27.0" text="Update User">
+                        <Label fx:id="bdUpdateUser" prefHeight="27.0" style="-fx-font-weight: bold;" text="Update User">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -193,7 +199,4 @@
          </children>
       </VBox>
    </center>
-   <padding>
-      <Insets bottom="10.0" top="10.0" />
-   </padding>
 </BorderPane>

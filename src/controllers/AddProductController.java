@@ -138,6 +138,11 @@ public class AddProductController implements Initializable {
         bdUnit.setText(resourceBundle.getString("bdUnit"));
         bdPrice.setText(resourceBundle.getString("bdPrice"));
         bdAddProDetail.setText(resourceBundle.getString("bdAddProDetail"));
+        
+        productTypeNameTextField.setPromptText(resourceBundle.getString("productTypeNameTextField"));
+        productNameTextField.setPromptText(resourceBundle.getString("productNameTextField"));
+        unitTextField.setPromptText(resourceBundle.getString("unitTextField"));
+        priceTextField.setPromptText(resourceBundle.getString("priceTextField"));
     }
 
     private void setValueProTypeIdComboBox() throws SQLException {

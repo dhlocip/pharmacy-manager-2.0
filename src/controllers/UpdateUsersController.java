@@ -10,6 +10,7 @@ import datamodifier.UserModifier;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,6 +93,22 @@ public class UpdateUsersController implements Initializable {
     private Label errorOfPosition;
     @FXML
     private Label errorOfDateOfBirth;
+    @FXML
+    private Label bdFullName;
+    @FXML
+    private Label bdGender;
+    @FXML
+    private Label bdPhone;
+    @FXML
+    private Label bdAddress;
+    @FXML
+    private Label bdEmail;
+    @FXML
+    private Label bdDateOfBirth;
+    @FXML
+    private Label bdPosition;
+    @FXML
+    private Label bdUpdateUser;
 
     /**
      * Initializes the controller class.
@@ -116,7 +133,50 @@ public class UpdateUsersController implements Initializable {
         hideErrorOfDateOfBrith(false);
         hideErrorOfPosition(false);
         
+        setLanguage();
+    }
+    
+    private void setLanguage() {
+        String role = HomeManagerController.gRole;
+        String langManager = HomeManagerController.gLanguage;
+        String langMeber = HomeMemberController.gLanguage;
+        if (role != null) {
+            if (langManager.equalsIgnoreCase("english")) {
+                changeLanguage("en", "EN");
+            } else {
+                changeLanguage("vi", "VN");
+            }
+        } else {
+            if (langMeber.equalsIgnoreCase("english")) {
+                changeLanguage("en", "EN");
+            } else {
+                changeLanguage("vi", "VN");
+            }
+        }
 
+    }
+
+    private void changeLanguage(String language, String country) {
+
+        Locale locale = new Locale(language, country);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/update_profile/Bundle", locale);
+
+        bdFullName.setText(resourceBundle.getString("bdFullName"));
+        bdGender.setText(resourceBundle.getString("bdGender"));
+        bdPhone.setText(resourceBundle.getString("bdPhone"));
+        bdAddress.setText(resourceBundle.getString("bdAddress"));
+        bdEmail.setText(resourceBundle.getString("bdEmail"));
+        bdDateOfBirth.setText(resourceBundle.getString("bdDateOfBirth"));
+        bdPosition.setText(resourceBundle.getString("bdPosition"));
+        bdUpdateUser.setText(resourceBundle.getString("bdUpdateUser"));
+        
+        fullnameTextField.setPromptText(resourceBundle.getString("fullnameTextField"));
+        phoneTextField.setPromptText(resourceBundle.getString("phoneTextField"));
+        addressTextField.setPromptText(resourceBundle.getString("addressTextField"));
+        emailTextField.setPromptText(resourceBundle.getString("emailTextField"));
+        dateOfBirthDatePicker.setPromptText(resourceBundle.getString("dateOfBirthDatePicker"));
+        
+        searchTextField.setPromptText(resourceBundle.getString("searchTextField"));
     }
 
     private void hideErrorOfFullName(boolean value) {

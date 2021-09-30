@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -111,6 +112,26 @@ public class ImportProductController implements Initializable {
     private Label errorOfExpDate;
     @FXML
     private Label errorOfProductId;
+    @FXML
+    private Label bdProductId;
+    @FXML
+    private Label bdPrice;
+    @FXML
+    private Label bdQuantity;
+    @FXML
+    private Label bdMfgDate;
+    @FXML
+    private Label bdExpDate;
+    @FXML
+    private Label bdImportDetailBatch;
+    @FXML
+    private Label bdImportFileExcel;
+    @FXML
+    private Label bdImportNewBatch;
+    @FXML
+    private Label bdInstruction;
+    @FXML
+    private Label bdInstructionDetail;
 
     /**
      * Initializes the controller class.
@@ -137,20 +158,12 @@ public class ImportProductController implements Initializable {
 //        get value of combobox importbatchid
             getValueProIdListComboBox();
 
-//        get value of combobox importbatchid
-//            getValueImpIdListComboBox();
 //            get total product of an importBatchId
             getTotalProductInImportDetail();
-//            if (total == 0) {
-//                impBatchDetailLabel.setDisable(true);
-//            } else {
-//                impBatchDetailLabel.setDisable(false);
-//            }
 
         } catch (SQLException ex) {
             Logger.getLogger(ImportProductController.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        impBatchDetailLabel.setDisable(true);
 
         hideErrorProductId(false);
         hideErrorPrice(false);
@@ -158,6 +171,40 @@ public class ImportProductController implements Initializable {
         hideErrorMfgDate(false);
         hideErrorExpDate(false);
         impFileExcelLabel.setDisable(true);
+
+        setLanguage();
+    }
+
+    private void setLanguage() {
+        String langManager = HomeManagerController.gLanguage;
+        if (langManager.equalsIgnoreCase("english")) {
+            changeLanguage("en", "EN");
+        } else {
+            changeLanguage("vi", "VN");
+        }
+    }
+
+    private void changeLanguage(String language, String country) {
+
+        Locale locale = new Locale(language, country);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/import_product/Bundle", locale);
+
+        bdProductId.setText(resourceBundle.getString("bdProductId"));
+        bdPrice.setText(resourceBundle.getString("bdPrice"));
+        bdQuantity.setText(resourceBundle.getString("bdQuantity"));
+        bdMfgDate.setText(resourceBundle.getString("bdMfgDate"));
+        bdExpDate.setText(resourceBundle.getString("bdExpDate"));
+        bdImportDetailBatch.setText(resourceBundle.getString("bdImportDetailBatch"));
+        bdImportFileExcel.setText(resourceBundle.getString("bdImportFileExcel"));
+        bdImportNewBatch.setText(resourceBundle.getString("bdImportNewBatch"));
+
+        bdInstruction.setText(resourceBundle.getString("bdInstruction"));
+        bdInstructionDetail.setText(resourceBundle.getString("bdInstructionDetail"));
+
+        impPriceTextField.setPromptText(resourceBundle.getString("impPriceTextField"));
+        impQuantityTextField.setPromptText(resourceBundle.getString("impQuantityTextField"));
+        mfgDateTextField.setPromptText(resourceBundle.getString("mfgDateTextField"));
+        expDateTextField.setPromptText(resourceBundle.getString("expDateTextField"));
     }
 
 //    get total product inside an importId
@@ -168,16 +215,6 @@ public class ImportProductController implements Initializable {
         total = new ImportBatchDetailModifier().getNumberProduct(impId);
     }
 
-    //        get value of combobox importbatchid
-//    private void getValueImpIdListComboBox() throws SQLException {
-//        ObservableList<Integer> impIdList = new ImportBatchModifier().getListImpId(userId);
-//        impBatchIdComboBox.setItems(impIdList);
-//        impBatchIdComboBox.setValue(impIdList.get(0));
-//
-//        impBatchIdComboBox.setOnAction((t) -> {
-//            currentImpId = impBatchIdComboBox.getValue();
-//        });
-//    }
     //        get value of combobox importbatchid
     private void getValueProIdListComboBox() throws SQLException {
         ObservableList<Integer> proIdList = new ProductChildModifier().getListProId();
@@ -227,7 +264,7 @@ public class ImportProductController implements Initializable {
         errorOfProductId.setVisible(value);
         errorOfProductId.managedProperty().bind(errorOfProductId.visibleProperty());
     }
-    
+
     private void hideErrorPrice(boolean value) {
         errorOfPrice.setVisible(value);
         errorOfPrice.managedProperty().bind(errorOfPrice.visibleProperty());
@@ -268,11 +305,6 @@ public class ImportProductController implements Initializable {
 
 //                  get total product inside an importBatchId
                 getTotalProductInImportDetail();
-//                if (total == 0) {
-//                    impBatchDetailLabel.setDisable(true);
-//                } else {
-//                    impBatchDetailLabel.setDisable(false);
-//                }
 
             }
         } else {
@@ -311,7 +343,7 @@ public class ImportProductController implements Initializable {
 
 //        reload table importBatchDetail info
             getImpBatchDetailInfo(userId);
-            
+
 //                  get total product inside an importBatchId
             getTotalProductInImportDetail();
 
@@ -406,12 +438,6 @@ public class ImportProductController implements Initializable {
 
     @FXML
     private void quantityReleased(KeyEvent event) {
-//        if (isPriceRight() && isQuantityRight()
-//                && isMfgDateRight() != null && isExpDateRight() != null) {
-//            impBatchDetailLabel.setDisable(false);
-//        } else {
-//            impBatchDetailLabel.setDisable(true);
-//        }
         if (isQuantityRight()) {
             hideErrorQuantity(false);
         } else {
@@ -420,22 +446,6 @@ public class ImportProductController implements Initializable {
         }
     }
 
-//    private void mfgDateClicked(MouseEvent event) {
-//        if (isMfgDateRight()) {
-//            hideErrorMfgDate(false);
-//        } else {
-//            hideErrorMfgDate(true);
-//            errorOfMfgDate.setText("Please select \"MFG Date\" value");
-//        }
-//    }
-//    private void expDateClicked(MouseEvent event) {
-//        if (isExpDateRight()) {
-//            hideErrorExpDate(false);
-//        } else {
-//            hideErrorExpDate(true);
-//            errorOfExpDate.setText("Please select \"EXP Date\" value");
-//        }
-//    }
     @FXML
     private void mfgDateClicked(ActionEvent event) throws ParseException {
         if (isMfgDateRight()) {
@@ -465,14 +475,6 @@ public class ImportProductController implements Initializable {
         }
     }
 
-//    private void priceReleased(ActionEvent event) {
-//        if (isPriceRight()) {
-//            hideErrorPrice(false);
-//        } else {
-//            hideErrorPrice(true);
-//            errorOfPrice.setText("\"" + impPriceTextField.getText() + "\" is invalid value.\nPlease enter value greater than 0");
-//        }
-//    }
     @FXML
     private void expDateClicked(ActionEvent event) throws ParseException {
         if (isExpDateRight()) {

@@ -14,6 +14,7 @@ import datamodifier.CartModifier;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -30,6 +31,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -89,6 +91,14 @@ public class SearchProductController implements Initializable {
     private Label viewTotalNumber;
     @FXML
     private BorderPane homeBox;
+    @FXML
+    private Label bdProductId;
+    @FXML
+    private Label bdProductName;
+    @FXML
+    private Label bdQuantity;
+    @FXML
+    private Button bdAddToCart;
 
     /**
      * Initializes the controller class.
@@ -121,7 +131,28 @@ public class SearchProductController implements Initializable {
         }
 
         viewTotalNumber.setText(totalNumCart + "");
+        setLanguage();
+    }
+    
+    private void setLanguage() {
+        String langMember = HomeMemberController.gLanguage;
+        if (langMember.equalsIgnoreCase("english")) {
+            changeLanguage("en", "EN");
+        } else {
+            changeLanguage("vi", "VN");
+        }
+    }
 
+    private void changeLanguage(String language, String country) {
+
+        Locale locale = new Locale(language, country);
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/search_product/Bundle", locale);
+
+        gotocart.setText(resourceBundle.getString("gotocart"));
+        bdProductId.setText(resourceBundle.getString("bdProductId"));
+        bdProductName.setText(resourceBundle.getString("bdProductName"));
+        bdQuantity.setText(resourceBundle.getString("bdQuantity"));
+        bdAddToCart.setText(resourceBundle.getString("bdAddToCart"));
     }
 
     private void setSpiderQuantity() {
@@ -203,7 +234,6 @@ public class SearchProductController implements Initializable {
             //            need to reload billId
             billId = new BillModifier().getMaxBillId(userId);
             boolean check = new BillDetailModifier().isExists(item.getProductId(), billId);
-            System.out.println(check);
             if (!check) {
 
                 BillDetail billDetail = new BillDetail();

@@ -88,6 +88,10 @@ public class ChangePasswordAdminController implements Initializable {
         bdConfirmPass.setText(resourceBundle.getString("bdConfirmPass"));
         bdRetypePass.setText(resourceBundle.getString("bdRetypePass"));
         bdChangePass.setText(resourceBundle.getString("bdChangePass"));
+        
+        currentPasswordTF.setPromptText(resourceBundle.getString("currentPasswordTF"));
+        newPasswordTF.setPromptText(resourceBundle.getString("newPasswordTF"));
+        retypeNewPasswordTF.setPromptText(resourceBundle.getString("retypeNewPasswordTF"));
     }
 
     @FXML
@@ -101,6 +105,9 @@ public class ChangePasswordAdminController implements Initializable {
                 alert.setHeaderText("Success");
                 alert.setContentText("Change password is successfully.");
                 alert.showAndWait();
+                currentPasswordTF.setText("");
+                newPasswordTF.setText("");
+                retypeNewPasswordTF.setText("");
             }
         } else {
             if (isNewPassRight()) {
@@ -170,7 +177,7 @@ public class ChangePasswordAdminController implements Initializable {
 
     @FXML
     private void currentPasswordReleased(KeyEvent event) throws SQLException {
-        int userId = new HomeManagerController().gUserId;
+        int userId = HomeManagerController.gUserId;
         if (isCurrentPassRight()
                 && lCurrentPass.equals(new UserModifier().getUser(userId).getPassword())) {
             errorOfCurrentPass.setText("");

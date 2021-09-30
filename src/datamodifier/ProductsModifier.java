@@ -101,26 +101,4 @@ public class ProductsModifier extends UseDataBase {
         return true;
     }
 
-    public static void main(String[] args) throws SQLException {
-//        Products pro = new Products(30000, 20002, "Medicine F", "box", 50000);
-        ObservableList<Products> l = new ProductsModifier().getInfoByIdOrName("r");
-        l.forEach((t) -> {
-            System.out.println(t.getProductName());
-        });
-//        int a = 0;
-//        String tmp = null;
-//        String b = "3b";
-//        boolean boo = false;
-//        try {
-//            a = Integer.parseInt(b);
-//            boo = false;
-//        } catch (NumberFormatException ex) {
-//            tmp = b;
-//            boo = true;
-//        }
-//
-//        System.out.println(a);
-//        System.out.println(tmp);
-//        System.out.println(boo);
-    }
 }
